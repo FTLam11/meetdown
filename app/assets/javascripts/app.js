@@ -12,7 +12,7 @@ poop.config(['$stateProvider',
 
       .state('posts', {
         url: '/posts/{id}',
-        templateUrl: '/posts/_posts.html',
+        templateUrl: 'posts/_posts.html',
         controller: 'PostsCtrl'
       })
 
