@@ -16,6 +16,12 @@ poop.config(['$stateProvider',
         controller: 'PostsCtrl'
       })
 
+      .state('account', {
+        url: '/account',
+        templateUrl: 'account/_account.html',
+        controller: 'AccountCtrl'
+      })
+
     $urlRouterProvider.otherwise('home');
 }]);
 

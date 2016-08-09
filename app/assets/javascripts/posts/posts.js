@@ -1,4 +1,4 @@
-var posts = angular.module('poopNews')
+var posts = angular.module('poopNews');
 
 posts.factory('posts', [function() {
   var obj = {
