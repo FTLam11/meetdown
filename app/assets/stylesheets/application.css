@@ -14,3 +14,20 @@
  *= require_tree .
  *= require_self
  */
+#15AA85 green
+#00DDAF amazon
+#2C3030 black
+#DCEEFF white
+
+.background {
+	background-color: #00DDAF;
+}
+.text {
+	color: #2C3030;
+}
+.hover {
+	color: #15AA85;
+}
+.foreground {
+	background-color: #DCEEFF;
+}
