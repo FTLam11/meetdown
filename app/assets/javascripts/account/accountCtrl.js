@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 var account = angular.module('poopNews')
 
 account.config(function (ezfbProvider) {
-=======
-var poop = angular.module('poopNews');
-poop.config(function (ezfbProvider) {
->>>>>>> 14aff874f1c4bb095d4b2358b61be7abdd893776
   /**
    * Basic setup
    *
