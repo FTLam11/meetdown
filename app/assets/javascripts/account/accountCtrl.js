@@ -1,5 +1,5 @@
-var poop =angular.module('poopNews')
-.config(function (ezfbProvider) {
+var poop = angular.module('poopNews');
+poop.config(function (ezfbProvider) {
   /**
    * Basic setup
    *
@@ -26,7 +26,7 @@ poop.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
       }
-    }, {scope: 'email,user_likes'});
+    }, {scope: 'email,user_likes',return_scopes: true});
   };
 
   $scope.logout = function () {
@@ -81,7 +81,7 @@ poop.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
    * Update api('/me') result
    */
   function updateApiMe () {
-    ezfb.api('/me', function (res) {
+    ezfb.api('/me', {fields:'email, movies, music'}, function (res) {
       $scope.apiMe = res;
     });
   }
