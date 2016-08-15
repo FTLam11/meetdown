@@ -1,4 +1,4 @@
-var poop = angular.module('poopNews', ['ui.router', 'templates', 'ezfb', 'hljs']);
+var poop = angular.module('poopNews', ['ui.router', 'templates', 'ezfb']);
 
 poop.config(['$stateProvider',
   '$urlRouterProvider',

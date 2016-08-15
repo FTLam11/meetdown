@@ -1,5 +1,6 @@
-var poop = angular.module('poopNews');
-poop.config(function (ezfbProvider) {
+var account = angular.module('poopNews')
+
+account.config(function (ezfbProvider) {
   /**
    * Basic setup
    *
@@ -10,7 +11,7 @@ poop.config(function (ezfbProvider) {
     })
 });
 
-poop.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
+account.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
   
   updateLoginStatus(updateApiMe);
 
@@ -37,23 +38,6 @@ poop.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
     ezfb.logout(function () {
       updateLoginStatus(updateApiMe);
     });
-  };
-
-  $scope.share = function () {
-    ezfb.ui(
-      {
-        method: 'feed',
-        name: 'angular-easyfb API demo',
-        picture: 'http://plnkr.co/img/plunker.png',
-        link: 'http://plnkr.co/edit/qclqht?p=preview',
-        description: 'angular-easyfb is an AngularJS module wrapping Facebook SDK.' + 
-                     ' Facebook integration in AngularJS made easy!' + 
-                     ' Please try it and feel free to give feedbacks.'
-      },
-      function (res) {
-        // res: FB.ui response
-      }
-    );
   };
 
   /**
