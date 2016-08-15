@@ -81,7 +81,7 @@ poop.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
    * Update api('/me') result
    */
   function updateApiMe () {
-    ezfb.api('/me', {fields:'email, movies, music'}, function (res) {
+    ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
       $scope.apiMe = res;
     });
   }
