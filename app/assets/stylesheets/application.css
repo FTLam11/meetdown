@@ -14,12 +14,8 @@
  *= require_tree .
  *= require_self
  */
-#15AA85 green
-#00DDAF amazon
-#2C3030 black
-#DCEEFF white
 
-.background {
+body {
 	background-color: #00DDAF;
 }
 .text {
