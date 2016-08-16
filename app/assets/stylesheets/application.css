@@ -21,11 +21,12 @@ body {
 	background-image: url("/assets/background.png");
 	
 	background-repeat: no-repeat;
-}
-}
+	font-family: arial;
+
 .text {
 	color: #2C3030;
 }
+
 .hover {
 	color: #15AA85;
 }
