@@ -1,17 +1,12 @@
 var account = angular.module('poopNews')
 
 account.config(function (ezfbProvider) {
-  /**
-   * Basic setup
-   *
-   * https://github.com/pc035860/angular-easyfb#configuration
-   */
   ezfbProvider.setInitParams({
     appId: '239604083106199'
     })
 });
 
-account.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
+account.controller('AccountCtrl', ['$scope', '$stateParams', 'account', function($scope, ezfb, $window, $location, account) {
   
   updateLoginStatus(updateApiMe);
 
@@ -21,9 +16,6 @@ account.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
      * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
      */
     ezfb.login(function (res) {
-      /**
-       * no manual $scope.$apply, I got that handled
-       */
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
       }
@@ -67,6 +59,7 @@ account.controller('AccountCtrl', function($scope, ezfb, $window, $location) {
   function updateApiMe () {
     ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
       $scope.apiMe = res;
+      account.details = res;
     });
   }
-});
+}]);
