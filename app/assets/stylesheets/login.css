@@ -1,66 +1,7 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
-.well{
-    background-color:#fff!important;
-    border-radius:.2em !important;
-    border:none!important;
-}
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
 
   display: flex;
   align-items: center;
-}
-.well.login-box {
-    width:300px;
-    margin:0 auto;
-    display:none;
-}
-.well.login-box legend {
-  font-size:26px;
-  text-align:center;
-  font-weight:300;
-}
-.well.login-box label {
-  font-weight:300;
-  font-size:16px;
-  
-}
-.well.login-box input[type="text"] {
-  box-shadow:none;
-  border-color:#ddd;
-  border-radius:0;
-}
-
-.well.welcome-text{
-    font-size:21px;
-}
-
-/* Notifications */
-
-.notification{
-    position:fixed;
-    top: 20px;
-    right:0;
-    background-color:#FF4136;
-    padding: 20px;
-    color: #fff;
-    font-size:21px;
-    display:none;
-}
-.notification-success{
-  background-color:#3D9970;
-}
-
-.notification-show{
-    display:block!important;
-}
-
-/*Loged in*/
-.logged-in{
-  display:none;
-}
-.logged-in h1{
-  margin:0;
-  font-weight:300;
 }
