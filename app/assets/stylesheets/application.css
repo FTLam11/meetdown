@@ -18,7 +18,10 @@
  */
 
 body {
-	background-color: #00DDAF;
+	background-image: url("/assets/background.png");
+	
+	background-repeat: no-repeat;
+}
 }
 .text {
 	color: #2C3030;
