@@ -1,4 +1,4 @@
-var account = angular.module('poopNews')
+var account = angular.module('meetdown')
 
 account.config(function (ezfbProvider) {
   ezfbProvider.setInitParams({

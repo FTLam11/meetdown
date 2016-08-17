@@ -1,4 +1,4 @@
-var main = angular.module('poopNews');
+var main = angular.module('meetdown');
 
 main.controller('MainCtrl', ['$scope', 'posts', function($scope, posts){
   $scope.posts = posts.posts;

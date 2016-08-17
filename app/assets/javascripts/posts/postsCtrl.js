@@ -1,4 +1,4 @@
-var posts = angular.module('poopNews');
+var posts = angular.module('meetdown');
 
 posts.controller('PostsCtrl', ['$scope', '$stateParams', 'posts', function($scope, $stateParams, posts) {
   $scope.post = posts.posts[$stateParams.id];

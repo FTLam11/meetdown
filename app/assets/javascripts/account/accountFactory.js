@@ -1,4 +1,4 @@
-var account = angular.module('poopNews');
+var account = angular.module('meetdown');
 
 account.factory('account', [function() {
   var obj = {
