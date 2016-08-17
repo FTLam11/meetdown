@@ -1,7 +1,11 @@
 var main = angular.module('meetdown');
 
-main.controller('MainCtrl', ['$scope', 'posts', function($scope, posts){
+main.controller('MainCtrl', ['$scope', 'posts','account', function($scope, account,posts){
+  console.log("hi")
   $scope.posts = posts.posts;
+  console.log(account.details)
+  $scope.user_details=account.details;
+  console.log($scope.details)
 
   $scope.addPost = function() {
     if(!$scope.title || $scope.title === '') { return; }
