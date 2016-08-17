@@ -1,6 +1,6 @@
-var poop = angular.module('meetdown', ['ui.router', 'templates', 'ezfb']);
+var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb']);
 
-poop.config(['$stateProvider',
+meetdown.config(['$stateProvider',
   '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
     $stateProvider
