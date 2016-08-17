@@ -6,7 +6,7 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', function($scope, ezfb, $window, $location, account) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', function($scope, ezfb, account) {
   
   updateLoginStatus(updateApiMe);
 
@@ -62,4 +62,4 @@ account.controller('AccountCtrl', function($scope, ezfb, $window, $location, acc
       account.details = res;
     });
   }
-});
+}]);
