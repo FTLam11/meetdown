@@ -60,7 +60,6 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', function($scope,
     ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
       account.details = res;
       $scope.account = account.details
-      console.log($scope.account)
     });
   }
 }]);
