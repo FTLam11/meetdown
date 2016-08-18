@@ -5,7 +5,7 @@ posts.factory('posts', ['$http', function($http) {
     posts: []
   };
 
-  obj.getAll() = function() {
+  obj.getAll = function() {
     return $http.get('/posts.json').success(function(data) {
       angular.copy(data, obj.posts);
     });
