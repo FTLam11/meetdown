@@ -33,6 +33,9 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', functio
     });
   };
 
+  $scope.test = account.test;
+  $scope.hello = account.hello;
+
   /**
    * For generating better looking JSON results
    */

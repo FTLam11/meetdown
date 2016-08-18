@@ -1,4 +1,8 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
+  def index
+    render json: { hello: "fuck u"}
+  end
+
   def create
     @user = User.new(user_params)
     
