@@ -70,6 +70,7 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', functio
   $scope.postFBid = function(){
     console.log("yo")
     $scope.login();
-    account.postAcct(account.details.id)
+    console.log({"fb_id":account.details.id})
+    account.postAcct({"fb_id":account.details.id})
   }
 }]);
