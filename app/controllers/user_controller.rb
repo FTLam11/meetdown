@@ -1,9 +1,7 @@
 class UserController < ApplicationController
   def create
-    User.parse_json(params)
-
     @user = User.new(user_params)
-
+    
     if @user.save
       respond_with(@user)
     else
@@ -12,6 +10,6 @@ class UserController < ApplicationController
   end
 
   def user_params
-    params.require(:details).permit(:email, :username, :password_digest, :zip_code, :age)
+    params.require(:details).permit(:email, :username, :password_digest, :zip_code, :age, :fb_id)
   end
 end

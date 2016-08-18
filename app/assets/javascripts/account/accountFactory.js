@@ -6,8 +6,8 @@ account.factory('account', [function() {
   }
 
   obj.postAcct = function(data) {
-    return $http.post('/account.json', data).success(function(data) {
-      angular.copy(data, obj.response);
+    return $http.post('/users', data).success(function(data) {
+      console.log(data)
     });
   };
 

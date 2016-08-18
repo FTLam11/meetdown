@@ -15,6 +15,7 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', functio
      * Calling FB.login with required permissions specified
      * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
      */
+     console.log("hi")
     ezfb.login(function (res) {
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
@@ -59,16 +60,13 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', functio
   function updateApiMe () {
     ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
       account.details = res;
+      $scope.account = account
     });
   }
 
-  function onRegister() {
-    updateApiMe();
-    postAcct();
-
-  }
-
-  function checkAcct() {
-
+  $scope.postFBid = function(){
+    console.log("yo")
+    $scope.login();
+    account.postAcct(account.details.id)
   }
 }]);
