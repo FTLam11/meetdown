@@ -6,7 +6,7 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', function($scope, ezfb, account) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', function($scope, ezfb, account, $http) {
   
   updateLoginStatus(updateApiMe);
 
@@ -59,7 +59,16 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', function($scope,
   function updateApiMe () {
     ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
       account.details = res;
-      $scope.account = account.details
     });
+  }
+
+  function onRegister() {
+    updateApiMe();
+    postAcct();
+
+  }
+
+  function checkAcct() {
+
   }
 }]);
