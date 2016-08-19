@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    p user_params
     @user = User.new(user_params)
     
     if @user.save
@@ -14,6 +15,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
+    p "yooo"
+    p params
     params.permit(:email, :username, :password_digest, :zip_code, :age, :fb_id)
   end
 end

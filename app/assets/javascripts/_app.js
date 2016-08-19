@@ -30,3 +30,11 @@ meetdown.config(['$stateProvider',
     $urlRouterProvider.otherwise('home');
 }]);
 
+meetdown.config(function ($httpProvider) {
+    $httpProvider.defaults.transformRequest = function(data){
+        if (data === undefined) {
+            return data;
+        }
+        return $.param(data);
+    }
+});
