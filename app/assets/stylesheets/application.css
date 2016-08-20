@@ -19,9 +19,10 @@
 
 body {
 	background-image: url("/assets/background.png");
-	
+	background-position: center;
 	background-repeat: no-repeat;
 	font-family: arial;
+    background-color: #15AA85;
 }
 
 .divider{
@@ -34,9 +35,9 @@ body {
 	stroke: transparent;
     fill: #fff!important;
     color: #fff!important;
-    background: #3b5998;     
+    background: #3b5998;
     font-weight: 600;
-    margin-top: 1.5em; 
+    margin-top: 1.5em;
     width: 60%;
     border-radius: 1px;
 

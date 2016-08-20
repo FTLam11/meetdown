@@ -7,7 +7,7 @@ account.factory('account', ['$http', function($http) {
   };
 
   obj.postAcct = function(data) {
-    return $http.post('/users', data).success(function(data) {
+    return $http.resource('/users', data).success(function(data) {
       console.log(data)
     });
   };

@@ -6,8 +6,8 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', function($scope, ezfb, account, $http) {
-  
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'User', 'UserLocalHost', function($scope, ezfb, account, User, UserLocalHost) {
+
   updateLoginStatus(updateApiMe);
 
   $scope.login = function () {
@@ -15,7 +15,6 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', functio
      * Calling FB.login with required permissions specified
      * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
      */
-     console.log("hi")
     ezfb.login(function (res) {
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
@@ -39,13 +38,13 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', '$http', functio
   /**
    * For generating better looking JSON results
    */
-  var autoToJSON = ['loginStatus', 'apiMe']; 
+  var autoToJSON = ['loginStatus', 'apiMe'];
   angular.forEach(autoToJSON, function (varName) {
     $scope.$watch(varName, function (val) {
       $scope[varName + 'JSON'] = JSON.stringify(val, null, 2);
     }, true);
   });
-  
+
   /**
    * Update loginStatus result
    */
