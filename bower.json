@@ -24,5 +24,6 @@
     "angular-easyfb": "^1.5.1",
     "angular-highlightjs": "^0.6.1",
     "bootstrap-social": "^5.0.0",
+    "angular-resource": "^1.5.8"
   }
 }
