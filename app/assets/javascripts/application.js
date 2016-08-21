@@ -3,6 +3,5 @@
 //= require angular-ui-router
 //= require angular-easyfb
 //= require angular-highlightjs
-//= require_tree
 //= require jquery
-//= require jquery_ujs
+//= require_tree
