@@ -1,4 +1,4 @@
-var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb']);
+var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ngResource']);
 
 meetdown.config(['$stateProvider',
   '$urlRouterProvider',

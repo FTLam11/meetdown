@@ -4,4 +4,5 @@
 //= require angular-easyfb
 //= require angular-highlightjs
 //= require jquery
+//= require angular-resource
 //= require_tree
