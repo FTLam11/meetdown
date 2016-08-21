@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   def index
+    p "yoo"
     render json: { hello: "fuck u"}
   end
 
   def create
-    p user_params
+    p "AGEAGEASADAFWA"
+    p params
     @user = User.new(user_params)
-    
+
     if @user.save
       respond_with(@user)
     else
@@ -15,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    p "yooo"
-    p params
-    params.permit(:email, :username, :password_digest, :zip_code, :age, :fb_id)
+    p "hello"
+    params.require(:user).permit(:email, :username, :password_digest, :zip_code, :age, :fb_id)
   end
+
 end

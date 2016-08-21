@@ -6,7 +6,7 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'User', 'UserLocalHost', function($scope, ezfb, account, User, UserLocalHost) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', 'createFBUser', 'Test', function($scope, ezfb, account, Users, createFBUser, Test) {
 
   updateLoginStatus(updateApiMe);
 
@@ -31,9 +31,6 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'User', 'UserLoc
       updateLoginStatus(updateApiMe);
     });
   };
-
-  $scope.test = account.test;
-  $scope.hello = account.hello;
 
   /**
    * For generating better looking JSON results
@@ -67,9 +64,11 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'User', 'UserLoc
   }
 
   $scope.postFBid = function(){
-    console.log("yo")
     $scope.login();
-    console.log({"fb_id":account.details.id})
-    account.postAcct({"fb_id":account.details.id})
+    // $scope.hello = Users.save(JSON.stringify({"a":11,"b":12}))
+    // var object = new Object();
+    // object.fb_id = "lol"
+    // console.log(object)
+    $scope.hello = Test.test({fb_id: "lol"})
   }
 }]);

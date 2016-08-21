@@ -1,15 +1,20 @@
 angular.module('meetdown')
 
-.factory('Users', function($resource){
-  return $resource("/users")
-})
-
-.factory('UsersLocalHost', function($resource){
+.service('Users', function($resource){
   return $resource("http://localhost:3000/users")
 })
 
-.factory('Bill', function($resource){
-  return $resource("http://slice-it-app.herokuapp.com/bills/:id.json")
+.service('createFBUser', function($resource){
+  return $resource("/users", {}, {save: {method: 'POST', headers: {"Content-type": "application/json"}}})
+})
+
+.service('Test', function($http){
+  return {
+   test: function(data) {
+    console.log(data)
+    $http({url: "/users", method: 'POST', dataType: "json", data: data})
+    }
+  }
 })
 
 .factory('UserSession', function($resource){
