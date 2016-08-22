@@ -1,24 +1,15 @@
 var main = angular.module('meetdown');
 
-main.controller('MainCtrl', ['$scope', 'posts','account', function($scope, posts,account){
-  $scope.posts = posts.posts;
+main.controller('MainCtrl', ['$scope', 'account', 'ezfb', function($scope, account,ezfb){
 
-  $scope.addPost = function() {
-    if(!$scope.title || $scope.title === '') { return; }
-    $scope.posts.push({
-      title: $scope.title, 
-      link: $scope.link,
-      upvotes: 0,
-      comments: [
-        {author: 'Fronk', body: 'Master Pooper', upvotes: 0},
-        {author: 'Diu', body: 'Volcano Pooper', upvotes: 0},
-      ]
-    });
-    $scope.title = '';
-    $scope.link = '';
-  };
+  $scope.redirect = function() {
+    if (account.dbdetails()) {
+      // redirect to thing
+      // else redirect to registration page
 
-  $scope.upVote = function(post) {
-      post.upvotes += 1;
-  }; 
+    }
+  }
+  $scope.signedIn = function(){
+  }
+
 }]);

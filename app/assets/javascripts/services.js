@@ -4,8 +4,8 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users")
 })
 
-.service('createFBUser', function($resource){
-  return $resource("/users", {}, {save: {method: 'POST', headers: {"Content-type": "application/json"}}})
+.service('CreateFBUser', function($resource){
+  return $resource("/users", {fb_id:"@fb_id"})
 })
 
 .service('Test', function($http){

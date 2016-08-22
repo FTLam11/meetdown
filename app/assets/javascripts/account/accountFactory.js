@@ -1,27 +1,14 @@
 var account = angular.module('meetdown');
 
-account.factory('account', ['$http', function($http) {
+account.factory('account', function() {
   var obj = {
-    details: [],
-    hello: {}
-  };
-
-  obj.postAcct = function(data) {
-    return $http.post('/users', data).success(function(data) {
-      console.log(data)
-    });
-  };
-
-  obj.test = function() {
-    return $http.get('/users').success(function(data) {
-      angular.copy(data,obj.hello);
-      console.log(obj);
-    });
+    fbdetails: [],
+    dbdetails: [],
+    hello: {},
   };
 
   obj.checkAcct = function() {
-
   }
 
   return obj;
-}]);
+});

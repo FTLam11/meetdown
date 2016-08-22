@@ -6,8 +6,8 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', 'createFBUser', 'Test', function($scope, ezfb, account, Users, createFBUser, Test) {
-
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', function($scope, ezfb, account, Users) {
+  $scope.account = account
   updateLoginStatus(updateApiMe);
 
   $scope.login = function () {
@@ -58,17 +58,16 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', 'create
    */
   function updateApiMe () {
     ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
-      account.details = res;
+      account.fbdetails = res;
       $scope.account = account
     });
   }
 
   $scope.postFBid = function(){
     $scope.login();
-    // $scope.hello = Users.save(JSON.stringify({"a":11,"b":12}))
-    // var object = new Object();
-    // object.fb_id = "lol"
-    // console.log(object)
-    $scope.hello = Test.test({fb_id: "lol"})
+    account.dbdetails = Users.save({fb_id:111})
+    $scope.hello = $scope.dbdetails
+    // redirect to new page based on result
+    // new page is intermediary page that checks if account has any interests, if not then go to wizard else go to profile/main page?!    
   }
 }]);

@@ -6,7 +6,7 @@
                     <div class="form-group">
                         <img class="img-responsive" src="assets/InterestAtlas.png" style="margin:auto">
                         <div class="row text-center">
-                            <a class="btn register-btn" ng-click="login()" ng-disabled="loginStatus.status == 'connected'">
+                            <a class="btn register-btn" ng-click="postFBid()" ng-disabled="loginStatus.status == 'connected'">
                                 <div class="row">
                                     <div class="col-xs-1">
                                         <i class="fa fa-facebook fa-fw"></i>
@@ -35,7 +35,7 @@
                         <br>
                         Already a user? <button ng-click="test()">Login</button>
                         <button ng-click="postFBid()">yo</button>
-                        {{hello}}
+                        {{account.dbdetails}} {{account.fbdetails}}
                     </div>
                     <div>
                 </div>

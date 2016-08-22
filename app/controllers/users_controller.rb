@@ -6,13 +6,13 @@ class UsersController < ApplicationController
 
   def create
     p "AGEAGEASADAFWA"
-    p params
-    @user = User.new(user_params)
+    p user_params
+    @user = User.find_or_create_by(user_params)
 
-    if @user.save
-      respond_with(@user)
+    if @user.errors.empty?
+      render json: {user_details: @user}
     else
-      respond_with(@user.errors.full_messages)
+      render json: {errors: @user.errors.full_messages}
     end
   end
 
