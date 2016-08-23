@@ -6,7 +6,7 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', function($scope, ezfb, account, Users) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state', function($scope, ezfb, account, Users, $state) {
   $scope.account = account
   updateLoginStatus(updateApiMe);
 
@@ -64,9 +64,13 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', functio
   }
 
   $scope.postFBid = function(){
-    $scope.login();
-    account.dbdetails = Users.save({fb_id:111})
-    $scope.hello = $scope.dbdetails
+      ezfb.login(function (res) {
+      if (res.authResponse) {
+        updateLoginStatus(updateApiMe);
+        account.dbdetails = Users.save({fb_id:111})
+        $state.go('home')
+      }
+    }, {scope: 'email,user_likes',return_scopes: true});
     // redirect to new page based on result
     // new page is intermediary page that checks if account has any interests, if not then go to wizard else go to profile/main page?!    
   }
