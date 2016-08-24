@@ -18,11 +18,9 @@
  */
 
 body {
-	background-image: url("/assets/background.png");
-	background-position: center;
 	background-repeat: no-repeat;
 	font-family: arial;
-    background-color: #15AA85;
+    background: linear-gradient(to right, #f87f73 65%, #DCEEFF 35%)
 }
 
 .divider{

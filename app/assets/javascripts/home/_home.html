@@ -1,5 +1,4 @@
 <div class="page-header">
-  <h1>{{account}}</h1>
 </div>
 
 <div ng-repeat="post in posts | orderBy:'-upvotes'">
@@ -22,8 +21,8 @@
 <form ng-submit="addPost()"
   style="margin-top:30px;">
   <h3>Add a new post</h3>
-  {{account.fbdetails}}{{account.dbdetails}}
-  
+  {{account.dbdetails.name}} {{account.fbdetails.name}}
+
   <div class="form-group">
     <input type="text"
     class="form-control"

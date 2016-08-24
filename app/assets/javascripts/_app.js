@@ -27,5 +27,13 @@ meetdown.config(['$stateProvider',
         controller: 'AccountCtrl'
       })
 
+      .state('finder', {
+        url: '/finder',
+        templateUrl: 'finder/_finder.html',
+        controller: 'FinderCtrl'
+      })
+
+
+
     $urlRouterProvider.otherwise('home');
 }]);

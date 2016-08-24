@@ -1,0 +1,11 @@
+<div id="wrap">
+<h2>wataru interestsu</h2>
+
+  <form action="" autocomplete="on">
+  <input id="search" name="search" ng-model="search" type="text" placeholder="yo put your interests here"><input id="search_submit" value="Rechercher" type="submit">
+  </form>
+
+<p ng-repeat="interest in interests | filter:search">
+  {{ interest }}
+</p>
+</div>

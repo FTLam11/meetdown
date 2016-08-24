@@ -59,7 +59,6 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
   function updateApiMe () {
     ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
       account.fbdetails = res;
-      $scope.account = account
     });
   }
 
@@ -67,7 +66,8 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
       ezfb.login(function (res) {
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
-        account.dbdetails = Users.save({fb_id:111})
+        account.dbdetails = Users.save({fb_id: account.fbdetails.id})
+        // need to right a method that tests if user interests are empty and then goto finder page based on answer
         $state.go('home')
       }
     }, {scope: 'email,user_likes',return_scopes: true});
