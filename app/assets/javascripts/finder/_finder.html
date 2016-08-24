@@ -1,11 +1,16 @@
 <div id="wrap">
 <h2>wataru interestsu</h2>
 
-  <form action="" autocomplete="on">
-  <input id="search" name="search" ng-model="search" type="text" placeholder="yo put your interests here"><input id="search_submit" value="Rechercher" type="submit">
+  <form ng-submit="pushInterest()">
+  <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
   </form>
+ <h3 ng-show="duplicate">yo dats a duplicate<h3>
 
-<p ng-repeat="interest in interests | filter:search">
+<p ng-repeat="interest in interests | filter:keyword">
   {{ interest }}
 </p>
+
+<ol ng-repeat="interest in user_interests">
+	<li>{{interest}}</li>
+</ol>
 </div>
