@@ -20,7 +20,15 @@
 body {
 	background-repeat: no-repeat;
 	font-family: arial;
-    background: linear-gradient(to right, #f87f73 65%, #DCEEFF 35%)
+    background: linear-gradient(to right, #f87f73 50%, #DCEEFF 50%)
+}
+
+.left-half{
+
+}
+
+.right-half{
+    width:50%;
 }
 
 .divider{

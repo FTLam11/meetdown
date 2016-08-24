@@ -6,10 +6,8 @@ body {
 	font-size: 15px;
 }
 #wrap {
-  margin: 50px 100px;
   display: inline-block;
   height: 60px;
-  float: right;
   padding: 0;
   position: relative;
 }
@@ -17,7 +15,6 @@ body {
 #wrap input[type="text"] {
   height: 60px;
   font-size: 55px;
-  display: inline-block;
   font-family: "Lato";
   font-weight: 100;
   border: none;

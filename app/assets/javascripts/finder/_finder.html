@@ -1,16 +1,29 @@
-<div id="wrap">
-<h2>wataru interestsu</h2>
+<div class="row">
+	<div class="col-xs-6">
+		<h1>{{sentences[current_verb]}}</h1>
+		<a ng-click="nextQuestion()">skip to next question </a>
 
-  <form ng-submit="pushInterest()">
-  <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
-  </form>
- <h3 ng-show="duplicate">yo dats a duplicate<h3>
+		<p ng-repeat="verb in verbs" ng-click="setVerb(verb)">{{verb}}</p>
 
-<p ng-repeat="interest in interests | filter:keyword">
-  {{ interest }}
-</p>
 
-<ol ng-repeat="interest in user_interests">
-	<li>{{interest}}</li>
-</ol>
+
+	</div>
+
+	<div class="col-xs-6 col-xs-offset-6">
+		<div id="wrap">
+			<h2>wataru interestsu</h2>
+				<form ng-submit="pushInterest()">
+			  <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
+			  </form>
+			 <h3 ng-show="duplicate">yo dats a duplicate</h3>
+
+			<p ng-repeat="interest in interests | filter:keyword">
+			  {{ interest }}
+			</p>
+
+			<ol>
+				<li ng-repeat="interest in user_interests">{{interest}}</li>
+			</ol>
+		</div>
+	</div>
 </div>
