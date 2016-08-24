@@ -67,8 +67,8 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
         account.dbdetails = Users.save({fb_id: account.fbdetails.id})
-        // need to right a method that tests if user interests are empty and then goto finder page based on answer
-        $state.go('home')
+        // need to write a method that tests if user interests are empty and then goto finder page based on answer
+        $state.go('finder')
       }
     }, {scope: 'email,user_likes',return_scopes: true});
     // redirect to new page based on result
