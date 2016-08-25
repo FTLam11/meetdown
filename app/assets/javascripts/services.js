@@ -8,7 +8,7 @@ angular.module('meetdown')
   return $resource("/topics")
 })
 
-.service('Topics', function($resource) {
+.service('Topic', function($resource) {
   return $resource("/topic/:topic_id", {topic_id: "@topic_id"})
 })
 

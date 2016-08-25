@@ -17,8 +17,8 @@
 			  </form>
 			 <h3 ng-show="duplicate">yo dats a duplicate</h3>
 
-			<p ng-repeat="interest in interests | filter:keyword">
-			  {{ interest }}
+			<p ng-repeat="topic in topics | filter:keyword">
+			  {{ topic.name }}
 			</p>
 
 			<ol>

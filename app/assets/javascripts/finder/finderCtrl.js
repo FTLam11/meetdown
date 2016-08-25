@@ -1,13 +1,18 @@
 var main = angular.module('meetdown');
 
-main.controller('FinderCtrl', ['$scope', 'account', 'interests', function($scope, account,interests){
+main.controller('FinderCtrl', ['$scope', 'account', 'interests', 'Topics', function($scope, account,interests,Topics){
 $scope.account = account
-$scope.interests = interests.interests
+$scope.topics = interests.topics
 $scope.user_interests = interests.user_interests
 $scope.duplicate = false
 $scope.verbs = interests.verbs
 $scope.sentences=interests.sentences
 $scope.current_verb=$scope.verbs[0]
+
+$scope.topics = Topics.get();
+$scope.topics.$promise.then(function(data) {
+	$scope.topics = data.topics
+});
 
 
 $scope.pushInterest = function(){
