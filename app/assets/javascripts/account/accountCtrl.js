@@ -11,10 +11,8 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
   updateLoginStatus(updateApiMe);
 
   $scope.login = function () {
-    /**
-     * Calling FB.login with required permissions specified
-     * https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
-     */
+     // Calling FB.login with required permissions specified
+     // https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
     ezfb.login(function (res) {
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
@@ -23,17 +21,13 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
   };
 
   $scope.logout = function () {
-    /**
-     * Calling FB.logout
-     * https://developers.facebook.com/docs/reference/javascript/FB.logout
-     */
+     // Calling FB.logout
+     // https://developers.facebook.com/docs/reference/javascript/FB.logout
     ezfb.logout(function () {
       updateLoginStatus(updateApiMe);
     });
   };
-  /**
-   * Update loginStatus result
-   */
+   // Update loginStatus result
   function updateLoginStatus (more) {
     ezfb.getLoginStatus(function (res) {
       $scope.loginStatus = res;
@@ -42,9 +36,7 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
     });
   }
 
-  /**
-   * Update api('/me') result
-   */
+   // Update api('/me') result
   function updateApiMe () {
     ezfb.api('/me', {fields:'name, email, age_range, gender, books, games, picture, television, movies, music'}, function (res) {
       account.fbdetails = res;
@@ -62,5 +54,10 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
     }, {scope: 'email,user_likes',return_scopes: true});
     // redirect to new page based on result
     // new page is intermediary page that checks if account has any interests, if not then go to wizard else go to profile/main page?!    
+  }
+
+  $scope.register = function() {
+    Users.save({email: $scope.email, username: $scope.username, password: $scope.password})
+    $state.go('finder')
   }
 }]);

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def index
-    p "yoo"
     render json: { hello: "fuck u"}
   end
 

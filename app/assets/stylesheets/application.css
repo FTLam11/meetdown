@@ -23,12 +23,9 @@ body {
     background: linear-gradient(to right, #f87f73 50%, #DCEEFF 50%)
 }
 
-.left-half{
-
-}
-
-.right-half{
-    width:50%;
+.register-form {
+    width: 60%;
+    margin: auto;
 }
 
 .divider{

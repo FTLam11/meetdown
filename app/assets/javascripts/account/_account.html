@@ -24,22 +24,20 @@
                     </div>
                     <div class="text-center">
                         <label for="email"></label>
-                        <input class="form-control" id="username" style="width: 60%; margin:auto" type="text" placeholder='Username'>
+                        <input class="form-control register-form" id="username" type="text" placeholder='Username' ng-model="username">
                         <label class="text-center" for="email"></label>
-                        <input class="form-control" id="username-email" style="width: 60%; margin:auto" type="text" placeholder='Email Address'>
+                        <input class="form-control register-form" id="username-email" type="text" placeholder='Email Address' ng-model="email">
                         <label for="password"></label>
-                        <input class="form-control" id="password" style="width: 60%; margin:auto" type="text" placeholder="Password">
-                        <a class="btn register-btn" style="background-color: #ff0000" ng-click="logout()"> Register!</a>
+                        <input class="form-control register-form" id="password" type="password" placeholder="Password" ng-model="password">
+                        <a class="btn register-btn" style="background-color: #ff0000" ng-click="register()"> Register!</a>
                     </div>
                     <div class="text-center">
-                        <br>
-                        Already a user? <button ng-click="test()">Login</button>
-                        <button ng-click="postFBid()">yo</button>
-                        {{account.dbdetails}}
+                        <br> Already a user?
+                        <button ng-click="test()">Login</button>
                     </div>
                     <div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
