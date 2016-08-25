@@ -4,6 +4,14 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users")
 })
 
+.service('Topics', function($resource) {
+  return $resource("/topics")
+})
+
+.service('Topics', function($resource) {
+  return $resource("/topic/:topic_id", {topic_id: "@topic_id"})
+})
+
 .service('CreateFBUser', function($resource){
   return $resource("/users", {fb_id:"@fb_id"})
 })
