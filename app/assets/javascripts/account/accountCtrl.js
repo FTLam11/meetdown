@@ -6,7 +6,7 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state', function($scope, ezfb, account, Users, $state) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state', '$window', function($scope, ezfb, account, Users, $state, $window) {
   $scope.account = account
   updateLoginStatus(updateApiMe);
 
@@ -57,7 +57,11 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
   }
 
   $scope.register = function() {
-    Users.save({email: $scope.email, username: $scope.username, password: $scope.password})
-    $state.go('finder')
+    account.dbdetails = Users.save({email: $scope.email, username: $scope.username, password: $scope.password}).$promise.then(function(data) {
+      $window.localStorage.userid = account.dbdetails.id;
+    })
+    console.log(account.dbdetails);
+    console.log($window.localStorage)
+    // $state.go('finder')
   }
 }]);

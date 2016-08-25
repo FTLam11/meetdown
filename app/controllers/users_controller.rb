@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.find_or_create_by(user_params)
 
     if @user.errors.empty?
-      render json: {user_details: @user}
+      render json: {user: @user}
     else
       render json: {errors: @user.errors.full_messages}
     end
