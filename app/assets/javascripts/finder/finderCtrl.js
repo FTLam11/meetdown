@@ -1,6 +1,6 @@
 var main = angular.module('meetdown');
 
-main.controller('FinderCtrl', ['$scope', 'account', 'interests', 'Topics', function($scope, account,interests,Topics){
+main.controller('FinderCtrl', ['$scope', 'account', 'interests', 'Topics', '$location', function($scope, account,interests,Topics, $location) {
 $scope.account = account
 $scope.topics = interests.topics
 $scope.user_interests = interests.user_interests
@@ -41,7 +41,10 @@ $scope.nextQuestion = function(verb){
 	else
 		{yo +=1}
 	$scope.current_verb=$scope.verbs[yo]
+}
 
+$scope.showTopic = function(topicid) {
+	$location.path("/topics/"+topicid);
 }
 
 }]);

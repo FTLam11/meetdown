@@ -33,7 +33,11 @@ meetdown.config(['$stateProvider',
         controller: 'FinderCtrl'
       })
 
+      .state('topic', {
+        url: '/topics/:topic_id',
+        templateUrl: 'topics/_topic.html',
+        controller: 'TopicCtrl'
+      })
 
-
-    $urlRouterProvider.otherwise('home');
+    // $urlRouterProvider.otherwise('home');
 }]);

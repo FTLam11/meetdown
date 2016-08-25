@@ -9,7 +9,7 @@ angular.module('meetdown')
 })
 
 .service('Topic', function($resource) {
-  return $resource("/topic/:topic_id", {topic_id: "@topic_id"})
+  return $resource("/topics/:topic_id", {topic_id: "@topic_id"})
 })
 
 .service('CreateFBUser', function($resource){
