@@ -31,17 +31,6 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
       updateLoginStatus(updateApiMe);
     });
   };
-
-  /**
-   * For generating better looking JSON results
-   */
-  var autoToJSON = ['loginStatus', 'apiMe'];
-  angular.forEach(autoToJSON, function (varName) {
-    $scope.$watch(varName, function (val) {
-      $scope[varName + 'JSON'] = JSON.stringify(val, null, 2);
-    }, true);
-  });
-
   /**
    * Update loginStatus result
    */
