@@ -14,10 +14,9 @@ account.factory('interests', ['Topics', function(Topics) {
 				"attend": "Things I would meet people to attend together"}
   };
 
-  obj.topics = Topics.get();
-  obj.topics.$promise.then(function(data) {
+  obj.topics = Topics.get().$promise.then(function(data) {
     obj.topics = data.topics;
-  });
+  }); //figure out how to use promises inside factory
 
   return obj;
 }]);
