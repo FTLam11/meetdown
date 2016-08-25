@@ -9,7 +9,9 @@ $scope.verbs = interests.verbs
 $scope.sentences=interests.sentences
 $scope.current_verb=$scope.verbs[0]
 
-
+$scope.topics = Topics.get().$promise.then(function(data) {
+	$scope.topics = data.topics
+});
 
 
 $scope.pushInterest = function(){
