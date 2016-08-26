@@ -1,5 +1,6 @@
+
 class User < ApplicationRecord
-  # has_secure_password
+  has_secure_password
   has_many :interests
   has_many :topics, through: :interests
 

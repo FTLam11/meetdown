@@ -39,5 +39,11 @@ meetdown.config(['$stateProvider',
         controller: 'TopicCtrl'
       })
 
-    // $urlRouterProvider.otherwise('home');
+      .state('profile', {
+        url: '/profile',
+        templateUrl: 'profile/_profile.html',
+        controller: 'ProfileCtrl'
+      })
+
+    $urlRouterProvider.otherwise('home');
 }]);

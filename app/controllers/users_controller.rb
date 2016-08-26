@@ -1,14 +1,16 @@
 class UsersController < ApplicationController
+  wrap_parameters User, include: [:email, :password,:fb_id]
+
+
   def index
     render json: { hello: "fuck u"}
   end
 
   def create
-    p "AGEAGEASADAFWA"
-    p user_params
-    @user = User.find_or_create_by(user_params)
-
-    if @user.errors.empty?
+    return User.find_or_create_by(user_params) if user_params[:fb_id]
+    
+    @user = User.new(user_params)
+    if @user.save
       render json: {user: @user}
     else
       render json: {errors: @user.errors.full_messages}
@@ -16,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    p "hello"
-    params.require(:user).permit(:email, :username, :password_digest, :zip_code, :age, :fb_id)
+    p params
+    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id)
   end
 
 end
