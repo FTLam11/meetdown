@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   wrap_parameters User, include: [:email, :password,:fb_id]
 
-
   def index
     render json: { hello: "fuck u"}
   end
