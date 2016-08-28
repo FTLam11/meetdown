@@ -21,6 +21,10 @@ gem 'angular-rails-templates'
 gem 'simplecov', :require => false, :group => :test
 gem 'devise'
 
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

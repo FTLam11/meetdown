@@ -57,11 +57,11 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
   }
 
   $scope.register = function() {
-    Users.save({email: $scope.email, username: $scope.username, password: $scope.password, nonsense: "yo"}).$promise.then(function(data) {
+    Users.save({email: $scope.email, username: $scope.username, password: $scope.password}).$promise.then(function(data) {
       $window.localStorage.userid = data.user.id;
       account.dbdetails = data.user
-          console.log(account.dbdetails);
-    console.log($window.localStorage)
+      console.log(account.dbdetails);
+      console.log($window.localStorage)
     })
     // $state.go('finder')
   }
