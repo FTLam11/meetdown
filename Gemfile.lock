@@ -204,7 +204,6 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
-  bcrypt (~> 3.1.7)
   byebug
   capybara
   devise
