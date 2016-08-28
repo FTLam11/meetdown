@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  wrap_parameters User, include: [:email, :password,:fb_id]
+  wrap_parameters User, include: [:email, :password,:fb_id,:username]
 
 
   def index

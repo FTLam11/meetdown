@@ -61,7 +61,7 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
       $window.localStorage.userid = data.user.id;
       account.dbdetails = data.user
           console.log(account.dbdetails);
-    console.log($window.localStorage)
+    $state.go('profile')
     })
     // $state.go('finder')
   }
