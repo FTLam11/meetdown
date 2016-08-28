@@ -4,8 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :username
       t.integer :zip_code
       t.integer :age
-
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
