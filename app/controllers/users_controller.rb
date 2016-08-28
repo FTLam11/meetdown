@@ -6,16 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    return User.find_or_create_by(user_params) if user_params[:fb_id]
-    
-    puts "Devise has its own invisible controller that overrides Users Controller"
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: {user: @user}
-    else
-      render json: {errors: @user.errors.full_messages}
-    end
+    User.find_or_create_by(user_params)
   end
 
   def user_params
