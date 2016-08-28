@@ -16,9 +16,14 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 gem 'angular-rails-templates'
 gem 'simplecov', :require => false, :group => :test
+gem 'devise'
+
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

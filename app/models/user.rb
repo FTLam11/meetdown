@@ -1,10 +1,9 @@
-
 class User < ApplicationRecord
-  has_secure_password
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable, :lockable
   has_many :interests
   has_many :topics, through: :interests
-
-  def self.parse_json(obj)
-    p obj
-  end
 end

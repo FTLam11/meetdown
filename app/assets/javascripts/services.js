@@ -1,7 +1,7 @@
 angular.module('meetdown')
 
 .service('Users', function($resource){
-  return $resource("http://localhost:3000/users")
+  return $resource("http://localhost:3000/users/fb")
 })
 
 .service('Topics', function($resource) {

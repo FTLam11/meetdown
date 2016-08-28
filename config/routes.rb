@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'application#angular'
-  resources :users
+  get '/users/fb', to: "users#create"
   resources :topics, only: [:index, :show]
 end
