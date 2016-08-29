@@ -1,8 +1,13 @@
 angular.module('meetdown')
 
 .service('Users', function($resource){
+  return $resource("http://localhost:3000/users/")
+})
+
+.service('UsersFB', function($resource){
   return $resource("http://localhost:3000/users/fb")
 })
+
 
 .service('Topics', function($resource) {
   return $resource("/topics")
@@ -14,6 +19,10 @@ angular.module('meetdown')
 
 .service('CreateFBUser', function($resource){
   return $resource("/users", {fb_id:"@fb_id"})
+})
+
+.service('UserInterest', function($resource){
+  return $resource("/users/:user_id/topics/:topic_id", {topic_id:"@topic_id",user_id:"@user_id"})
 })
 
 .service('Test', function($http){

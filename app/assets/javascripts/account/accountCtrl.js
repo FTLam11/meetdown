@@ -6,7 +6,7 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state', '$window', function($scope, ezfb, account, Users, $state, $window) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB', '$state', '$window', function($scope, ezfb, account, Users, UsersFB, $state, $window) {
   $scope.account = account
   updateLoginStatus(updateApiMe);
 
@@ -47,7 +47,7 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users', '$state
       ezfb.login(function (res) {
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
-        account.dbdetails = Users.save({fb_id: account.fbdetails.id})
+        account.dbdetails = UsersFB.save({fb_id: account.fbdetails.id})
         // need to write a method that tests if user interests are empty and then goto finder page based on answer
         $state.go('finder')
       }

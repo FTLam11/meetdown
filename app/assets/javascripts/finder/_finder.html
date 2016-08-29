@@ -14,7 +14,7 @@
 			  </form>
 			 <h3 ng-show="duplicate">yo dats a duplicate</h3>
 
-			<a ng-repeat="topic in topics | filter:keyword" ng-click="showTopic(topic.id)">
+			<a ng-repeat="topic in topics | filter:keyword" ng-click="addTopic(topic.id)">
 			  {{ topic.name }}
 			</a>
 

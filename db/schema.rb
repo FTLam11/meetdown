@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160827235809) do
     t.integer  "age"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "fb_id"
     t.string   "email",                  default: "", null: false
+    t.string   "fb_id",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -50,7 +50,8 @@ ActiveRecord::Schema.define(version: 20160827235809) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["fb_id"], name: "index_users_on_fb_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
