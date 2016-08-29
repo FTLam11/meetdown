@@ -1,6 +1,6 @@
 var main = angular.module('meetdown');
 
-main.controller('FinderCtrl', ['$scope', 'account', 'interests', 'Topics', '$location','UserInterest', function($scope, account, interests, Topics, $location, UserInterest) {
+main.controller('FinderCtrl', ['$scope', 'account', 'interests', 'Topics', '$location','CreateInterest', function($scope, account, interests, Topics, $location, CreateInterest) {
 $scope.account = account
 $scope.topics = interests.topics
 $scope.user_interests = interests.user_interests

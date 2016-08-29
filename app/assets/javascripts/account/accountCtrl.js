@@ -13,19 +13,21 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
   $scope.login = function () {
      // Calling FB.login with required permissions specified
      // https://developers.facebook.com/docs/reference/javascript/FB.login/v2.0
-    ezfb.login(function (res) {
-      if (res.authResponse) {
-        updateLoginStatus(updateApiMe);
-      }
-    }, {scope: 'email,user_likes',return_scopes: true});
+    // ezfb.login(function (res) {
+    //   if (res.authResponse) {
+    //     updateLoginStatus(updateApiMe);
+    //   }
+    // }, {scope: 'email,user_likes',return_scopes: true});
+    Auth.login({email: $scope.email, password: $scope.password})
   };
 
   $scope.logout = function () {
      // Calling FB.logout
      // https://developers.facebook.com/docs/reference/javascript/FB.logout
-    ezfb.logout(function () {
-      updateLoginStatus(updateApiMe);
-    });
+    // ezfb.logout(function () {
+    //   updateLoginStatus(updateApiMe);
+    // });
+  Auth.logout()
   };
    // Update loginStatus result
   function updateLoginStatus (more) {
@@ -47,9 +49,10 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
       ezfb.login(function (res) {
       if (res.authResponse) {
         updateLoginStatus(updateApiMe);
-        account.dbdetails = UsersFB.save({fb_id: account.fbdetails.id})
+        Auth.login({})
+        Auth.register({fb_id: account.fbdetails.id,email:""})
         // need to write a method that tests if user interests are empty and then goto finder page based on answer
-        $state.go('finder')
+        // $state.go('finder')
       }
     }, {scope: 'email,user_likes',return_scopes: true});
     // redirect to new page based on result
@@ -58,9 +61,11 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
 
   $scope.register = function() {
     Auth.register({email: $scope.email, username: $scope.username, password: $scope.password}).then(function(data) {
-      console.log(data.value);
+      console.log(data);
       // account.dbdetails = data.user
-      console.log(Auth.currentUser())
+      Auth.currentUser().then(function(res){
+        console.log(res)
+      })
       $state.go('finder')
     })
   }
