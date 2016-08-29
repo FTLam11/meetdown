@@ -6,12 +6,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.find_or_create_by(user_params)
-    render json: {user: @user}
-  end
-
-  def addInterest
-    p params
+    user = User.find_or_create_by(user_params)
+    render json: {user: user}
   end
 
   private
@@ -19,5 +15,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id)
   end
-
 end

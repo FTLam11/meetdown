@@ -21,8 +21,9 @@ angular.module('meetdown')
   return $resource("/users", {fb_id:"@fb_id"})
 })
 
-.service('UserInterest', function($resource){
-  return $resource("/users/:user_id/topics/:topic_id", {topic_id:"@topic_id",user_id:"@user_id"})
+.service('CreateInterest', function($resource){
+  // return $resource("/users/:user_id/topics/:topic_id", {topic_id:"@topic_id",user_id:"@user_id"})
+  return $resource("/interests")
 })
 
 .service('Test', function($http){

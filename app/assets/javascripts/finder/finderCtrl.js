@@ -1,6 +1,6 @@
 var main = angular.module('meetdown');
 
-main.controller('FinderCtrl', ['$scope', 'account', 'interests', 'Topics', '$location','UserInterest', function($scope, account,interests,Topics, $location,UserInterest) {
+main.controller('FinderCtrl', ['$scope', 'account', 'interests', 'Topics', '$location','UserInterest', function($scope, account, interests, Topics, $location, UserInterest) {
 $scope.account = account
 $scope.topics = interests.topics
 $scope.user_interests = interests.user_interests
@@ -47,8 +47,9 @@ $scope.showTopic = function(topicid) {
 	$location.path("/topics/"+topicid);
 }
 
-$scope.addTopic = function(topicid) {
-	UserInterest.save({topic_id: topicid, user_id: "1"})
+$scope.createInterest = function(topicid) {
+	console.log(account.dbdetails)
+	CreateInterest.save({topic_id: topicid, user_id: account.dbdetails.id})
 }
 
 }]);

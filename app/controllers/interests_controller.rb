@@ -1,4 +1,6 @@
 class InterestsController < ApplicationController
+  wrap_parameters format: [:json]
+
   def create
     interest = Interest.new(interest_params)
   end
