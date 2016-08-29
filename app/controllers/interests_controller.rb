@@ -3,6 +3,10 @@ class InterestsController < ApplicationController
 
   def create
     interest = Interest.new(interest_params)
+
+    unless interest.save?
+      render json: { errors: interest.errors.full_messages }
+    end
   end
 
   private

@@ -22,7 +22,6 @@ angular.module('meetdown')
 })
 
 .service('CreateInterest', function($resource){
-  // return $resource("/users/:user_id/topics/:topic_id", {topic_id:"@topic_id",user_id:"@user_id"})
   return $resource("/interests")
 })
 
