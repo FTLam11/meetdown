@@ -4,6 +4,10 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users/")
 })
 
+.service('User', function($resource) {
+  return $resource("/users/:user_id", {user_id: "@user_id"})
+})
+
 .service('UsersFB', function($resource){
   return $resource("http://localhost:3000/users/fb")
 })
@@ -41,9 +45,6 @@ angular.module('meetdown')
   return $resource("http://slice-it-app.herokuapp.com/customers/sign_in.json");
 })
 
-.factory('User', function($resource){
-  return $resource("http://slice-it-app.herokuapp.com/customers.json");
-})
 .factory('Charge', function($resource){
   return $resource("http://slice-it-app.herokuapp.com/charges.json");
 })

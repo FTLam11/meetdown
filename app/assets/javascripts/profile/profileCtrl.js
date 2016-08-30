@@ -1,15 +1,15 @@
 var main = angular.module('meetdown');
 
-main.controller('ProfileCtrl', ['$scope', '$stateParams', 'account', 'ezfb','$window', function($scope, $stateParams,account,ezfb,$window){
-$scope.account = account
+main.controller('ProfileCtrl', ['$scope', '$stateParams','$window','User', function($scope, $stateParams,$window,User){
 setProfile()
-console.log($stateParams)
+$scope.user = window.localStorage.user
+console.log(User.get({user_id:1}))
 
 function setProfile(){
 	if ($stateParams.id)
 		{$scope.user_profile=$stateParams.id}
 		else
-		{$scope.user_profile=$window.localStorage.id}
+		{$scope.user_profile=$window.localStorage.user.id}
 }
 
 }]);

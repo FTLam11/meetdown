@@ -6,7 +6,7 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB', '$state', '$window', 'Auth', function($scope, ezfb, account, Users, UsersFB, $state, $window, Auth) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB', '$state', 'Auth', function($scope, ezfb, account, Users, UsersFB, $state, Auth) {
   $scope.account = account
   updateLoginStatus(updateApiMe);
 
@@ -61,9 +61,10 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
 
   $scope.register = function() {
     Auth.register({email: $scope.email, username: $scope.username, password: $scope.password}).then(function(data) {
-      console.log(data)
       Auth.currentUser().then(function(res){
-        console.log(res);
+        window.localStorage['user'] = angular.toJson(res)
+        console.log(angular.fromJson(window.localStorage['user']))
+        console.log(res)
         $state.go('finder');
       })
     })

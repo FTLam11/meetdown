@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # put '/users/:id', to: "users#update"
+  put '/users/:id', to: "users#update"
+  get '/users/:id', to: "users#show"
   devise_for :users
   post '/users/fb', to: "users#create"
   # post '/users/:user_id/topics/:topic_id', to: "users#addInterest"
