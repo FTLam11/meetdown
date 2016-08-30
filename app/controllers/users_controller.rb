@@ -10,6 +10,10 @@ class UsersController < ApplicationController
     render json: {user: user}
   end
 
+  def update
+    render json: {text: "fuck yeah"}
+  end
+
   private
 
   def user_params

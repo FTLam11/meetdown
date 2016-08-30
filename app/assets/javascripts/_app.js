@@ -16,7 +16,7 @@ meetdown.config(['$stateProvider',
       })
 
       .state('posts', {
-        url: '/posts/{id}',
+        url: '/posts/{id}', //double check syntax
         templateUrl: 'posts/_posts.html',
         controller: 'PostsCtrl'
       })
@@ -44,6 +44,36 @@ meetdown.config(['$stateProvider',
         templateUrl: 'profile/_profile.html',
         controller: 'ProfileCtrl'
       })
+
+      .state('survey', {
+        url: '/survey',
+        templateUrl: 'survey/_survey.html',
+        controller: 'SurveyCtrl'
+      })
+
+      .state('interestAtlas', {
+        url: '/atlas',
+        templateUrl: 'atlas/_atlas.html',
+        controller: 'AtlasCtrl'
+      }) //show interests on map
+
+      .state('zipcodeAtlas', {
+        url: '/zip',
+        templateUrl: 'zipcode/_zipcode.html',
+        controller: 'ZipcodeAtlasCtrl'
+      }) //visualize interests by zip code
+
+      .state('events', {
+        url: '/events',
+        templateUrl: 'events/_events.html',
+        controller: 'EventCtrl'
+      }) //show events on map
+
+      .state('eventDetail', {
+        url: '/events/{id}',
+        templateUrl: 'event/_eventDetail.html',
+        controller: 'EventDetailCtrl'
+      }) //show detailed info for an event      
 
     $urlRouterProvider.otherwise('home');
 }]);

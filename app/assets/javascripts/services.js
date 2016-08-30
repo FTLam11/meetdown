@@ -8,7 +8,6 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users/fb")
 })
 
-
 .service('Topics', function($resource) {
   return $resource("/topics")
 })
@@ -23,6 +22,10 @@ angular.module('meetdown')
 
 .service('CreateInterest', function($resource){
   return $resource("/interests")
+})
+
+.service('SubmitSurvey', function($resource){
+  return $resource("/users/:id", {id: "@id"}, {update: {method: 'PUT'}})
 })
 
 .service('Test', function($http){

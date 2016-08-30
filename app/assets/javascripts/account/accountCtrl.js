@@ -61,12 +61,11 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
 
   $scope.register = function() {
     Auth.register({email: $scope.email, username: $scope.username, password: $scope.password}).then(function(data) {
-      console.log(data);
-      // account.dbdetails = data.user
+      console.log(data)
       Auth.currentUser().then(function(res){
-        console.log(res)
+        console.log(res);
+        $state.go('finder');
       })
-      $state.go('finder')
     })
   }
 }]);
