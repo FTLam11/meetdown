@@ -34,12 +34,12 @@ $scope.setVerb = function(verb){
 }
 
 $scope.nextQuestion = function(verb){
-  var yo = $scope.verbs.indexOf($scope.current_verb)
-  if (yo === $scope.verbs.length-1)
-    {yo=0}
+  var index = $scope.verbs.indexOf($scope.current_verb)
+  if (index === $scope.verbs.length-1)
+    {index = 0}
   else
-    {yo +=1}
-  $scope.current_verb=$scope.verbs[yo]
+    {index += 1}
+  $scope.current_verb=$scope.verbs[index]
 }
 
 $scope.showTopic = function(topicid) {

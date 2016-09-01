@@ -64,6 +64,7 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
       Auth.currentUser().then(function(res){
         window.localStorage['user'] = angular.toJson(res)
         // console.log(angular.fromJson(window.localStorage['user']))
+        // TO DO: how to stop the server from sending back plain text password
         $state.go('finder');
       })
     })
