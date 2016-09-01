@@ -8,7 +8,6 @@ survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', 'Auth', '$l
       profileID = res.id;
       console.log(profileID);
       SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: profileID}).then(function(res){
-        
         window.localStorage.user = res
       })
       $scope.showProfile(profileID);

@@ -63,8 +63,7 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
     Auth.register({email: $scope.email, username: $scope.username, password: $scope.password}).then(function(data) {
       Auth.currentUser().then(function(res){
         window.localStorage['user'] = angular.toJson(res)
-        console.log(angular.fromJson(window.localStorage['user']))
-        console.log(res)
+        // console.log(angular.fromJson(window.localStorage['user']))
         $state.go('finder');
       })
     })

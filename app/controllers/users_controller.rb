@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    p params
     user = User.find(user_params[:id])
     user.zip_code= user_params[:zip_code]
     user.age = user_params[:age]
