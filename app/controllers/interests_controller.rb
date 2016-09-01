@@ -1,10 +1,10 @@
 class InterestsController < ApplicationController
-  wrap_parameters format: [:json]
+  wrap_parameters :interest, include: [:user_id, :topic_id]
 
   def create
     interest = Interest.new(interest_params)
 
-    unless interest.save?
+    unless interest.save
       render json: { errors: interest.errors.full_messages }
     end
   end

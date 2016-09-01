@@ -14,13 +14,17 @@
 			  </form>
 			 <h3 ng-show="duplicate">yo dats a duplicate</h3>
 
-			<a ng-repeat="topic in topics | filter:keyword" ng-click="addTopic(topic.id)">
-			  {{ topic.name }}
+			<a ng-repeat="topic in topics | filter:keyword" ng-click="createInterest(topic.id)">
+			  {{topic.name}}
 			</a>
 
 			<ol>
 				<li ng-repeat="interest in user_interests">{{interest}}</li>
 			</ol>
 		</div>
+	</div>
+
+	<div class="col-xs-6 col-xs-offset-6">
+		<a ng-repeat="topic in userTopics" ng-click="showTopic(topic.id)">{{topic.name}}</a>
 	</div>
 </div>

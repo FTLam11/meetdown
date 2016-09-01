@@ -23,6 +23,11 @@ class UsersController < ApplicationController
     render json: {user: user}
   end
 
+  def user_topics
+    user = User.find(params[:id])
+    render json: {user_topics: user.topics}
+  end
+
   private
 
   def user_params

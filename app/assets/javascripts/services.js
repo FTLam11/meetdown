@@ -20,6 +20,10 @@ angular.module('meetdown')
   return $resource("/topics/:topic_id", {topic_id: "@topic_id"})
 })
 
+.service('GetUserTopics', function($resource) {
+  return $resource("/users/:user_id/topics", {user_id: "@user_id"})
+})
+
 .service('CreateFBUser', function($resource){
   return $resource("/users", {fb_id:"@fb_id"})
 })
