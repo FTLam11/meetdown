@@ -40,6 +40,12 @@ meetdown.config(['$stateProvider',
       })
 
       .state('profile', {
+        url: '/profile',
+        templateUrl: 'profile/_profile.html',
+        controller: 'ProfileCtrl'
+      })
+
+      .state('profile_id', {
         url: '/profile/:id',
         templateUrl: 'profile/_profile.html',
         controller: 'ProfileCtrl'

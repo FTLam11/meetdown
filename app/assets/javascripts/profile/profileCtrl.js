@@ -1,15 +1,17 @@
 var main = angular.module('meetdown');
 
-main.controller('ProfileCtrl', ['$scope', '$stateParams','$window','User', function($scope, $stateParams,$window,User){
+main.controller('ProfileCtrl', ['$scope', '$stateParams', '$window', 'User', function($scope, $stateParams, $window, User) {
 setProfile()
-$scope.user = window.localStorage.user
-console.log(User.get({user_id:1}))
+// $scope.user = window.localStorage.user
+    console.log($stateParams)
 
 function setProfile(){
-	if ($stateParams.id)
-		{$scope.user_profile=$stateParams.id}
-		else
-		{$scope.user_profile=$window.localStorage.user.id}
+  if ($stateParams.id) {
+    User.get({user_id: $stateParams.id}).$promise.then(function(data) {
+      $scope.user = data;
+    })
+  } else {
+    $scope.user = $window.localStorage.user;
+  }
 }
-
 }]);

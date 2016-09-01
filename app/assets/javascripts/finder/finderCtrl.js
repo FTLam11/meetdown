@@ -49,6 +49,7 @@ $scope.showTopic = function(topicid) {
 $scope.createInterest = function(topicid) {
   console.log(account.dbdetails)
   CreateInterest.save({topic_id: topicid, user_id: account.dbdetails.id})
+  // Show confirmation of added interest AND remove interest from $scope?
 }
 
 }]);
