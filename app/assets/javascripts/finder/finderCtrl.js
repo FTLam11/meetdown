@@ -1,40 +1,39 @@
-var main = angular.module('meetdown')
-.filter('filterCategories', function () {
-    return function (topics,userInterests ) {
-      
-      var userInterestNames = userInterests.map(function(topic){
-        return topic.name
-      })
-      var filtered = topics.filter(function(topic){
-        console.log(topic.name)
-        if(userInterestNames.indexOf(topic.name)===-1)
-          {return topic}
-      })
-      return filtered
-    }
-  }
-);
+var finder = angular.module('meetdown')
 
-main.controller('FinderCtrl', ['$scope', 'interests', 'Topics', '$location','CreateInterest', 'Auth', 'GetUserTopics', function($scope, interests, Topics, $location, CreateInterest, Auth, GetUserTopics) {
+finder.filter('filterCategories', function () {
+  return function(topics, userInterests) {
+    var userInterestNames = userInterests.map(function(topic){
+      return topic.name
+    });
+    var filtered = topics.filter(function(topic) {
+      console.log(topic.name)
+      if(userInterestNames.indexOf(topic.name) === -1) {
+        return topic
+      }
+    });
+    return filtered;
+  };
+});
 
-$scope.verbs = interests.verbs
-$scope.sentences=interests.sentences
-$scope.userTopics = []
-$scope.topics = []
+finder.controller('FinderCtrl', ['$scope', 'interests', 'Topics', '$location','CreateInterest', 'Auth', 'GetUserTopics', function($scope, interests, Topics, $location, CreateInterest, Auth, GetUserTopics) {
 
-$scope.duplicate = false
-$scope.current_verb=$scope.verbs[0]
+$scope.verbs = interests.verbs;
+$scope.sentences=interests.sentences;
+$scope.userTopics = [];
+$scope.topics = [];
+
+$scope.duplicate = false;
+$scope.current_verb=$scope.verbs[0];
 
 GetUserTopics.get({user_id: angular.fromJson(window.localStorage['user'])['id']}).$promise.then(function(data) {
   if (data.user_topics) {
-    $scope.userTopics = data.user_topics
+    $scope.userTopics = data.user_topics;
   }
 })
 
 Topics.get().$promise.then(function(data) {
   $scope.topics = data.topics
 });
-
 
 // $scope.pushInterest = function(){
 //   if ($scope.user_interests.indexOf($scope.keyword) === -1) {
@@ -73,5 +72,4 @@ $scope.createInterest = function(topic) {
   CreateInterest.save({topic_id: topic.id, user_id: angular.fromJson(window.localStorage['user'])['id']})
   $scope.userTopics.push(topic)
 };
-
 }]);
