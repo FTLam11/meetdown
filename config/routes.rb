@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/users/fb', to: "users#create"
   # post '/users/:user_id/topics/:topic_id', to: "users#addInterest"
   resources :interests, only: [:create]
+  resources :actions, only: [:create]
   root 'application#angular'
   resources :topics, only: [:index, :show]
 end

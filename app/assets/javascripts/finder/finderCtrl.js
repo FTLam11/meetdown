@@ -15,7 +15,7 @@ finder.filter('filterCategories', function () {
   };
 });
 
-finder.controller('FinderCtrl', ['$scope', 'interests', 'Topics', '$location','CreateInterest', 'Auth', 'GetUserTopics', function($scope, interests, Topics, $location, CreateInterest, Auth, GetUserTopics) {
+finder.controller('FinderCtrl', ['$scope', 'interests', 'Topics', '$location','CreateInterest', 'Auth', 'GetUserTopics', 'CreateAction', function($scope, interests, Topics, $location, CreateInterest, Auth, GetUserTopics, CreateAction) {
 
 $scope.verbs = interests.verbs;
 $scope.sentences=interests.sentences;
@@ -71,5 +71,8 @@ $scope.showTopic = function(topic) {
 $scope.createInterest = function(topic) {
   CreateInterest.save({topic_id: topic.id, user_id: angular.fromJson(window.localStorage['user'])['id']})
   $scope.userTopics.push(topic)
+  CreateAction.save({topic_id: topic.id, verb_id: $scope.current_verb})
 };
+//Decide how to display added topics by verb
+//How to style the topics and question side
 }]);

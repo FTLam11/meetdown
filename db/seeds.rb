@@ -8,8 +8,11 @@ Topic.create(name: "Eevee")
 Topic.create(name: "BBQ Bacon Cheeseburger")
 Topic.create(name: "Grapefruit")
 Topic.create(name: "Sky Diving")
+
 User.create(email: "",fb_id: "2")
+
 Verb.create(name:"watch")
+Verb.create(name:"discuss")
 Verb.create(name:"play")
 Verb.create(name:"listen to")
 Verb.create(name:"learn about")

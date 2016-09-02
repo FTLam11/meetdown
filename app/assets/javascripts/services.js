@@ -32,6 +32,10 @@ angular.module('meetdown')
   return $resource("/interests")
 })
 
+.service('CreateAction', function($resource){
+  return $resource("/actions")
+})
+
 .service('SubmitSurvey', function($resource){
   return $resource("/users/:id", {id: "@id"}, {update: {method: 'PUT'}})
 })
