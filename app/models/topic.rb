@@ -2,6 +2,9 @@ class Topic < ApplicationRecord
   has_many :interests
   has_many :users, through: :interests
   has_many :posts
-  has_many :actions
-  has_many :verbs, through: :actions
+  validate :five_chars
+
+  def five_chars
+  	errors.add(:verbs, "is not 5 chars") unless verbs.length == 7
+  end
 end
