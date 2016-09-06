@@ -19,6 +19,13 @@ json = file.read
 
 parsed = JSON.parse(json)
 
+def removeCenter(json)
+	if json["geometry"]["coordinates"][0][0][0]
+		json["geometry"]["coordinates"][0].shift
+	end
+	return json
+end
+
 parsed["features"].each do |json|
-  Zipcode.create(zipcode: json["id"], geojson: json)
+  Zipcode.create(zipcode: json["id"], center:json["geometry"]["coordinates"][0][0],  geojson: removeCenter(json))
 end

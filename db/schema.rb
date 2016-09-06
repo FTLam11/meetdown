@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160906185627) do
 
   create_table "zipcodes", force: :cascade do |t|
     t.string   "zipcode"
+    t.string   "center"
     t.string   "geojson"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
