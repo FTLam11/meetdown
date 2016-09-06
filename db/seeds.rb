@@ -10,3 +10,15 @@ Topic.create(name: "Grapefruit", verbs:"0100110")
 Topic.create(name: "Sky Diving", verbs:"1111111")
 
 User.create(email: "",fb_id: "2")
+
+require 'rubygems'
+require 'json'
+
+file = open("#{Rails.root}/db/zipcodes.json")
+json = file.read
+
+parsed = JSON.parse(json)
+
+parsed["features"].each do |json|
+  Zipcode.create(zipcode: json["id"], geojson: json)
+end

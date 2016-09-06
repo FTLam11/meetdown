@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827235809) do
+ActiveRecord::Schema.define(version: 20160906185627) do
 
   create_table "interests", force: :cascade do |t|
     t.integer  "topic_id"
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 20160827235809) do
     t.index ["fb_id"], name: "index_users_on_fb_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "zipcodes", force: :cascade do |t|
+    t.string   "zipcode"
+    t.string   "geojson"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
