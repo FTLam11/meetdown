@@ -1,8 +1,7 @@
-var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ngResource', 'Devise']);
+var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ngResource', 'Devise', 'uiGmapgoogle-maps']);
 
 meetdown.config(['$stateProvider',
-  '$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
+  '$urlRouterProvider', 'uiGmapGoogleMapApiProvider', function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
     $stateProvider
       .state('home', {
         url: '/home',
@@ -82,4 +81,10 @@ meetdown.config(['$stateProvider',
       }) //show detailed info for an event      
 
     $urlRouterProvider.otherwise('home');
+
+    uiGmapGoogleMapApiProvider.configure({
+      // key: 'api key',
+      v: '3.20',
+      libraries: "weather, geometry, visualization"
+    });
 }]);

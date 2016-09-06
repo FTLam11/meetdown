@@ -18,8 +18,8 @@
  */
 
 body {
-	background-repeat: no-repeat;
-	font-family: arial;
+  background-repeat: no-repeat;
+  font-family: arial;
     background: linear-gradient(to right, #f87f73 50%, #DCEEFF 50%)
 }
 
@@ -35,7 +35,7 @@ body {
     margin: auto;
 }
 .register-btn{
-	stroke: transparent;
+  stroke: transparent;
     fill: #fff!important;
     color: #fff!important;
     background: #3b5998;
@@ -47,7 +47,7 @@ body {
 }
 
 .orspan{
-	text-transform: uppercase;
+  text-transform: uppercase;
     background: #ffffff;
     padding: 0 12px;
     z-index: 2;
@@ -57,12 +57,16 @@ body {
 }
 
 .text {
-	color: #2C3030;
+  color: #2C3030;
 }
 
 .hover {
-	color: #15AA85;
+  color: #15AA85;
 }
 .foreground {
-	background-color: #ffffff;
+  background-color: #ffffff;
+}
+
+.angular-google-map-container { 
+    height: 400px; 
 }

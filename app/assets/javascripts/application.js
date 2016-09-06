@@ -6,4 +6,7 @@
 //= require angular-highlightjs
 //= require angular-resource
 //= require jquery
+//= require lodash
+//= require angular-simple-logger/angular-simple-logger
+//= require angular-google-maps
 //= require_tree
