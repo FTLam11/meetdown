@@ -33,8 +33,6 @@ $scope.verbs = interests.verbs;
 $scope.sentences=interests.sentences;
 $scope.userTopics = [];
 $scope.topics = [];
-
-$scope.duplicate = false;
 $scope.currentVerb=$scope.verbs[0];
 
 GetUserTopics.get({user_id: angular.fromJson(window.localStorage['user'])['id']}).$promise.then(function(data) {

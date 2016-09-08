@@ -2,4 +2,18 @@
   <ui-gmap-google-map center='map.center' zoom='map.zoom' options ='map.options'>
 	  <ui-gmap-layer type="FusionTablesLayer" options="map.fusionlayer" show="true"></ui-gmap-layer> 
 	</ui-gmap-google-map>
+
+	<div class="col-xs-6 col-xs-offset-6">
+		<div id="wrap">
+			<h2>wataru interestsu</h2>
+				<form ng-submit="">
+			  <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
+			  </form>
+
+
+			<a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
+			  {{topic.name}}
+			</a>
+		</div>
+	</div>
 </div>

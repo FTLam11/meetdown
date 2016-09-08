@@ -8,4 +8,10 @@ class TopicsController < ApplicationController
     topic = Topic.find(params[:id])
     render json: { topic: topic }
   end
+
+  def sortbyzip
+  	topic = Topic.find(params[:id])
+  	a = topic.users.group(:zip_code).count
+  	render json: a
+  end
 end

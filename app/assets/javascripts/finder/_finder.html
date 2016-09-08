@@ -12,7 +12,6 @@
 				<form ng-submit="">
 			  <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
 			  </form>
-			 <h3 ng-show="duplicate">yo dats a duplicate</h3>
 
 			<a ng-repeat="topic in topics | filter: keyword | filterCategories:userTopics | filterVerbs:currentVerb track by topic.id" ng-click="createInterest(topic)">
 			  {{topic.name}}
