@@ -24,6 +24,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
 
       zipString = zipString.slice(0,-1) + ")"
       setLayer(zipString)
+      setColor(data.zip_codes)
 
       
     }
@@ -44,8 +45,104 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
 
   $scope.map = { 
   	center: { latitude: 42, longitude: -88 }, 
-    options: { minZoom: 3, maxZoom: 13 }, 
-  	zoom: 9
+    options: { minZoom: 3, maxZoom: 15 }, 
+  	zoom: 9,
+    styles: [{
+              "featureType": "administrative",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                  {
+                      "color": "#444444"
+                  }
+              ]
+          },
+          {
+              "featureType": "landscape",
+              "elementType": "all",
+              "stylers": [
+                  {
+                      "color": "#f2f2f2"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi",
+              "elementType": "all",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "road",
+              "elementType": "all",
+              "stylers": [
+                  {
+                      "saturation": -100
+                  },
+                  {
+                      "lightness": 45
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "all",
+              "stylers": [
+                  {
+                      "visibility": "simplified"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.arterial",
+              "elementType": "labels.icon",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "transit",
+              "elementType": "all",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+      },
+      {
+          "featureType": "water",
+          "elementType": "all",
+          "stylers": [
+              {
+                  "color": "#89d1d3"
+              },
+              {
+                  "visibility": "on"
+              }
+          ]
+    }]
+  }
+
+  function setColor(zipArray){
+
+    return [{
+      where: 'Zipcode != '+'60089',
+      polygonOptions: {}
+    }, {
+      where: 'Zipcode = '+'60089',
+      polygonOptions: {
+        fillColor: '#0000FF'
+      }
+    }, {
+      where: 'population > 5',
+      polygonOptions: {
+        fillOpacity: 1.0
+      }
+    }]
   }
 
   function setLayer(zipString) {
@@ -63,20 +160,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
               styleId: 2,
               templateId: 3
             },
-            // styles: [{
-            //   where: 'Zipcode != '+'60089',
-            //   polygonOptions: {}
-            // }, {
-            //   where: 'Zipcode = '+'60089',
-            //   polygonOptions: {
-            //     fillColor: '#0000FF'
-            //   }
-            // }, {
-            //   where: 'population > 5',
-            //   polygonOptions: {
-            //     fillOpacity: 1.0
-            //   }
-            // }]
           }
         }
       }
