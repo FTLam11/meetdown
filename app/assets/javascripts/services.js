@@ -8,6 +8,11 @@ angular.module('meetdown')
   return $resource("/users/:user_id", {user_id: "@user_id"})
 })
 
+.service('ZipCount', function($resource) {
+  return $resource("/zip_code/:id", {id: "@topic_id"})
+})
+
+
 .service('UsersFB', function($resource){
   return $resource("http://localhost:3000/users/fb")
 })
