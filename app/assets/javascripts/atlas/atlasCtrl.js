@@ -23,13 +23,9 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
       zipString = zipString.slice(0,-1) + ")"
       $scope.zipArrToSQL = "IN " + zipString
       console.log($scope.zipArrToSQL)
-      $scope.map.fusionlayer.options.query = {
-            query: {
-              select: "geometry",
-              from: "1n9XBy8dml7ZGNt65-m8XBYnvXIPaImQnDDlMKum6",
-              where: 'Zipcode = 60089'
-            }
-          };
+      var a = $scope.map.fusionlayer
+      $scope.map.fusionlayer = {hello: "hello"}
+      $scope.map.fusionlayer = a
     }
   }
 
