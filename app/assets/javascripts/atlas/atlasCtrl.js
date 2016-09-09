@@ -4,11 +4,12 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
   $scope.topics = [];
   $scope.userTopics = [];
   $scope.queryTopic = ""
-  $scope.zipArrToSQL = " = 0"
+  $scope.zipArrToSQL = ""
 
   $scope.setQueryTopic = function(topic){
     $scope.queryTopic=topic
     ZipCount.get({id: topic.id}).$promise.then(function(data){
+      
       plotHeatmap(data)
     })
   }
@@ -22,10 +23,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
 
       zipString = zipString.slice(0,-1) + ")"
       $scope.zipArrToSQL = "IN " + zipString
-      console.log($scope.zipArrToSQL)
-      var a = $scope.map.fusionlayer
-      $scope.map.fusionlayer = {hello: "hello"}
-      $scope.map.fusionlayer = a
+      $scope.map.fusionlayer.options.query.where = "Zipcode "+$scope.zipArrToSQL
     }
   }
 
@@ -55,7 +53,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
           query: {
             select: "geometry",
             from: "1n9XBy8dml7ZGNt65-m8XBYnvXIPaImQnDDlMKum6",
-            where: 'Zipcode' + $scope.zipArrToSQL
+            where: "Zipcode =0"
           },
           options: {
             styleId: 2,
