@@ -4,17 +4,18 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
   $scope.topics = [];
   $scope.userTopics = [];
   $scope.queryTopic = ""
-  $scope.zipArrToSQL = ""
 
   $scope.setQueryTopic = function(topic){
     $scope.queryTopic=topic
+    $scope.map.fusionlayer = {}
     ZipCount.get({id: topic.id}).$promise.then(function(data){
-      
       plotHeatmap(data)
     })
   }
 
   function plotHeatmap(data){
+    $scope.map.fusionlayer.query = {}
+
     if (Object.keys(data.zip_codes).length > 0 ) {
       var zipString = "("
       for (var key in data.zip_codes){
@@ -22,8 +23,9 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
       }
 
       zipString = zipString.slice(0,-1) + ")"
-      $scope.zipArrToSQL = "IN " + zipString
-      $scope.map.fusionlayer.options.query.where = "Zipcode "+$scope.zipArrToSQL
+      setLayer(zipString)
+
+      
     }
   }
 
@@ -41,38 +43,41 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
 
 
   $scope.map = { 
-  	center: { latitude: 35, longitude: -87 }, 
+  	center: { latitude: 42, longitude: -88 }, 
     options: { minZoom: 3, maxZoom: 13 }, 
   	zoom: 9
   }
-  $scope.map.fusionlayer = {
-        options: {
-          heatmap: {
-            enabled: false
-          },
-          query: {
-            select: "geometry",
-            from: "1n9XBy8dml7ZGNt65-m8XBYnvXIPaImQnDDlMKum6",
-            where: "Zipcode =0"
-          },
+
+  function setLayer(zipString) {
+    $scope.map.fusionlayer = {
           options: {
-            styleId: 2,
-            templateId: 3
-          },
-          // styles: [{
-          //   where: 'Zipcode != '+'60089',
-          //   polygonOptions: {}
-          // }, {
-          //   where: 'Zipcode = '+'60089',
-          //   polygonOptions: {
-          //     fillColor: '#0000FF'
-          //   }
-          // }, {
-          //   where: 'population > 5',
-          //   polygonOptions: {
-          //     fillOpacity: 1.0
-          //   }
-          // }]
+            heatmap: {
+              enabled: false
+            },
+            query: {
+              select: "geometry",
+              from: "1n9XBy8dml7ZGNt65-m8XBYnvXIPaImQnDDlMKum6",
+              where: "Zipcode IN " + zipString
+            },
+            options: {
+              styleId: 2,
+              templateId: 3
+            },
+            // styles: [{
+            //   where: 'Zipcode != '+'60089',
+            //   polygonOptions: {}
+            // }, {
+            //   where: 'Zipcode = '+'60089',
+            //   polygonOptions: {
+            //     fillColor: '#0000FF'
+            //   }
+            // }, {
+            //   where: 'population > 5',
+            //   polygonOptions: {
+            //     fillOpacity: 1.0
+            //   }
+            // }]
+          }
         }
       }
 }])
