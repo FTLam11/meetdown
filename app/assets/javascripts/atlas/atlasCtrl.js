@@ -4,11 +4,64 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     $scope.topics = [];
     $scope.userTopics = [];
     $scope.queryTopic = ""
+
     $scope.map = {
         center: { latitude: 42, longitude: -88 },
         options: { minZoom: 3, maxZoom: 13 },
         zoom: 9,
-        styles: $scope.yao
+        styles:  [{
+          "featureType": "administrative",
+          "elementType": "labels.text.fill",
+          "stylers": [{
+              "color": "#444444"
+          }]
+        }, {
+          "featureType": "landscape",
+          "elementType": "all",
+          "stylers": [{
+              "color": "#f2f2f2"
+          }]
+        }, {
+          "featureType": "poi",
+          "elementType": "all",
+          "stylers": [{
+              "visibility": "off"
+          }]
+        }, {
+          "featureType": "road",
+          "elementType": "all",
+          "stylers": [{
+              "saturation": -100
+          }, {
+              "lightness": 45
+          }]
+        }, {
+          "featureType": "road.highway",
+          "elementType": "all",
+          "stylers": [{
+              "visibility": "simplified"
+          }]
+        }, {
+          "featureType": "road.arterial",
+          "elementType": "labels.icon",
+          "stylers": [{
+              "visibility": "off"
+          }]
+        }, {
+          "featureType": "transit",
+          "elementType": "all",
+          "stylers": [{
+              "visibility": "off"
+          }]
+        }, {
+          "featureType": "water",
+          "elementType": "all",
+          "stylers": [{
+              "color": "#89d1d3"
+          }, {
+              "visibility": "on"
+          }]
+      }]
     }
     $scope.map.fusionlayer = {}
 
@@ -130,57 +183,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         return obj;
     }
 
-    $scope.yao = [{
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
-        "stylers": [{
-            "color": "#444444"
-        }]
-    }, {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [{
-            "color": "#f2f2f2"
-        }]
-    }, {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    }, {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [{
-            "saturation": -100
-        }, {
-            "lightness": 45
-        }]
-    }, {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "simplified"
-        }]
-    }, {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    }, {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [{
-            "visibility": "off"
-        }]
-    }, {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [{
-            "color": "#89d1d3"
-        }, {
-            "visibility": "on"
-        }]
-    }]
+
+    
 }])
