@@ -4,17 +4,21 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
   $scope.topics = [];
   $scope.userTopics = [];
   $scope.queryTopic = ""
+  $scope.map = { 
+  	center: { latitude: 42, longitude: -88 }, 
+    options: { minZoom: 3, maxZoom: 13 }, 
+  	zoom: 9
+  }
+  $scope.map.fusionlayer = {}
 
   $scope.setQueryTopic = function(topic){
     $scope.queryTopic=topic
-    $scope.map.fusionlayer = {}
     ZipCount.get({id: topic.id}).$promise.then(function(data){
       plotHeatmap(data)
     })
   }
 
   function plotHeatmap(data){
-    $scope.map.fusionlayer.query = {}
 
     if (Object.keys(data.zip_codes).length > 0 ) {
       var zipString = "("
@@ -23,7 +27,10 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
       }
 
       zipString = zipString.slice(0,-1) + ")"
-      setLayer(zipString)
+      setLayer(zipString);
+      setZipColorQuery(data.zip_codes);
+    } else {
+      alert("Fuk u") //let user know their are no people interested in the topic
     } 
   }
 
@@ -40,11 +47,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
   });
 
 
-  $scope.map = { 
-  	center: { latitude: 42, longitude: -88 }, 
-    options: { minZoom: 3, maxZoom: 13 }, 
-  	zoom: 9
-  }
 
   function setLayer(zipString) {
     $scope.map.fusionlayer = {
@@ -57,10 +59,10 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
           from: "1n9XBy8dml7ZGNt65-m8XBYnvXIPaImQnDDlMKum6",
           where: "Zipcode IN " + zipString
         },
-        options: {
-          styleId: 2,
-          templateId: 3
-        },
+        // options: {
+        //   styleId: 2,
+        //   templateId: 3
+        // },
         // styles: [{
         //   where: 'Zipcode != '+'60089',
         //   polygonOptions: {}
@@ -77,14 +79,13 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
         // }]
       }
     }
-    console.log($scope.map.fusionlayer);
   }
 
-  function setZipColorQuery(zipArr) {
-    zipKeys = Object.keys(zipArr);
+  function setZipColorQuery(zipObj) {
+    var zipKeys = Object.keys(zipObj);
     var queryArr = [];
 
-    colors = [
+    var colors = [
       "#49006A",
       "#7A0177",
       "#AE017E",
@@ -96,31 +97,35 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests','Topi
       "#FFF7F3"
     ];
 
-    chunk = Math.floor(zipKeys.length / 9);
-    zipsThatGetLastColor = zipKeys.length % 9;
-    currentColor = 0;
 
-    for (var k = 0; k < zipKeys.length - zipsThatGetLastColor; k += chunk) {
-      queryArr.push(colorMe(zipKeys[k], color[currentColor]));
-      queryArr.push(colorMe(zipKeys[k + 1], color[currentColor]));
-      currentColor += 1;
-    };
-
-    for (var l = zipsThatGetLastColor; l < zipKeys.length; l++) {
-      queryArr.push(colorMe(zipKeys[l], color[-1]));
+    var chunk = Math.floor(zipKeys.length / 9);
+    var zipsThatGetLastColor = zipKeys.length % 9;
+    var currentColor = 0;
+    var arrNum = 0;
+    var colorNum = 0;
+    
+    while (colorNum < 7) {
+      for (var chunkNum = 0; chunkNum < chunk; chunkNum++) {
+        queryArr.push(colorMe(zipKeys[arrNum], colors[colorNum]));
+        arrNum++;
+      };
+      colorNum++;
+    }
+    
+    for (; arrNum < zipKeys.length; arrNum++) {
+      queryArr.push(colorMe(zipKeys[arrNum], colors[colors.length-1]));
     };
 
     $scope.map.fusionlayer.options["styles"] = queryArr;
   };
 
   function colorMe(zipcode, color) {
-    obj = {
+    var obj = {
       where: 'Zipcode = '+ zipcode,
       polygonOptions: {
         fillColor: color
       }
     };
-
     return obj;
   }
 }])
