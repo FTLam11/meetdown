@@ -7,6 +7,8 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     $scope.showFusionLayer = true;
     $scope.map = StyleMap;
     $scope.map.fusionlayer = {};
+    $scope.myZip = angular.fromJson(window.localStorage['user'])['user']['zip_code'];
+    console.log(angular.fromJson(window.localStorage['user'])['user']);
 
     $scope.setQueryTopic = function(topic) {
         // $scope.queryTopic = topic;
@@ -80,7 +82,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         var zipsThatGetLastColor = zipKeys.length % 8;
         var currentColor = 0;
         var arrNum = 0;
-
 
         if (chunk > 0) {
           for (var colorNum = 0; colorNum < 7; colorNum++) {
