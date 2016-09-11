@@ -3,16 +3,17 @@ var atlas = angular.module('meetdown')
 atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap) {
     $scope.topics = [];
     $scope.userTopics = [];
-    $scope.queryTopic = "";
+    // $scope.queryTopic = "";
     $scope.showFusionLayer = true;
     $scope.map = StyleMap;
     $scope.map.fusionlayer = {};
 
     $scope.setQueryTopic = function(topic) {
-        $scope.queryTopic = topic;
+        // $scope.queryTopic = topic;
 
         ZipCount.get({ id: topic.id }).$promise.then(function(data) {
             plotHeatmap(data);
+            console.log(data.zip_codes)
         });
     };
 
@@ -60,10 +61,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         };
     };
 
-    function setZipColorQuery(zipObj) {
-        var zipKeys = Object.keys(zipObj);
-        var queryArr = [];
-        var colors = [
+    const COLORS = [
             "#49006A",
             "#7A0177",
             "#AE017E",
@@ -74,22 +72,27 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
             "#FDE0DD",
             "#FFF7F3"
         ];
+
+    function setZipColorQuery(zipObj) {
+        var zipKeys = Object.keys(zipObj);
+        var queryArr = [];
         var chunk = Math.floor(zipKeys.length / 8);
         var zipsThatGetLastColor = zipKeys.length % 8;
         var currentColor = 0;
         var arrNum = 0;
-        var colorNum = 0;
 
-        while (colorNum < 7) {
-            for (var chunkNum = 0; chunkNum < chunk; chunkNum++) {
-                queryArr.push(colorMe(zipKeys[arrNum], colors[colorNum]));
-                arrNum++;
-            };
-            colorNum++;
+
+        if (chunk > 0) {
+          for (var colorNum = 0; colorNum < 7; colorNum++) {
+              for (var chunkNum = 0; chunkNum < chunk; chunkNum++) {
+                  queryArr.push(colorMe(zipKeys[arrNum], COLORS[colorNum]));
+                  arrNum++;
+              };
+          };
         }
 
         for (; arrNum < zipKeys.length; arrNum++) {
-            queryArr.push(colorMe(zipKeys[arrNum], colors[colors.length - 1]));
+            queryArr.push(colorMe(zipKeys[arrNum], COLORS[COLORS.length - 1]));
         };
 
         $scope.map.fusionlayer.options["styles"] = queryArr;
