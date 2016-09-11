@@ -3,8 +3,8 @@ var atlas = angular.module('meetdown')
 atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount) {
     $scope.topics = [];
     $scope.userTopics = [];
-    $scope.queryTopic = ""
-
+    $scope.queryTopic = "";
+    $scope.showFusionLayer = true;
     $scope.map = {
         center: { latitude: 42, longitude: -88 },
         options: { minZoom: 3, maxZoom: 13 },
@@ -63,41 +63,41 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
           }]
       }]
     }
-    $scope.map.fusionlayer = {}
-
-    console.log($scope.map)
+    $scope.map.fusionlayer = {};
 
     $scope.setQueryTopic = function(topic) {
-        $scope.queryTopic = topic
+        $scope.queryTopic = topic;
 
         ZipCount.get({ id: topic.id }).$promise.then(function(data) {
-            plotHeatmap(data)
-        })
-    }
+            plotHeatmap(data);
+        });
+    };
 
     function plotHeatmap(data) {
         if (Object.keys(data.zip_codes).length > 0) {
-            var zipString = "("
+            var zipString = "(";
             for (var key in data.zip_codes) {
-                zipString += key + ","
+                zipString += key + ",";
             }
 
-            zipString = zipString.slice(0, -1) + ")"
+            zipString = zipString.slice(0, -1) + ")";
             setLayer(zipString);
             setZipColorQuery(data.zip_codes);
+            $scope.showFusionLayer = true;
         } else {
-            alert("Fuk u") //let user know their are no people interested in the topic
+            $scope.showFusionLayer = false;
         }
-    }
+    };
 
     GetUserTopics.get({ user_id: angular.fromJson(window.localStorage['user'])['id'] }).$promise.then(function(data) {
         if (data.user_topics) {
             $scope.userTopics = data.user_topics;
         }
-    })
+    });
+
     Topics.get().$promise.then(function(data) {
         for (var i = 0; i < data.topics.length; i++) {
-            interests.addVerbArr(data.topics[i])
+            interests.addVerbArr(data.topics[i]);
         }
         $scope.topics = data.topics;
     });
@@ -114,31 +114,12 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
                     where: "Zipcode IN " + zipString
                 }
             }
-        }
-    }
-
-    function setColor(zipArray) {
-
-        return [{
-            where: 'Zipcode != ' + '60089',
-            polygonOptions: {}
-        }, {
-            where: 'Zipcode = ' + '60089',
-            polygonOptions: {
-                fillColor: '#0000FF'
-            }
-        }, {
-            where: 'population > 5',
-            polygonOptions: {
-                fillOpacity: 1.0
-            }
-        }]
-    }
+        };
+    };
 
     function setZipColorQuery(zipObj) {
         var zipKeys = Object.keys(zipObj);
         var queryArr = [];
-
         var colors = [
             "#49006A",
             "#7A0177",
@@ -150,10 +131,8 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
             "#FDE0DD",
             "#FFF7F3"
         ];
-
-
-        var chunk = Math.floor(zipKeys.length / 9);
-        var zipsThatGetLastColor = zipKeys.length % 9;
+        var chunk = Math.floor(zipKeys.length / 8);
+        var zipsThatGetLastColor = zipKeys.length % 8;
         var currentColor = 0;
         var arrNum = 0;
         var colorNum = 0;
@@ -181,8 +160,5 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
             }
         };
         return obj;
-    }
-
-
-    
+    };
 }])
