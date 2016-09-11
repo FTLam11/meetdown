@@ -2,6 +2,7 @@ var main = angular.module('meetdown');
 
 main.controller('ProfileCtrl', ['$scope', '$stateParams', '$window', 'User', 'GetUserTopics', '$location', function($scope, $stateParams, $window, User, GetUserTopics, $location) {
 setProfile()
+
 function setProfile(){
   if ($stateParams.id) {
     User.get({user_id: $stateParams.id}).$promise.then(function(data) {
@@ -10,8 +11,8 @@ function setProfile(){
     getUserData($stateParams.id);
   } 
   else {
-    $scope.user = angular.fromJson($window.localStorage.user);
-    getUserData(angular.fromJson(window.localStorage['user'])['id']);
+    $scope.user = angular.fromJson($window.localStorage.user)['user'];
+    getUserData(angular.fromJson(window.localStorage['user'])['user']['id']);
   }
 }
 
