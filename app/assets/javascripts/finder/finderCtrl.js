@@ -83,7 +83,8 @@ $scope.showTopic = function(topic) {
 }
 
 $scope.createInterest = function(topic) {
-  CreateInterest.save({topic_id: topic.id, user_id: angular.fromJson(window.localStorage['user'])['id']})
+  console.log(angular.fromJson(window.localStorage['user'])['user'])
+  CreateInterest.save({topic_id: topic.id, user_id: angular.fromJson(window.localStorage['user'])['user']['id']})
   $scope.userTopics.push(topic)
 };
 //Decide how to display added topics by verb
