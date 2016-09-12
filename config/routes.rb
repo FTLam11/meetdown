@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   put '/users/:id', to: "users#update"
-  get '/users/:id', to: "users#show"
   get '/users/:id/topics', to: "users#user_topics"
+  get '/users/:id', to: "users#show"
+  get '/zip_code/:id/topics', to: "topics#zipTopics"
   get '/zip_code/:id', to: "topics#zipCount"
   devise_for :users
   post '/users/fb', to: "users#create"

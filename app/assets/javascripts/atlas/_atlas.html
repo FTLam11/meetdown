@@ -7,6 +7,23 @@
 <div class="row">
   <div class="col-xs-6">
     <h2>Interests in {{myZip}}</h2>
+    <p>{{poop}}</p>
+    <a ng-repeat="topic in userTopics" ng-click="">{{topic.name}}
+    </a>
+    <nvd3-pie-chart
+      data="d3data"
+      id="d3Id"
+      width="550"
+      height="350"
+      x="d3topic()"
+      y="d3count()"
+      color="d3color()"
+      showLegend="true"
+      noData="Oops! No interests were found for your zip code."
+      pieLabelsOutside="false"
+      showLabels="true">
+        <svg></svg>
+    </nvd3-pie-chart>
   </div>
 
   <div class="col-xs-6 col-xs-offset-6">

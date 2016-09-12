@@ -9,6 +9,7 @@
 //= require lodash/lodash
 //= require angular-simple-logger
 //= require angular-google-maps
-//= require prototypejs
 //= require d3
+//= require nvd3
+//= require angularjs-nvd3-directives
 //= require_tree

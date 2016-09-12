@@ -12,7 +12,6 @@ angular.module('meetdown')
   return $resource("/zip_code/:id", {id: "@topic_id"})
 })
 
-
 .service('UsersFB', function($resource){
   return $resource("http://localhost:3000/users/fb")
 })
@@ -43,6 +42,10 @@ angular.module('meetdown')
 
 .service('SubmitSurvey', function($resource){
   return $resource("/users/:id", {id: "@id"}, {update: {method: 'PUT'}})
+})
+
+.service('GetZipTopics', function($resource){
+  return $resource("/zip_code/:id/topics", {id: "@zip_code"})
 })
 
 .service('StyleMap', function() {
@@ -103,7 +106,7 @@ angular.module('meetdown')
               "visibility": "on"
           }]
       }]
-    };
+    }
 })
 
 .service('Test', function($http){

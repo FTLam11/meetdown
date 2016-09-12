@@ -4,9 +4,7 @@ survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', 'Auth', '$l
 
 $scope.submitInfo = function() {
     Auth.currentUser().then(function(res) {
-    console.log("Auth.currentUser() response is " + res);
     var profileID = res.id;
-    console.log("profileID is " + profileID);
     SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: profileID}).$promise.then(function(res){
       window.localStorage['user'] = angular.toJson(res);
       $scope.showProfile(profileID);

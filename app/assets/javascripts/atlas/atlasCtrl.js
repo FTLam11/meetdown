@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'nvd3ChartDirectives', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, nvd3ChartDirectives) {
     $scope.topics = [];
     $scope.userTopics = [];
     // $scope.queryTopic = "";
@@ -8,14 +8,37 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     $scope.map = StyleMap;
     $scope.map.fusionlayer = {};
     $scope.myZip = angular.fromJson(window.localStorage['user'])['user']['zip_code'];
-    console.log(angular.fromJson(window.localStorage['user'])['user']);
+    // console.log(angular.fromJson(window.localStorage['user'])['user']);
+    GetZipTopics.get({ id: $scope.myZip }).$promise.then(function(data) {
+        $scope.d3data = data.mahZip;
+    })
+      // pieLabelsOutside="false"
+      // labelType="key"
+      // labelType="value"
+
+    $scope.d3color = function() {
+      return function(d, i) {
+        return COLORS[i];
+      };
+    };
+
+    $scope.d3topic = function() {
+      return function(d) {
+        return d.topic;
+      };
+    };
+
+    $scope.d3count = function() {
+      return function(d) {
+        return d.count;
+      };
+    };
 
     $scope.setQueryTopic = function(topic) {
         // $scope.queryTopic = topic;
-
         ZipCount.get({ id: topic.id }).$promise.then(function(data) {
             plotHeatmap(data);
-            console.log(data.zip_codes)
+            // console.log(data.zip_codes)
         });
     };
 
@@ -35,7 +58,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         }
     };
 
-    GetUserTopics.get({ user_id: angular.fromJson(window.localStorage['user'])['id'] }).$promise.then(function(data) {
+    GetUserTopics.get({ user_id: angular.fromJson(window.localStorage['user'])['user']['id'] }).$promise.then(function(data) {
         if (data.user_topics) {
             $scope.userTopics = data.user_topics;
         }
@@ -64,16 +87,16 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     };
 
     const COLORS = [
-            "#49006A",
-            "#7A0177",
-            "#AE017E",
-            "#DD3497",
-            "#F768A1",
-            "#FA9FB5",
-            "#FCC5C0",
-            "#FDE0DD",
-            "#FFF7F3"
-        ];
+        "#49006A",
+        "#7A0177",
+        "#AE017E",
+        "#DD3497",
+        "#F768A1",
+        "#FA9FB5",
+        "#FCC5C0",
+        "#FDE0DD",
+        "#FFF7F3"
+    ];
 
     function setZipColorQuery(zipObj) {
         var zipKeys = Object.keys(zipObj);
@@ -84,12 +107,12 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         var arrNum = 0;
 
         if (chunk > 0) {
-          for (var colorNum = 0; colorNum < 7; colorNum++) {
-              for (var chunkNum = 0; chunkNum < chunk; chunkNum++) {
-                  queryArr.push(colorMe(zipKeys[arrNum], COLORS[colorNum]));
-                  arrNum++;
-              };
-          };
+            for (var colorNum = 0; colorNum < 7; colorNum++) {
+                for (var chunkNum = 0; chunkNum < chunk; chunkNum++) {
+                    queryArr.push(colorMe(zipKeys[arrNum], COLORS[colorNum]));
+                    arrNum++;
+                };
+            };
         }
 
         for (; arrNum < zipKeys.length; arrNum++) {
