@@ -58,7 +58,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         } else {
             $scope.showFusionLayer = false;
         }
-    };
+    }; //service?
 
     GetUserTopics.get({ user_id: angular.fromJson(window.localStorage['user'])['user']['id'] }).$promise.then(function(data) {
         if (data.user_topics) {
@@ -86,7 +86,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
                 }
             }
         };
-    };
+    }; //service?
 
     const COLORS = [
         "#49006A",
@@ -98,7 +98,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         "#FCC5C0",
         "#FDE0DD",
         "#FFF7F3"
-    ];
+    ]; //factory
 
     function setZipColorQuery(zipObj) {
         var zipKeys = Object.keys(zipObj);
@@ -122,7 +122,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         };
 
         $scope.map.fusionlayer.options["styles"] = queryArr;
-    };
+    }; //service?
 
     function colorMe(zipcode, color) {
         var obj = {
@@ -132,5 +132,5 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
             }
         };
         return obj;
-    };
+    }; //factory
 }])
