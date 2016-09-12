@@ -46,7 +46,18 @@ Topics.get().$promise.then(function(data) {
   $scope.topics = data.topics;
 });
 
+$scope.submitKeyword = function() {
+  for (var i = 0; i < $scope.topics.length; i++) {
+    if ($scope.topics[i].name.toLowerCase() === $scope.keyword.toLowerCase()) {
+      $scope.createInterest($scope.topics[i]);
+      $scope.keyword = '';
+    }
+  };
 
+  if ($scope.keyword != '') {
+    $scope.keyword = 'Interest not found!';
+  }
+};
 // $scope.pushInterest = function(){
 //   if ($scope.user_interests.indexOf($scope.keyword) === -1) {
 //     $scope.user_interests.push($scope.keyword)
