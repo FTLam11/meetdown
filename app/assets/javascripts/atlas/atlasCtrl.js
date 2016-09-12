@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'Topic', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, Topic) {
     $scope.topics = [];
     $scope.userTopics = [];
     // $scope.queryTopic = "";
@@ -11,6 +11,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     // console.log(angular.fromJson(window.localStorage['user'])['user']);
     GetZipTopics.get({ id: $scope.myZip }).$promise.then(function(data) {
         $scope.d3data = data.mahZip;
+        $scope.zipTopics = data.mahZip;
     })
       // pieLabelsOutside="false"
       // labelType="key"
@@ -26,7 +27,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
 
     $scope.d3topic = function() {
       return function(d) {
-        return d.topic;
+        return d.name;
       };
     };
 

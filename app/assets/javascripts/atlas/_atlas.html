@@ -6,10 +6,7 @@
 
 <div class="row">
   <div class="col-xs-6">
-    <h2>Interests in {{myZip}}</h2>
-    <p>{{poop}}</p>
-    <a ng-repeat="topic in userTopics" ng-click="">{{topic.name}}
-    </a>
+    <h2>Top interests in {{myZip}}</h2>
     <nvd3-pie-chart
       data="d3data"
       id="d3Id"
@@ -22,8 +19,12 @@
       showLabels="true"
       pieLabelsOutside="false"
       >
-        <svg></svg>
+    <svg></svg>
     </nvd3-pie-chart>
+
+    <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
+      {{topic.name}} - {{topic.count}}
+    </a>
   </div>
 
   <div class="col-xs-6 col-xs-offset-6">
@@ -32,7 +33,6 @@
         <form ng-submit="">
         <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
         </form>
-
 
       <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
         {{topic.name}}

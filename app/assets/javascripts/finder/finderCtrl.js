@@ -16,7 +16,6 @@ finder.filter('filterCategories', function () {
 
 finder.filter('filterVerbs', function () {
   return function(topics, currentVerb) {
-    console.log(topics)
     if (topics === []){return []}
     var filtered = topics.filter(function(topic) {
       if(topic.verbArr.indexOf(currentVerb) != -1) {
@@ -28,14 +27,13 @@ finder.filter('filterVerbs', function () {
 });
 
 finder.controller('FinderCtrl', ['$scope', 'interests', 'Topics', '$location','CreateInterest', 'Auth', 'GetUserTopics', 'CreateAction', function($scope, interests, Topics, $location, CreateInterest, Auth, GetUserTopics, CreateAction) {
-
 $scope.verbs = interests.verbs;
 $scope.sentences=interests.sentences;
 $scope.userTopics = [];
 $scope.topics = [];
 $scope.currentVerb=$scope.verbs[0];
 
-GetUserTopics.get({user_id: angular.fromJson(window.localStorage['user'])['id']}).$promise.then(function(data) {
+GetUserTopics.get({user_id: angular.fromJson(window.localStorage['user'])['user']['id']}).$promise.then(function(data) {
   if (data.user_topics) {
     $scope.userTopics = data.user_topics;
   }
