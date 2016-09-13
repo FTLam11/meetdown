@@ -29,8 +29,10 @@ class TopicsController < ApplicationController
   end
 
   def zipTopics
-    topics = User.where(zip_code: params[:id]).map { |user| user = user.topics }.flatten.uniq
-    answer = topics.map { |topic| topic = {"name": topic.name, "count": topic.users.count, "id": topic.id} }
+    topics = User.where(zip_code: params[:zip_code]).map { |user| user = user.topics }.flatten.uniq
+
+    answer = topics.map { |topic| topic = {"name": topic.name, "count": topic.users.where(zip_code: params[:zip_code]).count, "id": topic.id} }
+
     answer.sort_by! {| topic_hash | -topic_hash.count }.reverse!
     render json: {mahZip: answer.take(10)}
   end

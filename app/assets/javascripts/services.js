@@ -45,7 +45,7 @@ angular.module('meetdown')
 })
 
 .service('GetZipTopics', function($resource){
-  return $resource("/zip_code/:id/topics", {id: "@zip_code"})
+  return $resource("/zip_code/:zip_code/topics", {zip_code: "@zip_code"})
 })
 
 .service('StyleMap', function() {

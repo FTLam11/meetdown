@@ -6,7 +6,11 @@
 
 <div class="row">
   <div class="col-xs-6">
-    <h2>Top interests in {{myZip}}</h2>
+    <h2>Top interests in   
+      <form ng-submit="setCurrentZip(currentZip)">
+        <input name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
+      </form>
+      <h2>
     <nvd3-pie-chart
       data="d3data"
       id="d3Id"

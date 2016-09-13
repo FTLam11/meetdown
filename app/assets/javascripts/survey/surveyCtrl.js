@@ -6,7 +6,7 @@ $scope.submitInfo = function() {
     Auth.currentUser().then(function(res) {
     var profileID = res.id;
     SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: profileID}).$promise.then(function(res){
-      window.localStorage['user'] = angular.toJson(res);
+      window.localStorage['user'] = angular.toJson(res.user);
       $scope.showProfile(profileID);
     })
   })

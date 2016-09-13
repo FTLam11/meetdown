@@ -11,8 +11,8 @@ function setProfile(){
     getUserData($stateParams.id);
   } 
   else {
-    $scope.user = angular.fromJson($window.localStorage.user)['user'];
-    getUserData(angular.fromJson(window.localStorage['user'])['user']['id']);
+    $scope.user = angular.fromJson($window.localStorage.user);
+    getUserData(angular.fromJson(window.localStorage['user'])['id']);
   }
 }
 
