@@ -33,7 +33,7 @@ $scope.userTopics = [];
 $scope.topics = [];
 $scope.currentVerb=$scope.verbs[0];
 
-GetUserTopics.get({user_id: angular.fromJson(window.localStorage['user'])['user']['id']}).$promise.then(function(data) {
+GetUserTopics.get({user_id: angular.fromJson(window.localStorage['user'])['id']}).$promise.then(function(data) {
   if (data.user_topics) {
     $scope.userTopics = data.user_topics;
   }
