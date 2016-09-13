@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: "users#show"
   get '/zip_code/:zip_code/topics', to: "topics#zipTopics"
   get '/zip_code/:id', to: "topics#zipCount"
+  post '/topics/suggest', to: "topics#suggest"
   devise_for :users
   post '/users/fb', to: "users#create"
   # post '/users/:user_id/topics/:topic_id', to: "users#addInterest"

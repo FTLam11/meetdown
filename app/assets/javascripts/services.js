@@ -4,6 +4,10 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users/")
 })
 
+.service('Suggest', function($resource) {
+  return $resource("/topics/suggest", {body:"@body"})
+})
+
 .service('User', function($resource) {
   return $resource("/users/:user_id", {user_id: "@user_id"})
 })

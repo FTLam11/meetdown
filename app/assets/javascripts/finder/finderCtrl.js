@@ -26,7 +26,7 @@ finder.filter('filterVerbs', function () {
   };
 });
 
-finder.controller('FinderCtrl', ['$scope', 'interests', 'Topics', '$location','CreateInterest', 'Auth', 'GetUserTopics', 'CreateAction', function($scope, interests, Topics, $location, CreateInterest, Auth, GetUserTopics, CreateAction) {
+finder.controller('FinderCtrl', ['$scope', 'interests', 'Topics', '$location','CreateInterest', 'Auth', 'GetUserTopics', 'CreateAction', 'Suggest', function($scope, interests, Topics, $location, CreateInterest, Auth, GetUserTopics, CreateAction, Suggest) {
 $scope.verbs = interests.verbs;
 $scope.sentences=interests.sentences;
 $scope.userTopics = [];
@@ -89,6 +89,12 @@ $scope.setVerb = function(verb) {
 
 $scope.showTopic = function(topic) {
   $location.path("/topics/"+topic.id);
+}
+
+$scope.suggest = function(suggestion) {
+  Suggest.save({"body": suggestion})
+  $scope.suggestion = ""
+  alert("thnx")
 }
 
 $scope.createInterest = function(topic) {

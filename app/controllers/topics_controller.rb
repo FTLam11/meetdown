@@ -37,7 +37,11 @@ class TopicsController < ApplicationController
     render json: {mahZip: answer.take(10)}
   end
 
+  def suggest
+    Suggestion.create(body: params[:body])
+  end
+
   def topic_params
-    params.require(:topic).permit(:id, :zip_code)
+    params.require(:topic).permit(:id, :zip_code, :body)
   end
 end
