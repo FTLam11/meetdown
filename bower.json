@@ -30,6 +30,7 @@
     "lodash": "^4.15.0",
     "d3": "^3.5.3",
     "angularjs-nvd3-directives": "^0.0.7",
-    "nvd3": "^1.8.4"
+    "nvd3": "^1.8.4",
+    "link-preview": "^1.0.0"
   }
 }
