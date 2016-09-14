@@ -36,6 +36,10 @@ angular.module('meetdown')
   return $resource("/users", {fb_id:"@fb_id"})
 })
 
+.service('CreateEvent', function($resource){
+  return $resource("/users", {fb_id:"@fb_id"})
+})
+
 .service('CreateInterest', function($resource){
   return $resource("/interests")
 })
