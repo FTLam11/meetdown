@@ -12,5 +12,4 @@
 //= require d3
 //= require nvd3
 //= require angularjs-nvd3-directives
-//= require link-preview
 //= require_tree
