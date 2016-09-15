@@ -6,9 +6,13 @@ account.config(function (ezfbProvider) {
     })
 });
 
-account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB', '$state', 'Auth', function($scope, ezfb, account, Users, UsersFB, $state, Auth) {
+account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB', '$state', 'Auth', '$auth', function($scope, ezfb, account, Users, UsersFB, $state, Auth, $auth) {
   $scope.account = account
   updateLoginStatus(updateApiMe);
+
+  $scope.authenticate = function(provider) {
+    $auth.authenticate(provider);
+  };
 
   $scope.login = function () {
      // Calling FB.login with required permissions specified

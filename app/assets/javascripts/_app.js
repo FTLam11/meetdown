@@ -1,7 +1,20 @@
-var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ngResource', 'Devise', 'uiGmapgoogle-maps', 'nvd3ChartDirectives']);
+var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ngResource', 'Devise', 'uiGmapgoogle-maps', 'nvd3ChartDirectives', 'satellizer']);
 
 meetdown.config(['$stateProvider',
-  '$urlRouterProvider', 'uiGmapGoogleMapApiProvider', function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider) {
+  '$urlRouterProvider', 'uiGmapGoogleMapApiProvider', '$authProvider', function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $authProvider) {
+    $authProvider.facebook({
+      name: 'facebook',
+      url: '/auth/facebook',
+      authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+      redirectUri: window.location.origin + '/',
+      requiredUrlParams: ['display', 'scope'],
+      scope: ['email'],
+      scopeDelimiter: ',',
+      display: 'popup',
+      oauthType: '2.0',
+      popupOptions: { width: 580, height: 400 }
+    });
+
     $stateProvider
       .state('home', {
         url: '/home',

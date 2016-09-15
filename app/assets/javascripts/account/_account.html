@@ -6,14 +6,8 @@
                     <div class="form-group">
                         <img class="img-responsive" src="assets/InterestAtlas.png" style="margin:auto">
                         <div class="row text-center">
-                            <a class="btn register-btn" ng-click="postFBid()" ng-disabled="loginStatus.status == 'connected'">
-                                <div class="row">
-                                    <div class="col-xs-1">
-                                        <i class="fa fa-facebook fa-fw"></i>
-                                    </div>
-                                    Sign up with Facebook
-                                </div>
-                            </a>
+<button class="btn register-btn" ng-click="authenticate('facebook')">Sign in with Facebook</button>
+
                         </div>
                     </div>
                     <br>
