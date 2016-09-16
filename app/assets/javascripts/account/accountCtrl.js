@@ -11,7 +11,14 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','UsersFB
   updateLoginStatus(updateApiMe);
 
   $scope.authenticate = function(provider) {
-    $auth.authenticate(provider);
+    $auth.authenticate(provider).then(function(response) {
+      console.log(response); //response contains auth code
+      //request access token from FB oauth endpoint
+      //.then(function(response) {
+
+        //})
+      $auth.setToken(response.access_token);
+    });
   };
 
   $scope.login = function () {
