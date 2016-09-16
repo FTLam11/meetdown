@@ -16,6 +16,29 @@ meetdown.config(['$stateProvider',
       popupOptions: { width: 580, height: 400 }
     });
 
+    $authProvider.oauth2({
+      name: 'meetdown',
+      url: '/auth/',
+      clientId: null,
+      redirectUri: null,
+      authorizationEndpoint: null,
+      defaultUrlParams: ['response_type', 'client_id', 'redirect_uri'],
+      requiredUrlParams: null,
+      optionalUrlParams: null,
+      scope: null,
+      scopePrefix: null,
+      scopeDelimiter: null,
+      state: null,
+      oauthType: null,
+      popupOptions: null,
+      responseType: 'code',
+      responseParams: {
+        code: 'code',
+        clientId: 'clientId',
+        redirectUri: 'redirectUri'
+      }
+    });
+
     $stateProvider
       .state('home', {
         url: '/home',
