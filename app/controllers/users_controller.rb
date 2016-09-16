@@ -11,17 +11,12 @@ class UsersController < ApplicationController
   end
 
   def fbcreate
-    p " Ywaewaead"
-    @oauth = Koala::Facebook::OAuth.new("239604083106199", "1eecc231349d28d509386646978591a2", "")
+    @oauth = Koala::Facebook::OAuth.new("239604083106199", "1eecc231349d28d509386646978591a2", "http://localhost:3000/")
     token = @oauth.get_access_token(params[:code])
-    p "YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
-    p token
     @graph = Koala::Facebook::API.new(token)
     profile = @graph.get_object("me")
-    
-    p profile
-    user = User.find_or_create_by(fb_id: profile)
-    render json: {user: user}
+    user = User.find_or_create_by(fb_id: profile["id"])
+    render json: {user: user, token: token}
   end
 
   def update

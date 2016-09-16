@@ -10,8 +10,10 @@ account.controller('AccountCtrl', ['$scope', 'ezfb', 'account', 'Users','FindOrC
   $scope.account = account
 
   $scope.authenticate = function(provider) {
-    $auth.authenticate(provider)
-    alert("yoo")
+    $auth.authenticate(provider).then(function(response) {
+    $auth.setToken(response.data.token);
+    window.localStorage['user'] = angular.toJson(response.data.user);
+    });
   };
 
   $scope.login = function () {
