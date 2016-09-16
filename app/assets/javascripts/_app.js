@@ -3,12 +3,13 @@ var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ng
 meetdown.config(['$stateProvider',
   '$urlRouterProvider', 'uiGmapGoogleMapApiProvider', '$authProvider', function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $authProvider) {
     $authProvider.facebook({
+      clientId: '239604083106199',
       name: 'facebook',
-      url: '/auth/facebook',
+      url: '/users/fb',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       redirectUri: window.location.origin + '/',
       requiredUrlParams: ['display', 'scope'],
-      scope: ['email'],
+      scope: ['email','user_likes'],
       scopeDelimiter: ',',
       display: 'popup',
       oauthType: '2.0',

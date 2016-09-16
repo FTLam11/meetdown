@@ -16,7 +16,7 @@ angular.module('meetdown')
   return $resource("/zip_code/:id", {id: "@topic_id"})
 })
 
-.service('UsersFB', function($resource){
+.service('FindOrCreateFb', function($resource){
   return $resource("http://localhost:3000/users/fb")
 })
 

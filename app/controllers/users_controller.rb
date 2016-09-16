@@ -10,8 +10,17 @@ class UsersController < ApplicationController
     render json: {user: user}
   end
 
-  def create
-    user = User.find_or_create_by(user_params)
+  def fbcreate
+    p " Ywaewaead"
+    @oauth = Koala::Facebook::OAuth.new("239604083106199", "1eecc231349d28d509386646978591a2", "")
+    token = @oauth.get_access_token(params[:code])
+    p "YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+    p token
+    @graph = Koala::Facebook::API.new(token)
+    profile = @graph.get_object("me")
+    
+    p profile
+    user = User.find_or_create_by(fb_id: profile)
     render json: {user: user}
   end
 
@@ -31,6 +40,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id,:id)
+    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id,:id, :code)
   end
 end
