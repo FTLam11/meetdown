@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    "returning a token yo"
+    user = User.new(user_params)
   end
 
   def fbcreate
@@ -19,12 +19,13 @@ class UsersController < ApplicationController
     oauthtoken = @oauth.get_access_token(params[:code])
     @graph = Koala::Facebook::API.new(oauthtoken)
     profile = @graph.get_object("me")
-    payload = {user: User.find_or_create_by(fb_id: profile["id"])}
+    payload = User.find_or_create_by(fb_id: profile["id"]).as_json
 
     hmac_secret = 'bluballs'
-    jwtToken = JWT.encode payload, hmac_secret, 'HS256'
-    p decoded_token = JWT.decode token, hmac_secret, true, { :algorithm => 'HS256' }
-    render json: {token: jwtToken}
+    jwt = JWT.encode payload, hmac_secret, 'HS256'
+    decoded_token = JWT.decode jwt, hmac_secret, true, { :algorithm => 'HS256' }
+    p decoded_token
+    render json: {token: jwt}
   end
 
   def update
