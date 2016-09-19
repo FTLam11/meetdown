@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914033848) do
+ActiveRecord::Schema.define(version: 20160919203317) do
 
   create_table "attendings", force: :cascade do |t|
     t.integer  "user_id"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 20160914033848) do
 
   create_table "zipcodes", force: :cascade do |t|
     t.string   "zipcode"
-    t.string   "center"
     t.string   "geojson"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
