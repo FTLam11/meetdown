@@ -6,7 +6,6 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider).then(function(response) {
     $auth.setToken(response.data.token);
-    window.localStorage['user'] = angular.toJson(response.data.user);
     });
   };
 

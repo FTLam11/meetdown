@@ -79,6 +79,7 @@ GEM
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
     json (2.0.1)
+    jwt (1.5.4)
     koala (2.4.0)
       addressable
       faraday
@@ -219,6 +220,7 @@ DEPENDENCIES
   capybara
   devise
   jbuilder (~> 2.5)
+  jwt
   koala (~> 2.2)
   listen (~> 3.0.5)
   puma (~> 3.0)
