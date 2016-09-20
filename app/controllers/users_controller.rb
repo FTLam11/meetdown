@@ -39,11 +39,18 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(user_params[:id])
-    user.zip_code= user_params[:zip_code]
-    user.age = user_params[:age]
-    user.save
-    render json: {user: user}
+    hmac_secret = 'bluballs'
+    if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
+      user = User.find(user_params[:id])
+      user.zip_code= user_params[:zip_code]
+      user.age = user_params[:age]
+      user.save
+      payload = user.as_json
+      jwt = JWT.encode payload, hmac_secret, 'HS256'
+      render json: {token: jwt}
+    else
+      render json: {error: "You're not authorized to perform this action"}
+    end
   end
 
   def user_topics
@@ -54,6 +61,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id,:id, :code)
+    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id, :id, :code, :token)
   end
 end

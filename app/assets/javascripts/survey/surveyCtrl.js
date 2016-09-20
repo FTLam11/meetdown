@@ -1,20 +1,16 @@
 var survey = angular.module('meetdown');
 
-survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', 'Auth', '$location','$window', function($scope, SubmitSurvey, $state, Auth, $location, $window) {
+survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', '$location','$window', '$auth', function($scope, SubmitSurvey, $state, $location, $window, $auth) {
 
 $scope.submitInfo = function() {
-    Auth.currentUser().then(function(res) {
-    var profileID = res.id;
-    SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: profileID}).$promise.then(function(res){
-      window.localStorage['user'] = angular.toJson(res.user);
-      $scope.showProfile(profileID);
+    SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: $auth.getPayload().id, token: $auth.getToken()}).$promise.then(function(response){
+      $auth.setToken(response.token);
+      $scope.showProfile($auth.getPayload()['id']);
     })
-  })
   //add to account factory maybe
 };
 
 $scope.showProfile = function(profileID) {
   $location.path("/profile/" + profileID)
 }
-
 }]);
