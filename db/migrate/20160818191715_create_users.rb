@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.integer :age
       t.string  :phone_number
       t.string :google_id
+      t.string :fb_id
       t.timestamps null: false
     end
   end

@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20160914033848) do
     t.integer  "age"
     t.string   "phone_number"
     t.string   "google_id"
+    t.string   "fb_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
