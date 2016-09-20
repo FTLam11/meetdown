@@ -32,7 +32,6 @@ $scope.sentences=interests.sentences;
 $scope.userTopics = [];
 $scope.topics = [];
 $scope.currentVerb=$scope.verbs[0];
-console.log($auth.getPayload()['id'])
 
 GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
   if (data.user_topics) {
@@ -99,8 +98,7 @@ $scope.suggest = function(suggestion) {
 }
 
 $scope.createInterest = function(topic) {
-  console.log(angular.fromJson(window.localStorage['user']))
-  CreateInterest.save({topic_id: topic.id, user_id: $auth.getPayload['user']['id']})
+  CreateInterest.save({topic_id: topic.id, user_id: $auth.getPayload()['id']})
   $scope.userTopics.push(topic)
 };
 //Decide how to display added topics by verb

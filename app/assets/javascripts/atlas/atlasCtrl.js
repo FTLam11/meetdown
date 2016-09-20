@@ -1,17 +1,16 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'Topic', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, Topic) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'Topic', '$auth', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, Topic, $auth) {
     $scope.topics = [];
     $scope.userTopics = [];
     // $scope.queryTopic = "";
     $scope.showFusionLayer = true;
     $scope.map = StyleMap;
     $scope.map.fusionlayer = {};
-    $scope.currentZip = angular.fromJson(window.localStorage['user'])['zip_code'];
+    $scope.currentZip = $auth.getPayload()['zip_code'];
 
     $scope.setCurrentZip = function(zipCode){
     GetZipTopics.get({zip_code: zipCode }).$promise.then(function(data) {
-        console.log(data);
         $scope.d3data = data.mahZip;
         $scope.zipTopics = data.mahZip;
     })}
@@ -66,7 +65,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         }
     }; //service?
 
-    GetUserTopics.get({ user_id: angular.fromJson(window.localStorage['user'])['id'] }).$promise.then(function(data) {
+    GetUserTopics.get({ user_id: $auth.getPayload()['id'] }).$promise.then(function(data) {
         if (data.user_topics) {
             $scope.userTopics = data.user_topics;
         }
