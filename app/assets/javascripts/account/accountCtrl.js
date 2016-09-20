@@ -26,7 +26,8 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
     $auth.signup(user)
       .then(function(response) {
         console.log(response);
-        window.localStorage['user'] = angular.toJson(response);
+        $auth.setToken(response.data.token);
+        console.log($auth.getPayload())
         // Redirect user here to login page or perhaps some other intermediate page
         // that requires email address verification before any other part of the site
         // can be accessed.

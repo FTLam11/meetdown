@@ -13,8 +13,13 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: {user: user}
-    else
+      payload = user.as_json
+      hmac_secret = 'bluballs'
+      jwt = JWT.encode payload, hmac_secret, 'HS256'
+      decoded_token = JWT.decode jwt, hmac_secret, true, { :algorithm => 'HS256' }
+      p decoded_token
+      render json: {token: jwt}
+      else
       render json: {error: user.errors.full_messages}
     end
   end
