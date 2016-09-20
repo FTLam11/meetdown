@@ -5,11 +5,10 @@ Rails.application.routes.draw do
   get '/zip_code/:zip_code/topics', to: "topics#zipTopics"
   get '/zip_code/:id', to: "topics#zipCount"
   get '/auth/facebook', to: "users#fbcreate"
+  post '/auth/signup', to: "users#create"
   post '/auth/login', to: "users#create"
   post '/topics/suggest', to: "topics#suggest"
   post '/event/create', to: "event#create"
-
-  devise_for :users
   post '/users/fb', to: "users#fbcreate"
   # post '/users/:user_id/topics/:topic_id', to: "users#addInterest"
   resources :interests, only: [:create]
