@@ -32,6 +32,7 @@
     "angularjs-nvd3-directives": "^0.0.7",
     "nvd3": "^1.8.4",
     "link-preview": "^1.0.0",
-    "satellizer": "^0.15.5"
+    "satellizer": "^0.15.5",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.42"
   }
 }

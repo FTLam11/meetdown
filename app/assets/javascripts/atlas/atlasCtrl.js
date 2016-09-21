@@ -77,7 +77,12 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
         }
         $scope.topics = data.topics;
     });
-
+    $scope.yo = { events: {
+          click: function (event) {
+            alert("hello")
+          }
+      }
+  }
     function setLayer(zipString) {
         $scope.map.fusionlayer = {
             options: {

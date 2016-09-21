@@ -3,6 +3,7 @@ var account = angular.module('meetdown')
 account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb', '$state', '$auth', function($scope, account, Users, FindOrCreateFb, $state, $auth) {
   $scope.account = account;
 
+
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider).then(function(response) {
     $auth.setToken(response.data.token);
@@ -10,10 +11,10 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
   };
 
   $scope.login = function () {
-    Auth.login({email: $scope.email, password: $scope.password})
   };
+  
   $scope.logout = function () {
-    Auth.logout()
+    $auth.logout()
   };
 
   $scope.register = function() {
