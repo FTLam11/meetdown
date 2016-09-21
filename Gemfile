@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'jwt'
+gem 'aws-sdk', "~> 2"
 gem "koala", "~> 2.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
