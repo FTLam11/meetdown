@@ -35,22 +35,19 @@ class UsersController < ApplicationController
     profile = @graph.get_object("me")
     payload = User.find_or_create_by(fb_id: profile["id"]).as_json
 
-    hmac_secret = 'bluballs'
-    jwt = JWT.encode payload, hmac_secret, 'HS256'
-    decoded_token = JWT.decode jwt, hmac_secret, true, { :algorithm => 'HS256' }
-    p decoded_token
+    jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
+    decoded_token = JWT.decode jwt, Rails.application.secrets.hmac_secret, true, { :algorithm => 'HS256' }
     render json: {token: jwt}
   end
 
   def update
-    hmac_secret = 'bluballs'
-    if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
+    if (JWT.decode params[:token], Rails.application.secrets.hmac_secret, true, { :algorithm => 'HS256' })
       user = User.find(user_params[:id])
       user.zip_code= user_params[:zip_code]
       user.age = user_params[:age]
       user.save
       payload = user.as_json
-      jwt = JWT.encode payload, hmac_secret, 'HS256'
+      jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
       render json: {token: jwt}
     else
       render json: {error: "You're not authorized to perform this action"}
