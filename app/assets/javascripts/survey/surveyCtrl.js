@@ -13,4 +13,6 @@ $scope.submitInfo = function() {
 $scope.showProfile = function(profileID) {
   $location.path("/profile/" + profileID)
 }
+
+
 }]);

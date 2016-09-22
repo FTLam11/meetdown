@@ -1,3 +1,7 @@
+require 'base64'
+require 'openssl'
+require 'digest/sha1'
+
 class UsersController < ApplicationController
   wrap_parameters format: [:json]
 
@@ -56,6 +60,37 @@ class UsersController < ApplicationController
   def user_topics
     user = User.find(params[:id])
     render json: {user_topics: user.topics}
+  end
+
+  def s3_access_token
+    render json: {
+      policy: s3_upload_policy,
+      signature: s3_upload_signature,
+      key: ENV["AWS_SECRET_KEY_ID"]
+    }
+  end
+
+  protected
+
+  def unique_name
+    ENV["counter"] += 1 #append user's unique column attribute
+  end
+
+  def s3_upload_policy
+    @policy ||= create_s3_upload_policy
+  end
+
+  def create_s3_upload_policy
+    Base64.encode64({
+      expiration: 1.hour.from_now.utc.xmlschema,
+      conditions: [
+        {"bucket" => "media.meetdown.info"},
+        ["starts-with", "$key",  ""],
+        {"acl" => "public-read"},
+        ["starts-with", "$Content-Type", "image/jpeg"],
+        ["content-length-range", 0, 10 * 1024 * 1024]
+      ]
+      }.to_json).gsub(/\n/, "")
   end
 
   private

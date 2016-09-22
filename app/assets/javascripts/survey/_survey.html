@@ -7,6 +7,20 @@
         <input type="text" name="zipcode" ng-model="zipcode" placeholder="Enter yo zipcode">
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+      <form action="https://s3.amazonaws.com/media.meetdown.info" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="key" value="">
+        <input type="hidden" name="AWSAccessKeyId" value="">
+        <input type="hidden" name="acl" value="private">
+        <input type="hidden" name="success_action_redirect" value="http://localhost/#/profile">
+        <input type="hidden" name="policy" value="">
+        <input type="hidden" name="signature" value="">
+        <input type="hidden" name="Content-Type" value="image/jpeg">
+        <!-- Include any additional input fields here -->
+        Update your profile picture:
+        <input name="file" type="file">
+        <br>
+        <input type="submit" value="Upload File to S3">
+      </form>
     </div>
   </div>
 </div>
