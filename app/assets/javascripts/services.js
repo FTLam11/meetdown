@@ -4,6 +4,10 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users/")
 })
 
+.service('RequestSignature', function($resource){
+  return $resource("http://localhost:3000/users/s3")
+})
+
 .service('Suggest', function($resource) {
   return $resource("/topics/suggest", {body:"@body"})
 })

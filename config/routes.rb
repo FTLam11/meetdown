@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/users/s3', to: "users#s3_access_token"
   put '/users/:id', to: "users#update"
   get '/users/:id/topics', to: "users#user_topics"
   get '/users/:id', to: "users#show"

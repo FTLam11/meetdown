@@ -63,14 +63,15 @@ class UsersController < ApplicationController
     render json: {
       policy: s3_upload_policy,
       signature: s3_upload_signature,
-      key: ENV["AWS_SECRET_KEY_ID"]
+      key: ENV["AWS_SECRET_KEY_ID"],
+
     }
   end
 
   protected
 
   def unique_name
-    ENV["counter"] += 1 #append user's unique column attribute
+    user_id = User.find(user_params[:id]).id
   end
 
   def s3_upload_policy
@@ -88,6 +89,14 @@ class UsersController < ApplicationController
         ["content-length-range", 0, 10 * 1024 * 1024]
       ]
       }.to_json).gsub(/\n/, "")
+  end
+
+  def s3_upload_signature
+    Base64.encode64(OpenSSL::HMAC.digest(
+      OpenSSL::Digest::Digest.new('sha1'),
+      ENV["AWS_SECRET_ACCESS_KEY"],
+      s3_upload_policy)).gsub(/\n/, "")
+      ))
   end
 
   private
