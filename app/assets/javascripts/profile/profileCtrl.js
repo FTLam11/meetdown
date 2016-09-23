@@ -12,6 +12,7 @@ function setProfile(){
   } 
   else {
     $scope.user = $auth.getPayload();
+    console.log($scope.user)
     getUserData($auth.getPayload()['id']);
   }
 }

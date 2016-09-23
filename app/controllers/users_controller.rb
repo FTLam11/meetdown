@@ -43,9 +43,7 @@ class UsersController < ApplicationController
   def update
     if (JWT.decode params[:token], Rails.application.secrets.hmac_secret, true, { :algorithm => 'HS256' })
       user = User.find(user_params[:id])
-      user.zip_code= user_params[:zip_code]
-      user.age = user_params[:age]
-      user.save
+      user.update!(user_params)
       payload = user.as_json
       jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
       render json: {token: jwt}
@@ -89,7 +87,6 @@ class UsersController < ApplicationController
         {"bucket" => "media.meetdown.info"},
         ["starts-with", "$key",  ""],
         {"acl" => "public-read"},
-        {"success_action_redirect" => "http://localhost:3000/#/profile"},
         {"Content-Type" => "image/jpeg"},
         ["content-length-range", 0, 10 * 1024 * 1024]
       ]
@@ -106,6 +103,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id, :id, :code, :token, :key, :AWSAccessKeyId, :acl, :success_action_redirect, :policy, :signature, "Content-Type", :file)
+    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id, :id, :code, :token, :key, :AWSAccessKeyId, :acl, :success_action_redirect, :policy, :signature, "Content-Type", :file, :picture)
   end
 end

@@ -22,7 +22,7 @@ survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', '$location'
 $scope.submitInfo = function() {
     SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: $auth.getPayload().id, token: $auth.getToken()}).$promise.then(function(response){
       $auth.setToken(response.token);
-      $scope.showProfile($auth.getPayload()['id']);
+      $scope.showProfile($auth.getPayload()['id']); //call with no argument to go to /profile
     })
   //add to account factory maybe
 };
@@ -32,11 +32,14 @@ $scope.showProfile = function(profileID) {
 }
 
 $scope.updateProfilePic = function() {
-  console.log($scope.file)
   RequestSignature.save({token: $auth.getToken(), key: $scope.file.name, user: $auth.getPayload()}).$promise.then(function(response) {
-    console.log(response);
-    UploadToS3.upload({key: response.key, AWSAccessKeyId: response.AWSAccessKeyId, acl: "public-read", success_action_redirect: "http://localhost:3000/#/profile", policy: response.policy, signature: response.signature, 'Content-Type': 'image/jpeg', file: $scope.file}).$promise.then(function(s3Response) {
-      console.log(s3Response);
+    // console.log(response);
+    UploadToS3.upload({key: response.key, AWSAccessKeyId: response.AWSAccessKeyId, acl: "public-read", policy: response.policy, signature: response.signature, 'Content-Type': 'image/jpeg', file: $scope.file}).$promise.then(function(s3Response) {
+      SubmitSurvey.update({id: $auth.getPayload().id, picture: "https://s3.amazonaws.com/media.meetdown.info/" + s3Response.key, token: $auth.getToken()}).$promise.then(function(response){
+        console.log(response);
+        $auth.setToken(response.token);
+        $scope.showProfile($auth.getPayload()['id']);
+      })
       // save the image URL to database, redirect to user's profile page
     });
   });

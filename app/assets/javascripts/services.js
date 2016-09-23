@@ -31,7 +31,6 @@ angular.module('meetdown')
         fd.append(key, value);
       }
     });
-    console.log(data);
     return fd;
   },
       headers: {'Content-Type': undefined}

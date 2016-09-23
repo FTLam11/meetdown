@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
   <h1>Hey {{user.username}}~~</h1>
+  <img src={{user.picture}}>
     <h3>{{user.username}}'s interests</h3>
     <a ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">{{topic.name}}</a>
     <p ng-show="userTopics != undefined">{{nilTopics}}</p>
