@@ -13,7 +13,7 @@ angular.module('meetdown')
     upload: {
       method: "POST",
       skipAuthorization: true,
-      transformRequest: function(data, headersGetter) {
+      transformRequest: function(data) {
     if (data === undefined)
       return data;
 
@@ -31,7 +31,7 @@ angular.module('meetdown')
         fd.append(key, value);
       }
     });
-
+    console.log(data);
     return fd;
   },
       headers: {'Content-Type': undefined}

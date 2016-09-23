@@ -34,7 +34,6 @@ $scope.showProfile = function(profileID) {
 $scope.updateProfilePic = function() {
   RequestSignature.save({token: $auth.getToken(), key: $scope.file, user: $auth.getPayload()}).$promise.then(function(response) {
     console.log(response);
-    console.log($scope.file);
     UploadToS3.upload({key: response.key, AWSAccessKeyId: response.AWSAccessKeyId, acl: "public-read", success_action_redirect: "http://localhost:3000/#/profile", policy: response.policy, signature: response.signature, 'Content-Type': 'image/jpeg', file: $scope.file}).$promise.then(function(s3Response) {
       console.log(s3Response);
     });
