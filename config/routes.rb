@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post '/auth/signup', to: "users#create"
   post '/auth/login', to: "users#create"
   post '/topics/suggest', to: "topics#suggest"
-  post '/event/create', to: "event#create"
+  post '/events/create', to: "events#create"
   post '/users/fb', to: "users#fbcreate"
   # post '/users/:user_id/topics/:topic_id', to: "users#addInterest"
   resources :interests, only: [:create]

@@ -1,0 +1,27 @@
+{
+  "name": "meetdown",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r # README",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "angular-bootstrap-datetimepicker": "^1.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FTLam11/meetdown.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FTLam11/meetdown/issues"
+  },
+  "homepage": "https://github.com/FTLam11/meetdown#readme"
+}

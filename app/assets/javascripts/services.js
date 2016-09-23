@@ -8,6 +8,10 @@ angular.module('meetdown')
   return $resource("/topics/suggest", {body:"@body"})
 })
 
+.service('CreateEvent', function($resource) {
+  return $resource("/events/create")
+})
+
 .service('User', function($resource) {
   return $resource("/users/:user_id", {user_id: "@user_id"})
 })
@@ -33,10 +37,6 @@ angular.module('meetdown')
 })
 
 .service('CreateFBUser', function($resource){
-  return $resource("/users", {fb_id:"@fb_id"})
-})
-
-.service('CreateEvent', function($resource){
   return $resource("/users", {fb_id:"@fb_id"})
 })
 

@@ -14,3 +14,6 @@
 //= require angularjs-nvd3-directives
 //= require satellizer
 //= require_tree
+//= require moment
+//= require eonasdan-bootstrap-datetimepicker
+//= require bootstrap
