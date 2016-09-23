@@ -3,7 +3,7 @@ require 'openssl'
 require 'digest/sha1'
 
 class UsersController < ApplicationController
-  wrap_parameters format: [:json]
+  wrap_parameters format: [:json, :multipart_form]
 
   def index
     render json: { hello: "fuck u"}
@@ -60,12 +60,16 @@ class UsersController < ApplicationController
   end
 
   def s3_access_token
-    render json: {
-      policy: s3_upload_policy,
-      signature: s3_upload_signature,
-      key: ENV["AWS_SECRET_KEY_ID"],
-
-    }
+    if (JWT.decode params[:token], Rails.application.secrets.hmac_secret, true, { :algorithm => 'HS256' })
+      render json: {
+        key: unique_name.to_s + params[:key].gsub(/\s+/, ""),
+        policy: s3_upload_policy,
+        signature: s3_upload_signature,
+        AWSAccessKeyId: ENV["AWS_SECRET_KEY_ID"]
+      }
+    else
+      render json: {error: "You are not authorized to perform this action"}
+    end
   end
 
   protected
@@ -85,7 +89,8 @@ class UsersController < ApplicationController
         {"bucket" => "media.meetdown.info"},
         ["starts-with", "$key",  ""],
         {"acl" => "public-read"},
-        ["starts-with", "$Content-Type", "image/jpeg"],
+        {"success_action_redirect" => "http://localhost:3000/#/profile"},
+        {"Content-Type" => "image/jpeg"},
         ["content-length-range", 0, 10 * 1024 * 1024]
       ]
       }.to_json).gsub(/\n/, "")
@@ -96,12 +101,11 @@ class UsersController < ApplicationController
       OpenSSL::Digest::Digest.new('sha1'),
       ENV["AWS_SECRET_ACCESS_KEY"],
       s3_upload_policy)).gsub(/\n/, "")
-      ))
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id, :id, :code, :token)
+    params.require(:user).permit(:email, :username, :password, :zip_code, :age, :fb_id, :id, :code, :token, :key, :AWSAccessKeyId, :acl, :success_action_redirect, :policy, :signature, "Content-Type", :file)
   end
 end
