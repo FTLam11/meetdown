@@ -14,6 +14,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def showHostings
+    user = User.find(params[:user])
+    hostings = user.hosted_events
+    render json: {hostings: hostings}
+  end
+
+  def showAttendings
+    user = User.find(params[:user])
+    attendings = user.attended_events
+    render json: {attendings: attendings}
+  end
+    
+  end
   def update
   end
 

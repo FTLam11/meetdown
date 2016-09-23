@@ -58,6 +58,12 @@ meetdown.config(['$stateProvider',
       })
 
       .state('createEvent', {
+        url: '/events/{id}', //double check syntax
+        templateUrl: 'events/_event.html',
+        controller: 'eventCtrl'
+      })
+
+      .state('createEvent', {
         url: '/events/create', //double check syntax
         templateUrl: 'events/_createEvent.html',
         controller: 'createEventCtrl'
