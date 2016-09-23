@@ -37,6 +37,7 @@ $scope.updateProfilePic = function() {
     console.log(response);
     UploadToS3.upload({key: response.key, AWSAccessKeyId: response.AWSAccessKeyId, acl: "public-read", success_action_redirect: "http://localhost:3000/#/profile", policy: response.policy, signature: response.signature, 'Content-Type': 'image/jpeg', file: $scope.file}).$promise.then(function(s3Response) {
       console.log(s3Response);
+      // save the image URL to database, redirect to user's profile page
     });
   });
   //client side verification of file to upload before making server request?
