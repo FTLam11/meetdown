@@ -13,4 +13,5 @@
 //= require nvd3
 //= require angularjs-nvd3-directives
 //= require satellizer
+//= require ng-file-upload/ng-file-upload
 //= require_tree
