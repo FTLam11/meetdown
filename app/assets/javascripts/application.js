@@ -14,4 +14,5 @@
 //= require angularjs-nvd3-directives
 //= require satellizer
 //= require ng-file-upload/ng-file-upload
+//= require ng-img-crop
 //= require_tree
