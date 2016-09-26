@@ -36,7 +36,6 @@ $scope.updateProfilePic = function() {
     // console.log(response);
     UploadToS3.upload({key: response.key, AWSAccessKeyId: response.AWSAccessKeyId, acl: "public-read", policy: response.policy, signature: response.signature, 'Content-Type': 'image/jpeg', file: $scope.file}).$promise.then(function(s3Response) {
       SubmitSurvey.update({id: $auth.getPayload().id, picture: "https://s3.amazonaws.com/media.meetdown.info/" + s3Response.key, token: $auth.getToken()}).$promise.then(function(response){
-        console.log(response);
         $auth.setToken(response.token);
         $scope.showProfile($auth.getPayload()['id']);
       })
