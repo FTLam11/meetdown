@@ -16,11 +16,9 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
-    if user.save
+    if user.save!
       payload = user.as_json
-      hmac_secret = 'bluballs'
-      jwt = JWT.encode payload, hmac_secret, 'HS256'
-      decoded_token = JWT.decode jwt, hmac_secret, true, { :algorithm => 'HS256' }
+      jwt = JWT.encode payload, Rails.application.secret.hmac_secret, 'HS256'
       render json: {token: jwt}
     else
       render json: {error: user.errors.full_messages}
