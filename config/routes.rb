@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/zip_code/:id', to: "topics#zipCount"
   get '/auth/facebook', to: "users#fbcreate"
   post '/auth/signup', to: "users#create"
-  post '/auth/login', to: "users#create"
+  post '/auth/login', to: "users#new_session"
   post '/topics/suggest', to: "topics#suggest"
   post '/event/create', to: "event#create"
   post '/users/fb', to: "users#fbcreate"

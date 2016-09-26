@@ -21,7 +21,6 @@ class UsersController < ApplicationController
       hmac_secret = 'bluballs'
       jwt = JWT.encode payload, hmac_secret, 'HS256'
       decoded_token = JWT.decode jwt, hmac_secret, true, { :algorithm => 'HS256' }
-      p decoded_token
       render json: {token: jwt}
       else
       render json: {error: user.errors.full_messages}
@@ -68,6 +67,17 @@ class UsersController < ApplicationController
     else
       render json: {error: "You are not authorized to perform this action"}
     end
+  end
+
+  def new_session
+    user = User.find_by(email: user_params[:email])
+    if user && user.authenticate(params[:password])
+      payload = user.as_json
+      jwt = JWT.encode payload, Rails.application.secret.hmac_secret, 'HS256'
+      render json: {token: jwt}
+    else
+      render json: {error: "Invalid email and/or password combination."}
+    end 
   end
 
   protected
