@@ -50,12 +50,8 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
         console.log(response);
         $auth.setToken(response.data.token);
         console.log($auth.getPayload())
-        // Redirect user here to login page or perhaps some other intermediate page
-        // that requires email address verification before any other part of the site
-        // can be accessed.
       })
       .catch(function(response) {
-        // Handle errors here.
       });
 
         // console.log(angular.fromJson(window.localStorage['user']))

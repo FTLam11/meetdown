@@ -50,6 +50,7 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.6.2)
       aws-sdk-core (= 2.6.2)
+    bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.5)
     capybara (2.7.1)
@@ -207,6 +208,7 @@ PLATFORMS
 DEPENDENCIES
   angular-rails-templates
   aws-sdk (~> 2)
+  bcrypt (~> 3.1.7)
   byebug
   capybara
   jbuilder (~> 2.5)

@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       jwt = JWT.encode payload, hmac_secret, 'HS256'
       decoded_token = JWT.decode jwt, hmac_secret, true, { :algorithm => 'HS256' }
       render json: {token: jwt}
-      else
+    else
       render json: {error: user.errors.full_messages}
     end
   end
