@@ -16,9 +16,10 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_params)
+    user.password = params[:password]
     if user.save!
       payload = user.as_json
-      jwt = JWT.encode payload, Rails.application.secret.hmac_secret, 'HS256'
+      jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
       render json: {token: jwt}
     else
       render json: {error: user.errors.full_messages}
@@ -33,7 +34,6 @@ class UsersController < ApplicationController
     payload = User.find_or_create_by(fb_id: profile["id"]).as_json
 
     jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
-    decoded_token = JWT.decode jwt, Rails.application.secrets.hmac_secret, true, { :algorithm => 'HS256' }
     render json: {token: jwt}
   end
 
