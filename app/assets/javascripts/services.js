@@ -12,9 +12,18 @@ angular.module('meetdown')
   return $resource("/events/create")
 })
 
+.service('CreateAttend', function($resource) {
+  return $resource("/events/createAttend")
+})
+
 .service('User', function($resource) {
   return $resource("/users/:user_id", {user_id: "@user_id"})
 })
+
+.service('Attendees', function($resource) {
+  return $resource("/events/:id/attendees", {id: "@id"})
+})
+
 
 .service('ZipCount', function($resource) {
   return $resource("/zip_code/:id", {id: "@topic_id"})

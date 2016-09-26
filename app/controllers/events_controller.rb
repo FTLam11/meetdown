@@ -5,13 +5,25 @@ class EventsController < ApplicationController
     event = Event.new
     event.name = params[:name]
     event.location = params[:location]
-    event.address = params[:address]
     event.description = params[:description]
-    event.host = User.find(params[:user]) if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
+    hmac_secret = 'bluballs'
+    event.hosts << User.find(params[:user]) if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
     event.attendees << User.find(params[:user]) if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
+    p event
     if event.save
       render json: {event: event}
     end
+  end
+
+  def createAttend
+    event = Event.find(params[:event_id])
+    event.attendees << User.find(params[:user_id])
+    render json: {attendees: event.attendees}
+  end
+
+  def showAttendees
+    event = Event.find(params[:id])
+    render json: {attendees: event.attendees, hosts: event.hosts}
   end
 
   def showHostings
@@ -26,7 +38,6 @@ class EventsController < ApplicationController
     render json: {attendings: attendings}
   end
     
-  end
   def update
   end
 
@@ -41,4 +52,5 @@ class EventsController < ApplicationController
   def interest_params
     params.require(:interest).permit(:user_id, :topic_id)
   end
+
 end

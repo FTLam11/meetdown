@@ -1,5 +1,10 @@
-<a class="btn register-btn" style="background-color: #ff0000" ng-click="create()"> I'm Attending!</a>
-<a class="btn register-btn" style="background-color: #ff0000" ng-click="create()"> Cancel attending!</a>
+<a class="btn register-btn" style="background-color: #ff0000" ng-click="createAttend()"> I'm Attending!</a>
+<a class="btn register-btn" style="background-color: #ff0000" ng-click="createAttend()"> Cancel attending!</a>
+<h2>Attendees</h2>
 <ul>
-<li ng-repeat="user in attendees">{{user.name}}</li>
+<li ng-repeat="user in attendees">{{user}}</li>
+</ul>
+<h2>Hosts</h2>
+<ul>
+<li ng-repeat="user in hosts">{{user}}</li>
 </ul>
