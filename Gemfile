@@ -20,11 +20,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'angular-rails-templates'
 gem 'simplecov', :require => false, :group => :test
-gem 'devise'
-
-source "http://insecure.rails-assets.org" do
-  gem "rails-assets-angular-devise"
-end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
