@@ -16,6 +16,10 @@ angular.module('meetdown')
   return $resource("/events/createAttend")
 })
 
+.service('CancelAttend', function($resource) {
+  return $resource("/events/cancelAttend")
+})
+
 .service('User', function($resource) {
   return $resource("/users/:user_id", {user_id: "@user_id"})
 })
@@ -23,6 +27,11 @@ angular.module('meetdown')
 .service('Attendees', function($resource) {
   return $resource("/events/:id/attendees", {id: "@id"})
 })
+
+.service('CancelAttend', function($resource){
+  return $resource("/events/cancelAttend", { update: {method: 'DELETE'}})
+})
+
 
 
 .service('ZipCount', function($resource) {

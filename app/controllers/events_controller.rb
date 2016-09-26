@@ -15,6 +15,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def cancelAttend
+    event = Event.find(params[:event_id])
+    user = User.find(params[:user_id])
+    Attending.find_by(user: user, event: event).destroy
+  end
+
   def createAttend
     event = Event.find(params[:event_id])
     event.attendees << User.find(params[:user_id])

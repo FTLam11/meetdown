@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/topics/suggest', to: "topics#suggest"
   post '/events/create', to: "events#create"
   post '/users/fb', to: "users#fbcreate"
+  delete '/events/cancelAttend', to: "events#cancelAttend"
   # post '/users/:user_id/topics/:topic_id', to: "users#addInterest"
   resources :interests, only: [:create]
   resources :actions, only: [:create]
