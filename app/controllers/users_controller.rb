@@ -15,9 +15,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    p params
+    p params[:password]
     user = User.new(user_params)
     user.password = params[:password]
-    if user.save!
+    if user.save
       payload = user.as_json
       jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
       render json: {token: jwt}

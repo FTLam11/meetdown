@@ -23,7 +23,7 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
       .then(function(response) {
         console.log(response)
         if (response.data.token) {
-          $auth.setToken(response.token);
+          $auth.setToken(response.data.token);
           $state.go('finder')
         } else {
           $scope.loginFail = response.data.error;
@@ -47,15 +47,15 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
 
     $auth.signup(user)
       .then(function(response) {
-        console.log(response);
-        $auth.setToken(response.data.token);
-        console.log($auth.getPayload())
-      })
-      .catch(function(response) {
+        if (response.data.token) {
+          $auth.setToken(response.data.token);
+          $state.go('finder')
+        } else {
+          $scope.loginFail = response.data.error;
+          $scope.username = "";
+          $scope.email = "";
+          $scope.password = "";
+        };
       });
-
-        // console.log(angular.fromJson(window.localStorage['user']))
-        // TO DO: how to stop the server from sending back plain text password
-        // $state.go('finder');
   };
 }]);
