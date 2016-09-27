@@ -15,8 +15,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    p params
-    p params[:password]
     user = User.new(user_params)
     user.password = params[:password]
     if user.save
@@ -34,7 +32,6 @@ class UsersController < ApplicationController
     @graph = Koala::Facebook::API.new(oauthtoken)
     profile = @graph.get_object("me")
     payload = User.find_or_create_by(fb_id: profile["id"]).as_json
-
     jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
     render json: {token: jwt}
   end
