@@ -1,6 +1,20 @@
 <div class="row">
   <div class="col-xs-8 col-xs-offset-2">
   <h1>Hey {{user.username}}~~</h1>
+
+  {{user}}
+
+  <a class="btn register-btn" ng-show="!editing && homeProfile" ng-click="edit()">Edit Profile</a>
+  <a class="btn register-btn" ng-show="editing" ng-click="saveChanges()">Save Changes</a>
+  <a class="btn register-btn" ng-show="editing" ng-click="cancel()">Cancel</a>
+
+  <h2 ng-show="!editing">Email: {{user.email}}</h2> 
+  <input ng-show="editing" ng-show="homeProfile" ng-value = "user.email" ng-model="tempEmail"></input>
+  <h2 ng-show="!editing" ng-model="tempZip">Zip: {{user.zip_code}}</h2> 
+  <input ng-show="editing" ng-value = "user.zip_code" ng-model="tempZip"></input>
+  <h2 ng-show="!editing" ng-model="tempAge">Age: {{user.age}} years old</h2>
+  <input ng-show="editing" ng-value = "user.age" ng-model="tempAge"></input>
+
   <img src={{user.picture}}>
     <h3>{{user.username}}'s interests</h3>
     <a ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">{{topic.name}}</a>
