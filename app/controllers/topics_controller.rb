@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
 
   def index
     topics = Topic.all
-    ruby_topics = []
+    ruby_topics = Array.new
 
     topics.each do | topic |
       ruby_hash = Hash.new
@@ -13,7 +13,7 @@ class TopicsController < ApplicationController
       ruby_hash[:verbs] = topic[:verbs]
       ruby_topics << ruby_hash
     end
-    p ruby_topics
+
     render json: { topics: ruby_topics }
   end
 
@@ -24,16 +24,16 @@ class TopicsController < ApplicationController
 
   def zipCount
     topic = Topic.find(params[:id])
-    a = topic.users.group(:zip_code).count
-    render json: {zip_codes: a}
+    user_zipcode_map = topic.users.group(:zip_code).count
+
+    render json: {zip_codes: user_zipcode_map}
   end
 
   def zipTopics
     topics = User.where(zip_code: params[:zip_code]).map { |user| user = user.topics }.flatten.uniq
-
     answer = topics.map { |topic| topic = {"name": topic.name, "count": topic.users.where(zip_code: params[:zip_code]).count, "id": topic.id} }
-
     answer.sort_by! {| topic_hash | -topic_hash.count }.reverse!
+
     render json: {mahZip: answer.take(10)}
   end
 

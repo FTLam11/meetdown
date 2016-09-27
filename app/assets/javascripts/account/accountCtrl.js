@@ -1,17 +1,15 @@
 var account = angular.module('meetdown')
 
-account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb', '$state', '$auth', function($scope, account, Users, FindOrCreateFb, $state, $auth) {
-  $scope.account = account;
-  $scope.loginFail = ""
-
+account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope, $state, $auth) {
+  $scope.loginFail = "";
 
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider).then(function(response) {
-    $auth.setToken(response.data.token);
+      $auth.setToken(response.data.token);
     });
   };
 
-  $scope.login = function () {
+  $scope.login = function() {
     var user = {
       email: $scope.emailLogin,
       password: $scope.passwordLogin
@@ -21,10 +19,9 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
 
     $auth.login(user)
       .then(function(response) {
-        console.log(response)
         if (response.data.token) {
           $auth.setToken(response.data.token);
-          $state.go('finder')
+          $state.go('finder');
         } else {
           $scope.loginFail = response.data.error;
           $scope.emailLogin = "";
@@ -33,9 +30,9 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
       });
   };
   
-  $scope.logout = function () {
-    console.log("yo")
+  $scope.logout = function() {
     $auth.logout();
+    $state.go('account');
   };
 
   $scope.register = function() {
@@ -49,7 +46,7 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
       .then(function(response) {
         if (response.data.token) {
           $auth.setToken(response.data.token);
-          $state.go('finder')
+          $state.go('finder');
         } else {
           $scope.loginFail = response.data.error;
           $scope.username = "";
