@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post '/users/s3', to: "users#s3_access_token"
   put '/users/:id', to: "users#update"
   get '/events/userEventList', to: "events#userEventList"
   get '/users/:id/topics', to: "users#user_topics"
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   get '/events/:id/hosts', to: "events#showHosts"
   post '/events/createAttend', to: "events#createAttend"
   post '/auth/signup', to: "users#create"
-  post '/auth/login', to: "users#create"
+  post '/auth/login', to: "users#new_session"
   post '/topics/suggest', to: "topics#suggest"
   post '/events/create', to: "events#create"
   post '/users/fb', to: "users#fbcreate"

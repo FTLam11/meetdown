@@ -1,4 +1,4 @@
-var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ngResource', 'Devise', 'uiGmapgoogle-maps', 'nvd3ChartDirectives', 'satellizer','ui.bootstrap']);
+var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ezfb', 'ngResource', 'uiGmapgoogle-maps', 'nvd3ChartDirectives', 'satellizer', 'ngFileUpload', 'ngImgCrop', 'ui.bootstrap']);
 
 meetdown.config(['$stateProvider',
   '$urlRouterProvider', 'uiGmapGoogleMapApiProvider', '$authProvider', function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $authProvider) {

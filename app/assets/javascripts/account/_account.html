@@ -1,38 +1,47 @@
 <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-        <div class="row vertical-center">
-            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <div class="well foreground">
-                    <div class="form-group">
-                        <img class="img-responsive" src="assets/InterestAtlas.png" style="margin:auto">
-                        <div class="row text-center">
-<button class="btn register-btn" ng-click="authenticate('facebook')">Sign in with Facebook</button>
-
-                        </div>
-                    </div>
-                    <br>
-                    <div class="text-center">
-                        <div class="divider">
-                            <span class="orspan">OR</span>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                        <label for="email"></label>
-                        <input class="form-control register-form" id="username" type="text" placeholder='Username' ng-model="username">
-                        <label class="text-center" for="email"></label>
-                        <input class="form-control register-form" id="username-email" type="text" placeholder='Email Address' ng-model="email">
-                        <label for="password"></label>
-                        <input class="form-control register-form" id="password" type="password" placeholder="Password" ng-model="password">
-                        <a class="btn register-btn" style="background-color: #ff0000" ng-click="register()"> Register!</a>
-                    </div>
-                    <div class="text-center">
-                        <br> Already a user?
-                        <button ng-click="login()">Login</button>
-                        <button ng-click="logout()">Logout</button>
-                    </div>
-                    <div>
-                    </div>
-                </div>
+  <div class="col-sm-8 col-sm-offset-2">
+    <div class="row vertical-center">
+      <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <div class="well foreground">
+          <div class="form-group">
+            <img class="img-responsive" src="assets/InterestAtlas.png" style="margin:auto">
+            <div class="row text-center">
+              <button class="btn register-btn" ng-click="authenticate('facebook')">Sign in with Facebook</button>
             </div>
+          </div>
+          <br>
+          <div class="text-center">
+            <div class="divider">
+              <span class="orspan">OR</span>
+            </div>
+          </div>
+          <div class="text-center">
+            <label for="email"></label>
+            <input class="form-control register-form" id="username" type="text" placeholder='Username' ng-model="username">
+            <label class="text-center" for="email"></label>
+            <input class="form-control register-form" id="username-email" type="text" placeholder='Email Address' ng-model="email">
+            <label for="password"></label>
+            <input class="form-control register-form" id="password" type="password" placeholder="Password" ng-model="password">
+            <a class="btn register-btn" style="background-color: #ff0000" ng-click="register()"> Register!</a>
+          </div>
+          <br>
+          <div class="text-center">
+            <div class="divider">
+              <span class="orspan">OR</span>
+            </div>
+          </div>
+          <div class="text-center">
+            <label for="email"></label>
+            <label class="text-center" for="email"></label>
+            <input class="form-control register-form" type="text" placeholder='Email Address' ng-model="emailLogin">
+            <label for="password"></label>
+            <input class="form-control register-form" type="password" placeholder="Password" ng-model="passwordLogin">
+            <a class="btn register-btn" style="background-color: #ff0000" ng-click="login()">Login</a>
+            <br>
+            <p>{{loginFail}}</p>
+            <button ng-click="logout()">Logout</button>
+          </div>
         </div>
+      </div>
     </div>
+  </div>

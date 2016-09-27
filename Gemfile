@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'jwt'
+gem 'aws-sdk', "~> 2"
 gem "koala", "~> 2.2"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
@@ -16,14 +17,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 gem 'angular-rails-templates'
 gem 'simplecov', :require => false, :group => :test
-gem 'devise'
-
-source "http://insecure.rails-assets.org" do
-  gem "rails-assets-angular-devise"
-end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

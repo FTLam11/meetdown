@@ -2,6 +2,7 @@ var account = angular.module('meetdown')
 
 account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb', '$state', '$auth', function($scope, account, Users, FindOrCreateFb, $state, $auth) {
   $scope.account = account;
+  $scope.loginFail = ""
 
 
   $scope.authenticate = function(provider) {
@@ -11,10 +12,30 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
   };
 
   $scope.login = function () {
+    var user = {
+      email: $scope.emailLogin,
+      password: $scope.passwordLogin
+    };
+
+    $scope.loginFail = "";
+
+    $auth.login(user)
+      .then(function(response) {
+        console.log(response)
+        if (response.data.token) {
+          $auth.setToken(response.data.token);
+          $state.go('finder')
+        } else {
+          $scope.loginFail = response.data.error;
+          $scope.emailLogin = "";
+          $scope.passwordLogin = "";
+        };
+      });
   };
   
   $scope.logout = function () {
-    $auth.logout()
+    console.log("yo")
+    $auth.logout();
   };
 
   $scope.register = function() {
@@ -26,19 +47,15 @@ account.controller('AccountCtrl', ['$scope', 'account', 'Users','FindOrCreateFb'
 
     $auth.signup(user)
       .then(function(response) {
-        console.log(response);
-        $auth.setToken(response.data.token);
-        console.log($auth.getPayload())
-        // Redirect user here to login page or perhaps some other intermediate page
-        // that requires email address verification before any other part of the site
-        // can be accessed.
-      })
-      .catch(function(response) {
-        // Handle errors here.
+        if (response.data.token) {
+          $auth.setToken(response.data.token);
+          $state.go('finder')
+        } else {
+          $scope.loginFail = response.data.error;
+          $scope.username = "";
+          $scope.email = "";
+          $scope.password = "";
+        };
       });
-
-        // console.log(angular.fromJson(window.localStorage['user']))
-        // TO DO: how to stop the server from sending back plain text password
-        // $state.go('finder');
   };
 }]);
