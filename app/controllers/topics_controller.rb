@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
 
   def index
     topics = Topic.all
-    ruby_topics = []
+    ruby_topics = Array.new
 
     topics.each do | topic |
       ruby_hash = Hash.new
