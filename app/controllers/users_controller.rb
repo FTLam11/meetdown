@@ -70,7 +70,7 @@ class UsersController < ApplicationController
     user = User.find_by(email: user_params[:email])
     if user && user.authenticate(params[:password])
       payload = user.as_json
-      jwt = JWT.encode payload, Rails.application.secret.hmac_secret, 'HS256'
+      jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
       render json: {token: jwt}
     else
       render json: {error: "Invalid email and/or password combination."}
