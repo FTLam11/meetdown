@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  validates :username, :email, presence: true
+  validates :username, :email, :password_digest, presence: true
   validates_uniqueness_of :email, scope: :fb_id
   has_many :interests
   has_many :topics, through: :interests
