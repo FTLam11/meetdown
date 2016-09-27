@@ -9,10 +9,18 @@ class EventsController < ApplicationController
     hmac_secret = 'bluballs'
     event.hosts << User.find(params[:user]) if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
     event.attendees << User.find(params[:user]) if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
-    p event
     if event.save
       render json: {event: event}
     end
+  end
+
+  def s3_access_token
+    render json: {
+      key: unique_name.to_s + params[:key].gsub(/\s+/, ""),
+      policy: s3_upload_policy,
+      signature: s3_upload_signature,
+      AWSAccessKeyId: ENV["AWS_SECRET_KEY_ID"]
+    }
   end
 
   def userEventList
@@ -38,10 +46,21 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     render json: {attendees: event.attendees, hosts: event.hosts}
   end
-
-  
     
   def update
+    if (JWT.decode params[:token], Rails.application.secrets.hmac_secret, true, { :algorithm => 'HS256' })
+      event = Event.find(params[:id])
+      event.picture = params[:picture]
+      event.save
+      render json: {event: event}
+    else
+      render json: {error: "You're not authorized to perform this action"}
+    end
+  end
+
+  def show
+    event = Event.find(params[:id])
+    render json: {event: event}
   end
 
   def hostCreate
@@ -51,6 +70,10 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def unique_name
+    User.find(params[:id]).id
+  end
 
   def interest_params
     params.require(:interest).permit(:user_id, :topic_id)

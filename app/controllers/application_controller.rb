@@ -16,4 +16,32 @@ class ApplicationController < ActionController::Base
   def verified_request?
     super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
   end
+
+  def unique_name
+    User.find(user_params[:id]).id
+  end
+
+  def s3_upload_policy
+    @policy ||= create_s3_upload_policy
+  end
+
+  def create_s3_upload_policy
+    Base64.encode64({
+      expiration: 1.hour.from_now.utc.xmlschema,
+      conditions: [
+        {"bucket" => "media.meetdown.info"},
+        ["starts-with", "$key",  ""],
+        {"acl" => "public-read"},
+        {"Content-Type" => "image/jpeg"},
+        ["content-length-range", 0, 10 * 1024 * 1024]
+      ]
+      }.to_json).gsub(/\n/, "")
+  end
+
+  def s3_upload_signature
+    Base64.encode64(OpenSSL::HMAC.digest(
+      OpenSSL::Digest::Digest.new('sha1'),
+      ENV["AWS_SECRET_ACCESS_KEY"],
+      s3_upload_policy)).gsub(/\n/, "")
+  end
 end
