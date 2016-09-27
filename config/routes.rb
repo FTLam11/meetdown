@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   put '/users/:id', to: "users#update"
+  get '/events/userEventList', to: "events#userEventList"
   get '/users/:id/topics', to: "users#user_topics"
   get '/users/:id', to: "users#show"
   get '/zip_code/:zip_code/topics', to: "topics#zipTopics"

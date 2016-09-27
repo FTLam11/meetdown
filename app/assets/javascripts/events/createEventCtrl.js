@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('createEventCtrl', ['$scope', '$auth','CreateEvent','$window','$location', function($scope,$auth,CreateEvent,$window,$location) {
+atlas.controller('createEventCtrl', ['$scope', '$auth','CreateEvent','$window','$location', function($scope,$auth,CreateEvent,$window, $location) {
 
 	$scope.create= function(){		
 		console.log($auth.getPayload())

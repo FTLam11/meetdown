@@ -4,6 +4,10 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users/")
 })
 
+.service('UserEventList', function($resource){
+  return $resource("/events/userEventList")
+})
+
 .service('Suggest', function($resource) {
   return $resource("/topics/suggest", {body:"@body"})
 })

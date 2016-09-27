@@ -1,3 +1,4 @@
+//= require jquery
 //= require angular
 //= require angular-devise
 //= require angular-rails-templates
@@ -5,7 +6,6 @@
 //= require angular-easyfb
 //= require angular-highlightjs
 //= require angular-resource
-//= require jquery
 //= require lodash/lodash
 //= require angular-simple-logger
 //= require angular-google-maps
@@ -15,5 +15,5 @@
 //= require satellizer
 //= require_tree
 //= require moment
-//= require eonasdan-bootstrap-datetimepicker
 //= require bootstrap
+//= require angular-bootstrap

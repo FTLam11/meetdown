@@ -9,7 +9,9 @@ Upload Image:
     <input class="form-control register-form"  type="text" placeholder='Event Name' ng-model="eventName">
     <input class="form-control register-form" type="text" placeholder='Location' ng-model="location"> <a ng-click="newMap()">Verify {{location}} in Google Map</a>
     <input class="form-control register-form" type="text-area" placeholder='Description' ng-model="description">
-    <datetimepicker data-ng-model="data.date" ></datetimepicker>
+    <div style="display:inline-block; min-height:290px;">
+      <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+    </div>
     <a class="btn register-btn" style="background-color: #ff0000" ng-click="create()"> Create Event!</a>
 </div>
 <div class="text-center">

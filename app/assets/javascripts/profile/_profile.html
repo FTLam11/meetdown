@@ -5,4 +5,12 @@
     <a ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">{{topic.name}}</a>
     <p ng-show="userTopics != undefined">{{nilTopics}}</p>
   </div>
+  	<h2>Attending</h2>
+ 	<ul>
+		<li ng-repeat="user in attendings">{{user}}</li>
+	</ul>
+		<h2>Hosting</h2>
+	<ul>
+		<li ng-repeat="user in hostings">{{user}}</li>
+	</ul>
 </div>

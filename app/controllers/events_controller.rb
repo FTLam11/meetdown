@@ -15,6 +15,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def userEventList
+    user = User.find(params[:id])
+    hostings = user.hosted_events
+    attendings = user.attended_events
+    render json: {attendings: attendings, hostings: hostings}
+  end
+
   def cancelAttend
     event = Event.find(params[:event_id])
     user = User.find(params[:user_id])
@@ -32,17 +39,7 @@ class EventsController < ApplicationController
     render json: {attendees: event.attendees, hosts: event.hosts}
   end
 
-  def showHostings
-    user = User.find(params[:user])
-    hostings = user.hosted_events
-    render json: {hostings: hostings}
-  end
-
-  def showAttendings
-    user = User.find(params[:user])
-    attendings = user.attended_events
-    render json: {attendings: attendings}
-  end
+  
     
   def update
   end
