@@ -1,6 +1,5 @@
 GEM
   remote: https://rubygems.org/
-  remote: http://insecure.rails-assets.org/
   specs:
     actioncable (5.0.0)
       actionpack (= 5.0.0)
@@ -45,8 +44,13 @@ GEM
       sprockets (>= 3.0, < 5)
       tilt
     arel (7.1.1)
+    aws-sdk (2.6.2)
+      aws-sdk-resources (= 2.6.2)
+    aws-sdk-core (2.6.2)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.6.2)
+      aws-sdk-core (= 2.6.2)
     bcrypt (3.1.11)
-    bcrypt (3.1.11-x64-mingw32)
     builder (3.2.2)
     byebug (9.0.5)
     capybara (2.7.1)
@@ -58,12 +62,6 @@ GEM
       xpath (~> 2.0)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
-    devise (4.2.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     erubis (2.7.0)
@@ -78,6 +76,7 @@ GEM
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jmespath (1.3.1)
     json (2.0.1)
     jwt (1.5.4)
     koala (2.4.0)
@@ -106,7 +105,6 @@ GEM
     nokogiri (1.6.8-x64-mingw32)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    orm_adapter (0.5.0)
     pkg-config (1.1.7)
     puma (3.6.0)
     rack (2.0.1)
@@ -124,9 +122,6 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0)
       sprockets-rails (>= 2.0.0)
-    rails-assets-angular (1.5.8)
-    rails-assets-angular-devise (1.3.0)
-      rails-assets-angular (>= 1.2.0, < 2)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6.0)
@@ -142,8 +137,6 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
-    responders (2.3.0)
-      railties (>= 4.2.0, < 5.1)
     rspec-core (3.5.1)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -197,8 +190,6 @@ GEM
       tzinfo (>= 1.0.0)
     uglifier (3.0.1)
       execjs (>= 0.3.0, < 3)
-    warden (1.2.6)
-      rack (>= 1.0)
     web-console (3.3.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -216,16 +207,16 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
+  aws-sdk (~> 2)
+  bcrypt (~> 3.1.7)
   byebug
   capybara
-  devise
   jbuilder (~> 2.5)
   jwt
   koala (~> 2.2)
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (~> 5.0.0)
-  rails-assets-angular-devise!
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)

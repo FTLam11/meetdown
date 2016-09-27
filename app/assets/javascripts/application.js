@@ -1,9 +1,7 @@
 //= require jquery
 //= require angular
-//= require angular-devise
 //= require angular-rails-templates
 //= require angular-ui-router
-//= require angular-easyfb
 //= require angular-highlightjs
 //= require angular-resource
 //= require lodash/lodash
@@ -13,6 +11,8 @@
 //= require nvd3
 //= require angularjs-nvd3-directives
 //= require satellizer
+//= require ng-file-upload/ng-file-upload
+//= require ng-img-crop
 //= require_tree
 //= require moment
 //= require bootstrap

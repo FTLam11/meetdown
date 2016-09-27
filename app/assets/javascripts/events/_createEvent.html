@@ -12,6 +12,8 @@ Upload Image:
     <div style="display:inline-block; min-height:290px;">
       <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
     </div>
+    <div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
     <a class="btn register-btn" style="background-color: #ff0000" ng-click="create()"> Create Event!</a>
 </div>
 <div class="text-center">

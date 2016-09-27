@@ -8,6 +8,40 @@ angular.module('meetdown')
   return $resource("/events/userEventList")
 })
 
+.service('RequestSignature', function($resource){
+  return $resource("http://localhost:3000/users/s3")
+})
+
+.service('UploadToS3', function($resource) {
+  return $resource("https://s3.amazonaws.com/media.meetdown.info", {}, {
+    upload: {
+      method: "POST",
+      skipAuthorization: true,
+      transformRequest: function(data) {
+    if (data === undefined)
+      return data;
+
+    var fd = new FormData();
+    angular.forEach(data, function(value, key) {
+      if (value instanceof FileList) {
+        if (value.length == 1) {
+          fd.append(key, value[0]);
+        } else {
+          angular.forEach(value, function(file, index) {
+            fd.append(key + '_' + index, file);
+          });
+        }
+      } else {
+        fd.append(key, value);
+      }
+    });
+    return fd;
+  },
+      headers: {'Content-Type': undefined}
+    }
+  })
+})
+
 .service('Suggest', function($resource) {
   return $resource("/topics/suggest", {body:"@body"})
 })
