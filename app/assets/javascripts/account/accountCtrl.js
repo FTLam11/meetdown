@@ -1,7 +1,7 @@
 var account = angular.module('meetdown')
 
 account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope, $state, $auth) {
-  $scope.loginFail = ""
+  $scope.loginFail = "";
 
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider).then(function(response) {
