@@ -1,5 +1,10 @@
+<h1>{{event.name}}</h1>
+<p>{{event.description}}</p>
+<p>{{event.date}}</p>
+<p>{{event.location}}</p>
 <a class="btn register-btn" style="background-color: #ff0000" ng-click="createAttend()"> I'm Attending!</a>
 <a class="btn register-btn" style="background-color: #ff0000" ng-click="cancelAttend()"> Cancel attending!</a>
+<img src={{event.picture}}>
 <h2>Attendees</h2>
 <ul>
 <li ng-repeat="user in attendees">{{user}}</li>

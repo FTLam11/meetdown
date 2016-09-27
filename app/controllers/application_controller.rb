@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def unique_name
-    user_id = User.find(user_params[:id]).id
+    User.find(user_params[:id]).id
   end
 
   def s3_upload_policy
