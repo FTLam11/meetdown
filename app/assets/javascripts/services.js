@@ -6,6 +6,7 @@ angular.module('meetdown')
 
 .service('UserEventList', function($resource){
   return $resource("/events/userEventList")
+})
 
 .service('RequestSignature', function($resource){
   return $resource("http://localhost:3000/users/s3")
