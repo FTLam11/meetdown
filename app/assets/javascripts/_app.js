@@ -40,7 +40,20 @@ meetdown.config(['$stateProvider',
     });
 
     $stateProvider
-
+      .state('root',{
+        url: '',
+        abstract: true,
+        views: {
+          'header': {
+            templateUrl: 'navbar/_nav.html',
+            controller: 'NavCtrl'
+          },
+          'footer':{
+            templateUrl: 'footer/_footer.html',
+            controller: 'FooterCtrl'
+          }
+        }
+      })
 
       .state('createEvent', {
         url: '/events/new', //double check syntax

@@ -8,10 +8,14 @@
   </head>
 
   <body ng-app="meetdown">
+    <header>
+        <div ui-view="header"></div>
+    </header>
 
-    <div class="container-fluid">
-      <ui-view></ui-view>
+    <div ui-view="container">
     </div>
 
+    <footer id="mainFooter" ui-view="footer">
+    </footer>
   </body>
 </html>
