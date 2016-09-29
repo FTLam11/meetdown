@@ -20,7 +20,7 @@ account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope,
     $auth.login(user)
       .then(function(response) {
         if (response.data.token) {
-          $auth.setToketen(response.data.token);
+          $auth.setToken(response.data.token);
           $state.go('root.finder');
         } else {
           $scope.loginFail = response.data.error;

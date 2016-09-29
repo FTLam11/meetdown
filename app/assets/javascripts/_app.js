@@ -175,7 +175,7 @@ meetdown.config(['$stateProvider',
           }
         }) //show detailed info for an event       
 
-    $urlRouterProvider.otherwise('account');
+    $urlRouterProvider.otherwise('root.account');
 
     uiGmapGoogleMapApiProvider.configure({
       // key: 'api key',
