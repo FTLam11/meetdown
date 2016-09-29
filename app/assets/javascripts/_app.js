@@ -40,22 +40,7 @@ meetdown.config(['$stateProvider',
     });
 
     $stateProvider
-      .state('home', {
-        url: '/home',
-        templateUrl: 'home/_home.html',
-        controller: 'MainCtrl',
-        /*resolve: {
-          postPromise: ['posts', function(posts) {
-            return posts.getAll();
-          }]
-        }*/
-      })
 
-      .state('posts', {
-        url: '/posts/{id}', //double check syntax
-        templateUrl: 'posts/_posts.html',
-        controller: 'PostsCtrl'
-      })
 
       .state('createEvent', {
         url: '/events/new', //double check syntax
@@ -130,7 +115,7 @@ meetdown.config(['$stateProvider',
         controller: 'EventDetailCtrl'
       }) //show detailed info for an event      
 
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('account');
 
     uiGmapGoogleMapApiProvider.configure({
       // key: 'api key',
