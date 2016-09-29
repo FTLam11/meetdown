@@ -1,34 +1,34 @@
-Topic.create(name: "Pokemon", verbs:"1100110")
-Topic.create(name: "Magic: The Gathering", verbs:"1000110")
-Topic.create(name: "Dota 2", verbs:"1101000")
-Topic.create(name: "Dominion Online", verbs:"0100110")
-Topic.create(name: "Chicago Cubs", verbs:"0000110")
-Topic.create(name: "Jasmine Tea", verbs:"1110000")
-Topic.create(name: "Eevee", verbs:"0000111")
-Topic.create(name: "BBQ Bacon Cheeseburger", verbs:"1010110")
-Topic.create(name: "Grapefruit", verbs:"0100110")
-Topic.create(name: "Sky Diving", verbs:"1111111")
+# Topic.create(name: "Pokemon", verbs:"1100110")
+# Topic.create(name: "Magic: The Gathering", verbs:"1000110")
+# Topic.create(name: "Dota 2", verbs:"1101000")
+# Topic.create(name: "Dominion Online", verbs:"0100110")
+# Topic.create(name: "Chicago Cubs", verbs:"0000110")
+# Topic.create(name: "Jasmine Tea", verbs:"1110000")
+# Topic.create(name: "Eevee", verbs:"0000111")
+# Topic.create(name: "BBQ Bacon Cheeseburger", verbs:"1010110")
+# Topic.create(name: "Grapefruit", verbs:"0100110")
+# Topic.create(name: "Sky Diving", verbs:"1111111")
 
-User.create(email: "",fb_id: "2")
+# User.create(email: "",fb_id: "2")
 
-require 'rubygems'
-require 'json'
+# require 'rubygems'
+# require 'json'
 
-file = open("#{Rails.root}/db/zipcodes.json")
-json = file.read
+# file = open("#{Rails.root}/db/zipcodes.json")
+# json = file.read
 
-parsed = JSON.parse(json)
+# parsed = JSON.parse(json)
 
-def removeCenter(json)
-	if json["geometry"]["coordinates"][0][0][0]
-		json["geometry"]["coordinates"][0].shift
-	end
-	return json
-end
+# def removeCenter(json)
+# 	if json["geometry"]["coordinates"][0][0][0]
+# 		json["geometry"]["coordinates"][0].shift
+# 	end
+# 	return json
+# end
 
-parsed["features"].each do |json|
-  Zipcode.create(zipcode: json["id"], center:json["geometry"]["coordinates"][0][0],  geojson: removeCenter(json))
-end
+# parsed["features"].each do |json|
+#   Zipcode.create(zipcode: json["id"], center:json["geometry"]["coordinates"][0][0],  geojson: removeCenter(json))
+# end
 
 zipcodes = Zipcode.all
 RAD = Math::PI/180
@@ -51,9 +51,9 @@ def distance(loc1, loc2)
 end
 
 zipcodes.each_with_index do |zipcode, index|
-  while index < zipcodes.length - 1
+  1200.times do
     displacement = distance(zipcode.center, zipcodes[index + 1].center)
-    Neighbor.create(zipcode_1: zipcode.zipcode, zipcode_2: zipcodes[index + 1].zipcode, distance: displacement) if displacement <= 32.0
+    Neighbor.create(zipcode_1: zipcode.zipcode, zipcode_2: zipcodes[index + 1].zipcode, distance: displacement) if displacement <= 24
     index += 1
   end
 end
