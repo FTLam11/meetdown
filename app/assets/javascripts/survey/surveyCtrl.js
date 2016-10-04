@@ -1,7 +1,7 @@
 var survey = angular.module('meetdown');
 
-survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', '$location','$window', '$auth', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', function($scope, SubmitSurvey, $state, $location, $window, $auth, RequestSignature, UploadToS3, DataURItoBlob) {
-
+survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', '$location','$window', '$auth', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', 'Authenticate', function($scope, SubmitSurvey, $state, $location, $window, $auth, RequestSignature, UploadToS3, DataURItoBlob, Authenticate) {
+Authenticate();
 $scope.submitInfo = function() {
     SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: $auth.getPayload().id, token: $auth.getToken()}).$promise.then(function(response){
       $auth.setToken(response.token);

@@ -13,7 +13,7 @@ body {
 
 #wrap input[type="text"] {
   height: 60px;
-  font-size: 55px;
+  font-size: 24px;
   font-family: "Lato";
   font-weight: 100;
   border: none;
@@ -35,11 +35,12 @@ body {
 }
 
 #wrap input[type="text"] {
-  width: 700px;
+  width: 500px;
   z-index: 1;
   border-bottom: 1px solid black;
   cursor: text;
 }
+
 input[type="submit"] {
   height: 67px;
   width: 63px;
