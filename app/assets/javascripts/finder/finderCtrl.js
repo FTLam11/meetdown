@@ -66,12 +66,20 @@ $scope.resetDuplicate = function() {
   $scope.duplicate = false;
 };
 
-$scope.nextQuestion = function() {
+$scope.nextQuestion = function(direction) {
   var index = $scope.verbs.indexOf($scope.currentVerb);
-  if (index === $scope.verbs.length - 1) {
-    index = 0
+  if (direction == 'up') {
+    if (index === 0) {
+      index = $scope.verbs.length - 1;
+    } else {
+      index -= 1;
+    }
   } else {
-    index += 1;
+    if (index === $scope.verbs.length - 1) {
+      index = 0;
+    } else {
+      index += 1;
+    }
   }
   $scope.currentVerb = $scope.verbs[index];
 };

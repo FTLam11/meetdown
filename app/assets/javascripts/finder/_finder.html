@@ -1,12 +1,15 @@
 <div class="row">
   <div class="col-xs-6">
-    <h1>{{sentences[currentVerb]}}</h1>
-    <a ng-click="nextQuestion()">Next question</a>
-    <p ng-repeat="verb in verbs" ng-click="setVerb(verb)">{{verb}}</p>
+    <div class="questionnaire">
+      <h1>{{sentences[currentVerb]}}</h1>
+      <a class="questionnaire-prev" ng-click="nextQuestion('up')">Prev</a>
+      <a class="questionnaire-next" ng-click="nextQuestion('down')">Next</a>
+      <!-- <p ng-repeat="verb in verbs" ng-click="setVerb(verb)">{{verb}}</p> -->
+    </div>
   </div>
   <div class="col-xs-6">
     <div id="wrap">
-      <h2>wataru interestsu</h2>
+      <h1>wataru interestsu</h1>
       <form ng-submit="submitKeyword()">
         <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
       </form>

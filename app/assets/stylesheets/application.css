@@ -144,3 +144,32 @@ h1 {
   font-size: 24px;
   text-align: center;
 }
+
+.questionnaire {
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionnaire-prev {
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  top: 20%;
+  left: 24%;
+}
+
+.questionnaire-next {
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  bottom: 20%;
+  left: 24%;
+}
+
+.finder-interests {
+
+}
