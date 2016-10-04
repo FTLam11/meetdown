@@ -46,7 +46,7 @@ account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope,
       .then(function(response) {
         if (response.data.token) {
           $auth.setToken(response.data.token);
-          $state.go('finder');
+          $state.go('root.finder');
         } else {
           $scope.loginFail = response.data.error;
           $scope.username = "";
