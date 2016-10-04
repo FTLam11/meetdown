@@ -207,3 +207,11 @@ angular.module('meetdown')
     reader.readAsDataURL(file);
   }
 })
+
+.service('Authenticate', function($auth, $location) {
+  return function() {
+    if (!$auth.isAuthenticated()) {
+      $location.path('/account');
+    };
+  }
+})

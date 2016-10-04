@@ -40,82 +40,142 @@ meetdown.config(['$stateProvider',
     });
 
     $stateProvider
+      .state('root',{
+        url: '',
+        abstract: true,
+        views: {
+          'header': {
+            templateUrl: 'navbar/_nav.html',
+            controller: 'NavCtrl'
+          },
+          'footer':{
+            templateUrl: 'footer/_footer.html',
+            controller: 'FooterCtrl'
+          }
+        }
+      })
 
-
-      .state('createEvent', {
+      .state('root.createEvent', {
         url: '/events/new', //double check syntax
-        templateUrl: 'events/_createEvent.html',
-        controller: 'createEventCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'events/_createEvent.html',
+            controller: 'createEventCtrl'
+          }
+        }
       })
 
-      .state('eventPage', {
+      .state('root.eventPage', {
         url: '/events/{id}', //double check syntax
-        templateUrl: 'events/_event.html',
-        controller: 'eventsCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'events/_event.html',
+            controller: 'eventsCtrl'
+          }
+        }
       })
 
-
-      .state('account', {
+      .state('root.account', {
         url: '/account',
-        templateUrl: 'account/_account.html',
-        controller: 'AccountCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'account/_account.html',
+            controller: 'AccountCtrl'
+          }
+        }
       })
 
-      .state('finder', {
+      .state('root.finder', {
         url: '/finder',
-        templateUrl: 'finder/_finder.html',
-        controller: 'FinderCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'finder/_finder.html',
+            controller: 'FinderCtrl'
+          }
+        }
       })
 
-      .state('topic', {
+      .state('root.topic', {
         url: '/topics/:topic_id',
-        templateUrl: 'topics/_topic.html',
-        controller: 'TopicCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'topics/_topic.html',
+            controller: 'TopicCtrl'
+          }
+        }
       })
 
-      .state('profile', {
+      .state('root.profile', {
         url: '/profile',
-        templateUrl: 'profile/_profile.html',
-        controller: 'ProfileCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'profile/_profile.html',
+            controller: 'ProfileCtrl'
+          }
+        }
       })
 
-      .state('profile_id', {
+      .state('root.profile_id', {
         url: '/profile/:id',
-        templateUrl: 'profile/_profile.html',
-        controller: 'ProfileCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'profile/_profile.html',
+            controller: 'ProfileCtrl'
+          }
+        }
       })
 
-      .state('survey', {
+      .state('root.survey', {
         url: '/survey',
-        templateUrl: 'survey/_survey.html',
-        controller: 'SurveyCtrl'
+        views: {
+          'container@': {
+            templateUrl: 'survey/_survey.html',
+            controller: 'SurveyCtrl'
+          }
+        }
       })
 
-      .state('interestAtlas', {
-        url: '/atlas',
-        templateUrl: 'atlas/_atlas.html',
-        controller: 'AtlasCtrl'
-      }) //show interests on map
+      .state('root.interestAtlas', {
+          url: '/atlas',
+          views: {
+            'container@': {
+              templateUrl: 'atlas/_atlas.html',
+              controller: 'AtlasCtrl'
+            }
+          }
+        }) //show interests on map
 
-      .state('zipcodeAtlas', {
-        url: '/zip',
-        templateUrl: 'zipcode/_zipcode.html',
-        controller: 'ZipcodeAtlasCtrl'
-      }) //visualize interests by zip code
+      .state('root.zipcodeAtlas', {
+          url: '/zip',
+          views: {
+            'container@': {
+              templateUrl: 'zipcode/_zipcode.html',
+              controller: 'ZipcodeAtlasCtrl'
+            }
+          }
+        }) //visualize interests by zip code
 
-      .state('events', {
-        url: '/events',
-        templateUrl: 'events/_events.html',
-        controller: 'EventCtrl'
-      }) //show events on map
+      .state('root.events', {
+          url: '/events',
+          views: {
+            'container@': {
+              templateUrl: 'events/_events.html',
+              controller: 'EventCtrl'
+            }
+          }
+        }) //show events on map
 
-      .state('eventDetail', {
-        url: '/events/{id}',
-        templateUrl: 'event/_eventDetail.html',
-        controller: 'EventDetailCtrl'
-      }) //show detailed info for an event      
+      .state('root.eventDetail', {
+          url: '/events/{id}',
+          views: {
+            'container@': {
+              templateUrl: 'event/_eventDetail.html',
+              controller: 'EventDetailCtrl'
+            }
+          }
+        }) //show detailed info for an event       
 
-    $urlRouterProvider.otherwise('account');
+    $urlRouterProvider.otherwise('root.account');
 
     uiGmapGoogleMapApiProvider.configure({
       // key: 'api key',

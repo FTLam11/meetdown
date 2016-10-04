@@ -1,7 +1,8 @@
 var main = angular.module('meetdown');
 
-main.controller('ProfileCtrl', ['$scope', '$stateParams', '$window', 'User', 'GetUserTopics', '$location', '$auth', 'UserEventList','SubmitSurvey', function($scope, $stateParams, $window, User, GetUserTopics, $location, $auth,UserEventList,SubmitSurvey) {
-setProfile()
+main.controller('ProfileCtrl', ['$scope', '$stateParams', '$window', 'User', 'GetUserTopics', '$location', '$auth', 'UserEventList','SubmitSurvey', 'Authenticate', function($scope, $stateParams, $window, User, GetUserTopics, $location, $auth,UserEventList,SubmitSurvey, Authenticate) {
+Authenticate();
+setProfile();
 $scope.homeProfile=false
 $scope.editing=false
 
@@ -12,6 +13,7 @@ $scope.edit= function(){
 $scope.cancel= function(){
   $scope.editing=false
 }
+
 $scope.saveChanges= function(){
   alert($scope.tempAge)
   SubmitSurvey.update({email:$scope.tempEmail, age: $scope.tempAge, zip_code: $scope.tempZip, id: $auth.getPayload().id, token: $auth.getToken()}).$promise.then(function(response){
@@ -28,8 +30,6 @@ function showEvents(){
     $scope.homeProfile = ($auth.getPayload().id === $scope.user.id)
   })
 }
-
-
 
 function setProfile(){
   if ($stateParams.id) {

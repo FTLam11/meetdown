@@ -26,11 +26,9 @@ finder.filter('filterVerbs', function () {
   };
 });
 
-finder.controller('FinderCtrl', ['$scope', '$state', 'interests', 'Topics', '$location','CreateInterest', 'GetUserTopics', 'CreateAction', 'Suggest', '$auth', function($scope, $state, interests, Topics, $location, CreateInterest, GetUserTopics, CreateAction, Suggest, $auth) {
+finder.controller('FinderCtrl', ['$scope', '$state', 'interests', 'Topics', '$location','CreateInterest', 'GetUserTopics', 'CreateAction', 'Suggest', '$auth', 'Authenticate', function($scope, $state, interests, Topics, $location, CreateInterest, GetUserTopics, CreateAction, Suggest, $auth, Authenticate) {
 
-if(!$auth.isAuthenticated()){
-  $location.path('/account')
-}
+Authenticate();
 
 $scope.verbs = interests.verbs;
 $scope.sentences=interests.sentences;
