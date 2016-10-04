@@ -119,3 +119,28 @@ img-crop canvas {
   margin-left: 0px;
   margin-top: 40px;
 }
+
+.interest-tag {
+  display: inline-block;
+  margin: 3px;
+  padding: 0px 5px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: #6cecc1;
+  cursor: pointer;
+}
+
+.interest-tag-added {
+  display: inline-block;
+  margin: 3px;
+  padding: 0px 5px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: #6cecc1;
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+}
