@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   validates_uniqueness_of :email, scope: :fb_id
+  has_many :comments
   has_many :interests
   has_many :topics, through: :interests
   has_many :hostings

@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
 	has_many :attendings
+	has_many :comments
 	has_many :users, through: :attendees
 	has_many :hostings
 	has_many :themes

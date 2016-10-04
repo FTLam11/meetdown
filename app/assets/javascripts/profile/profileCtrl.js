@@ -35,14 +35,21 @@ function setProfile(){
   if ($stateParams.id) {
     User.get({user_id: $stateParams.id}).$promise.then(function(data) {
       $scope.user = data.user;
+      $scope.userTopics = data.topics
+      $scope.hostings = data.hostings
+      $scope.attendings = data.attendings
+      $scope.homeProfile = ($auth.getPayload().id === $scope.user.id)
       showEvents();
-    });
-    getUserData($stateParams.id);
+    }); 
   } 
   else {
-    $scope.user = $auth.getPayload();
-    getUserData($auth.getPayload()['id']);
-    showEvents();
+     User.get({user_id: $auth.getPayload().id}).$promise.then(function(data) {
+      $scope.user = data.user;
+      $scope.userTopics = data.topics
+      $scope.hostings = data.hostings
+      $scope.attendings = data.attendings
+      showEvents();
+    }); 
   }
 }
 
@@ -50,13 +57,4 @@ $scope.showTopic = function(topic) {
   $location.path("/topics/"+topic.id);
 }
 
-function getUserData(userID) {
-  GetUserTopics.get({user_id: userID}).$promise.then(function(data) {
-    if (data.user_topics) {
-      $scope.userTopics = data.user_topics;
-    } else {
-      $scope.nilTopics = ["No interests found"];
-    };
-  });
-}
 }]);

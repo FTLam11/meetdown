@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   post '/users/s3', to: "users#s3_access_token"
+  post '/events/:id/user/:user_id/comments', to: "events#postComment"
+  delete '/comments/:id', to: "events#deleteComment"
   put '/users/:id', to: "users#update"
   put '/events/:id', to: "events#update"
   get '/events/:id', to: "events#show"
+  get '/events/:id/comments', to: "events#showComments"
   get '/events/userEventList', to: "events#userEventList"
   get '/users/:id/topics', to: "users#user_topics"
   get '/users/:id', to: "users#show"

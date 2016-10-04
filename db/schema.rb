@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928145950) do
+ActiveRecord::Schema.define(version: 20161004063434) do
 
   create_table "attendings", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.string  "content"
   end
 
   create_table "events", force: :cascade do |t|
@@ -27,8 +33,8 @@ ActiveRecord::Schema.define(version: 20160928145950) do
     t.string   "location"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.string   "picture"
     t.string   "time"
+    t.string   "picture"
   end
 
   create_table "hostings", force: :cascade do |t|
@@ -85,6 +91,13 @@ ActiveRecord::Schema.define(version: 20160928145950) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "picture"
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.integer  "zipcode_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "zipcodes", force: :cascade do |t|

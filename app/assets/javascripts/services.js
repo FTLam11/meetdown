@@ -4,6 +4,7 @@ angular.module('meetdown')
   return $resource("http://localhost:3000/users/")
 })
 
+
 .service('UserEventList', function($resource) {
   return $resource("/events/userEventList")
 })
@@ -66,12 +67,16 @@ angular.module('meetdown')
   return $resource("/events/:id", { id: "@id" })
 })
 
-.service('User', function($resource) {
-  return $resource("/users/:user_id", { user_id: "@user_id" })
+.service('Comment', function($resource) {
+  return $resource("/comments/:id", { id: "@id" })
 })
 
-.service('Attendees', function($resource) {
-  return $resource("/events/:id/attendees", { id: "@id" })
+.service('PostComment', function($resource) {
+  return $resource("/events/:id/user/:user_id/comments", { id: "@id",user_id:"@user_id" })
+})
+
+.service('User', function($resource) {
+  return $resource("/users/:user_id", { user_id: "@user_id" })
 })
 
 .service('CancelAttend', function($resource) {
