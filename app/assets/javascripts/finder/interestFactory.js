@@ -11,7 +11,7 @@ account.factory('interests', ['Topics', function(Topics) {
 				"listen": "Things I would meet people to listen to together",
 				"watch": "Things I would meet people to watch together",
 				"learn": "Things I would meet people to learn together",
-				"I identify as": "Things that I identify as and would meet people over",
+				"I identify as": "Things I identify as and would meet people over",
 				"go to": "Things I would go to with other people"},
     addVerbArr: function(topic){
       topic.verbArr = []
