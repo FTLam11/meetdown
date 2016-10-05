@@ -2,32 +2,37 @@
   <div class="col-xs-6">
     <div class="questionnaire">
       <h1>{{sentences[currentVerb]}}</h1>
-      <a class="questionnaire-prev" ng-click="nextQuestion('up')">Prev</a>
-      <a class="questionnaire-next" ng-click="nextQuestion('down')">Next</a>
+      <a class="questionnaire-prev" ng-click="nextQuestion('up')">∧</a>
+      <a class="questionnaire-next" ng-click="nextQuestion('down')">∨</a>
       <!-- <p ng-repeat="verb in verbs" ng-click="setVerb(verb)">{{verb}}</p> -->
+    </div>
+    <div class="questionnaire-indicator">
+      <ul class="no-dots">
+        <li ng-repeat="verb in verbs"><em ng-class="{'active': verb == currentVerb}">•</em></li>
+      </ul>
     </div>
   </div>
   <div class="col-xs-6">
     <div id="wrap">
-      <h1>wataru interestsu</h1>
+      <h1>Interest Search</h1>
       <form ng-submit="submitKeyword()">
-        <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
+        <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests" ng-change="resetDuplicate()">
       </form>
       <a ng-repeat="topic in topics | filter: keyword | filterCategories:userTopics | filterVerbs:currentVerb track by topic.id" ng-click="createInterest(topic)">
         <div class="interest-tag">{{topic.name}}</div>
       </a>
     </div>
-  </div>
-  <div class="col-xs-6">
-    <h1> these are your current interests </h1>
-    <a ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">
-      <div class="interest-tag-added">{{topic.name}}</div>
-    </a>
-    <div class="form-group">
-      <form ng-submit="suggest(suggestion)">
-        <label for="sub">Don't see your interest here? Suggest it!</label>
-        <input type="text" ng-model="suggestion">
-      </form>
+    <div class="finder-current">
+      <h1>Current Interests</h1>
+      <a ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">
+        <div class="interest-tag-added">{{topic.name}}</div>
+      </a>
+      <div class="finder-suggest">
+        <form ng-submit="suggest(suggestion)">
+          <label for="suggestion">Don't see your interest here? Suggest it!</label>
+          <input type="text" ng-model="suggestion">
+        </form>
+      </div>
     </div>
   </div>
 </div>
