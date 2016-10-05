@@ -31,16 +31,16 @@ finder.controller('FinderCtrl', ['$scope', '$state', 'interests', 'Topics', '$lo
 Authenticate();
 
 $scope.verbs = interests.verbs;
-$scope.sentences=interests.sentences;
+$scope.sentences = interests.sentences;
 $scope.userTopics = [];
 $scope.topics = [];
-$scope.currentVerb=$scope.verbs[0];
+$scope.currentVerb = $scope.verbs[0];
 
 GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
   if (data.user_topics) {
     $scope.userTopics = data.user_topics;
   }
-})
+});
 
 Topics.get().$promise.then(function(data) {
   for (var i = 0; i < data.topics.length; i++) {
@@ -59,51 +59,47 @@ $scope.submitKeyword = function() {
 
   if ($scope.keyword != '') {
     $scope.keyword = 'Interest not found!';
-  }
+  };
 };
-// $scope.pushInterest = function(){
-//   if ($scope.user_interests.indexOf($scope.keyword) === -1) {
-//     $scope.user_interests.push($scope.keyword)
-//     console.log ($scope.interests)
-//     $scope.keyword = ''
-//     console.log(interests.user_interests)
-//   }
-//   else {
-//     $scope.duplicate=true
-//   }
-// }
 
-$scope.resetDuplicate = function(){
-  $scope.duplicate=false
-}
+$scope.resetDuplicate = function() {
+  $scope.duplicate = false;
+};
 
-$scope.nextQuestion = function(verb){
-  var index = $scope.verbs.indexOf($scope.currentVerb)
-  if (index === $scope.verbs.length-1)
-    {index = 0}
-  else
-    {index += 1}
-  $scope.current_verb=$scope.verbs[index]
-}
+$scope.nextQuestion = function(direction) {
+  var index = $scope.verbs.indexOf($scope.currentVerb);
+  if (direction == 'up') {
+    if (index === 0) {
+      index = $scope.verbs.length - 1;
+    } else {
+      index -= 1;
+    }
+  } else {
+    if (index === $scope.verbs.length - 1) {
+      index = 0;
+    } else {
+      index += 1;
+    }
+  }
+  $scope.currentVerb = $scope.verbs[index];
+};
 
 $scope.setVerb = function(verb) {
-  $scope.currentVerb = verb
-}
+  $scope.currentVerb = verb;
+};
 
 $scope.showTopic = function(topic) {
   $location.path("/topics/"+topic.id);
-}
+};
 
 $scope.suggest = function(suggestion) {
-  Suggest.save({"body": suggestion})
-  $scope.suggestion = ""
+  Suggest.save({"body": suggestion});
+  $scope.suggestion = "";
   alert("thnx")
-}
+};
 
 $scope.createInterest = function(topic) {
   CreateInterest.save({topic_id: topic.id, user_id: $auth.getPayload()['id']})
   $scope.userTopics.push(topic)
 };
-//Decide how to display added topics by verb
-//How to style the topics and question side
 }]);

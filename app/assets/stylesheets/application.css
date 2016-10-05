@@ -20,7 +20,7 @@
 body {
   background-repeat: no-repeat;
   font-family: arial;
-  background: linear-gradient(to right, #f87f73 50%, #DCEEFF 50%)
+  background: #fff;
 }
 
 .register-form {
@@ -117,5 +117,116 @@ img-crop canvas {
 .row {
   margin-right: 0px;
   margin-left: 0px;
-  margin-top: 40px;
+}
+
+.interest-tag {
+  display: inline-block;
+  margin: 3px;
+  padding: 0px 5px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: #6cecc1;
+  cursor: pointer;
+}
+
+.interest-tag-added {
+  display: inline-block;
+  margin: 3px;
+  padding: 0px 5px;
+  border: 1px solid black;
+  border-radius: 20px;
+  background: #6cecc1;
+  cursor: pointer;
+}
+
+.header-center {
+  text-align: center;
+}
+
+.questionnaire {
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionnaire-prev {
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  top: 20%;
+  left: 24%;
+  font-size: -webkit-xxx-large;
+}
+
+.questionnaire-next {
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  bottom: 30%;
+  left: 24%;
+  font-size: -webkit-xxx-large;
+}
+
+.questionnaire-indicator {
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: -20px;
+  transform: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  z-index: 99;
+  position: absolute;
+}
+
+.finder-suggest {
+  text-align: center;
+}
+
+.no-dots {
+  list-style-type: none;
+}
+
+em {
+  font-size: 2.5em;
+}
+
+.active {
+  color: black;
+}
+
+.navbar-right {
+  margin-right: 0px;
+}
+
+.profile {
+  margin-top: 70px;
+}
+
+.profile-block {
+  min-height: 200px;
+}
+
+.profile-pic {
+  float: left;
+}
+
+.profile-details {
+  margin-left: 250px;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+}
+
+.profile-details h3 {
+  margin-top: 0px;
+}
+
+.profile-interests {
+  clear: left;
 }

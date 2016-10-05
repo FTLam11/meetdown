@@ -12,4 +12,8 @@ nav.controller('NavCtrl', ['$scope', '$auth', '$state', function($scope, $auth, 
   $scope.logout = function() {
     return $auth.logout();
   };
+
+  $scope.goProfile = function() {
+    $state.go('root.profile');
+  };
 }]);
