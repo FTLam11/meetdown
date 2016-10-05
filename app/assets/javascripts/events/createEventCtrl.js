@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('createEventCtrl', ['$scope', '$auth', 'CreateEvent', '$window', '$location', 'SubmitEventPicture', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', function($scope, $auth, CreateEvent, $window, $location, SubmitEventPicture, RequestSignature, UploadToS3, DataURItoBlob) {
+atlas.controller('createEventCtrl', ['$scope', '$auth', 'CreateEvent', '$window', '$location', 'SubmitEventPicture', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', 'GetUserTopics', function($scope, $auth, CreateEvent, $window, $location, SubmitEventPicture, RequestSignature, UploadToS3, DataURItoBlob,GetUserTopics) {
   $scope.eventPic = "";
   $scope.croppedEventPic = "";
 
@@ -16,6 +16,12 @@ atlas.controller('createEventCtrl', ['$scope', '$auth', 'CreateEvent', '$window'
 };
 
 angular.element(document.querySelector('#fileInput')).on('change', fileManager);
+
+GetUserTopics.get({ user_id: $auth.getPayload()['id'] }).$promise.then(function(data) {
+      if (data.user_topics) {
+          $scope.userTopics = data.user_topics;
+      }
+  });
 
 $scope.updateProfilePic = function() {
   RequestSignature.save({token: $auth.getToken(), key: $scope.file.name, user: $auth.getPayload()}).$promise.then(function(response) {

@@ -11,7 +11,13 @@
       <form ng-submit="setCurrentZip(currentZip)">
         <input name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
       </form>
-      <h2>
+    <h2>
+    <h3>
+      Events
+    </h3>
+    <ul>
+      <li ng-repeat="event in events">{{event}}</li>
+    </ul>
     <nvd3-pie-chart
       data="d3data"
       id="d3Id"

@@ -23,6 +23,15 @@
           <div><img ng-src="{{croppedEventPic}}"></div>
           <input type="submit" value="Upload File to S3">
         </form>
+        <h2>Topics</h2>
+        <h3>Added:<h3>
+        <ul>
+          <li ng-repeat="topic in userTopics"?><div ng-click="addTopicToEvent(topic.id)">{{topic}}</div></li>
+        </ul>
+        <ul>
+          <li ng-repeat="topic in userTopics"?><div ng-click="addTopicToEvent(topic.id)">{{topic}}</div></li>
+        </ul>
+        <h2>Zip Codes (We'll automatically tag this on all zipcodes in a 15 mile radius)</h2>
         <a class="btn register-btn" style="background-color: #ff0000" ng-click="create()"> Create Event!</a>
       </div>
     </div>

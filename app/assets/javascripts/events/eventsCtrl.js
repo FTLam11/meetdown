@@ -11,6 +11,7 @@ event.controller('eventsCtrl', ['$scope', '$auth', '$stateParams', 'CreateAttend
   });
 
 
+
   $scope.cancelAttend = function() {
     CancelAttend.delete({ event_id: $stateParams.id, user_id: $auth.getPayload().id }).$promise
       .then(function(response) { $scope.attendees = response.attendees })

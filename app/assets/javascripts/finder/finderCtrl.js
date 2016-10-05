@@ -39,6 +39,7 @@ $scope.currentVerb=$scope.verbs[0];
 GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
   if (data.user_topics) {
     $scope.userTopics = data.user_topics;
+    
   }
 })
 
