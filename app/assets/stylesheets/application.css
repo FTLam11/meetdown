@@ -20,7 +20,7 @@
 body {
   background-repeat: no-repeat;
   font-family: arial;
-  background: linear-gradient(to right, #f87f73 50%, #DCEEFF 50%)
+  background: linear-gradient(to right, #f87f73 50%, #DCEEFF 50%);
 }
 
 .register-form {
@@ -117,7 +117,6 @@ img-crop canvas {
 .row {
   margin-right: 0px;
   margin-left: 0px;
-  margin-top: 40px;
 }
 
 .interest-tag {
@@ -159,6 +158,7 @@ h1 {
   cursor: pointer;
   top: 20%;
   left: 24%;
+  font-size: -webkit-xxx-large;
 }
 
 .questionnaire-next {
@@ -166,10 +166,41 @@ h1 {
   height: 30px;
   width: 30px;
   cursor: pointer;
-  bottom: 20%;
+  bottom: 30%;
   left: 24%;
+  font-size: -webkit-xxx-large;
+}
+
+.questionnaire-indicator {
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: -20px;
+  transform: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  z-index: 99;
+  position: absolute;
 }
 
 .finder-interests {
 
+}
+
+.no-dots {
+  list-style-type: none;
+}
+
+em {
+  font-size: 2.5em;
+}
+
+.active {
+  color: black;
+}
+
+.navbar-right {
+  margin-right: 0px;
 }

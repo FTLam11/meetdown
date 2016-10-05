@@ -6,9 +6,8 @@ body {
 }
 #wrap {
   display: inline-block;
-  height: 60px;
-  padding: 0;
-  position: relative;
+  margin-top: 50px;
+  width: 100%;
 }
 
 #wrap input[type="text"] {
@@ -25,7 +24,7 @@ body {
   right: 0;
   background: none;
   transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
-  width: 500px;
+  width: 100%;
   z-index: 1;
   border-bottom: 1px solid black;
   cursor: text;
@@ -56,4 +55,12 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   opacity: 1;
+}
+
+.finder-suggest {
+  margin-top: 40px;
+}
+
+.finder-current {
+  margin-top: 40px;
 }
