@@ -7,6 +7,9 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="page-scroll" ng-if="isAuthenticated()">
+          <a ng-click="goProfile()">Profile</a>
+        </li>
+        <li class="page-scroll" ng-if="isAuthenticated()">
           <a ng-click="logout()">Logout</a>
         </li>
       </ul>

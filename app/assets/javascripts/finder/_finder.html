@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-6">
     <div class="questionnaire">
-      <h1>{{sentences[currentVerb]}}</h1>
+      <h3 class="header-center">{{sentences[currentVerb]}}</h1>
       <a class="questionnaire-prev" ng-click="nextQuestion('up')">∧</a>
       <a class="questionnaire-next" ng-click="nextQuestion('down')">∨</a>
       <!-- <p ng-repeat="verb in verbs" ng-click="setVerb(verb)">{{verb}}</p> -->
@@ -14,7 +14,7 @@
   </div>
   <div class="col-xs-6">
     <div id="wrap">
-      <h1>Interest Search</h1>
+      <h2 class="header-center">Interest Search</h1>
       <form ng-submit="submitKeyword()">
         <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests" ng-change="resetDuplicate()">
       </form>
@@ -23,7 +23,7 @@
       </a>
     </div>
     <div class="finder-current">
-      <h1>Current Interests</h1>
+      <h2 class="header-center">Current Interests</h1>
       <a ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">
         <div class="interest-tag-added">{{topic.name}}</div>
       </a>
