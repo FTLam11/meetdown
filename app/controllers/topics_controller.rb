@@ -35,9 +35,8 @@ class TopicsController < ApplicationController
     answer.sort_by! {| topic_hash | -topic_hash.count }.reverse!
 
     zipcode=Zipcode.find_by(zipcode: params[:zip_code])
-    zipcode.neighbors
-
-    render json: {mahZip: answer.take(10)}
+    
+    render json: {mahZip: answer.take(10), events: zipcode.eventsNearby}
   end
 
   def suggest
