@@ -8,4 +8,6 @@ class Event < ApplicationRecord
 	has_many :topics, through: :themes
 	has_many :hosts, through: :hostings, source: :user
 	has_many :attendees, through: :attendings, source: :user
+	has_many :venues
+	has_many :zipcodes, through: :venues
 end

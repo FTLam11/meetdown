@@ -8,6 +8,9 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     $scope.map = StyleMap;
     $scope.map.fusionlayer = {};
     $scope.currentZip = $auth.getPayload()['zip_code'];
+    $scope.events = []
+
+    
 
     $scope.setCurrentZip = function(zipCode){
     GetZipTopics.get({zip_code: zipCode }).$promise.then(function(data) {

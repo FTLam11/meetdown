@@ -48,11 +48,6 @@ class EventsController < ApplicationController
     render json: {attendees: event.attendees, hosts: event.hosts}
   end
 
-  def eventsNearZipcode
-    zipcode = Zipcode.find_by(zipcode: params[:zipcode])
-    a = zipcode.proximities.map{|x| x.zipcode}
-  end
-
     
   def update
     if (JWT.decode params[:token], Rails.application.secrets.hmac_secret, true, { :algorithm => 'HS256' })
@@ -75,14 +70,14 @@ class EventsController < ApplicationController
     user = User.find(params[:id])
     comment = Comment.new(event: event, user:user, content: params[:content])
     comment.save
-    render json: {comments: event.comments}
+    render json: {comments: event.comments.reverse}
   end
 
   def deleteComment
     comment = Comment.find(params[:id])
     event = comment.event
     comment.destroy
-    render json: {comments: event.comments}
+    render json: {comments: event.comments.reverse}
   end
 
   def hostCreate

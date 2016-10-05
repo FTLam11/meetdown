@@ -34,6 +34,9 @@ class TopicsController < ApplicationController
     answer = topics.map { |topic| topic = {"name": topic.name, "count": topic.users.where(zip_code: params[:zip_code]).count, "id": topic.id} }
     answer.sort_by! {| topic_hash | -topic_hash.count }.reverse!
 
+    zipcode=Zipcode.find_by(zipcode: params[:zip_code])
+    zipcode.neighbors
+
     render json: {mahZip: answer.take(10)}
   end
 
