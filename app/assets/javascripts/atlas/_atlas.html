@@ -1,47 +1,30 @@
 <div class="row">
-  <ui-gmap-google-map center='map.center' zoom='map.zoom' options ='map.options' styles='map.styles'>
-    <ui-gmap-layer type="FusionTablesLayer" events="yo.events" options="map.fusionlayer" show="showFusionLayer">
-    </ui-gmap-layer> 
-  </ui-gmap-google-map>
-</div>
-
-<div class="row">
+  <div class="col-xs-6">
+    <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' styles='map.styles'>
+      <ui-gmap-layer type="FusionTablesLayer" events="yo.events" options="map.fusionlayer" show="showFusionLayer">
+      </ui-gmap-layer>
+    </ui-gmap-google-map>
+  </div>
   <div class="col-xs-6">
     <h2>Top interests in   
       <form ng-submit="setCurrentZip(currentZip)">
         <input name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
       </form>
-      <h2>
-    <nvd3-pie-chart
-      data="d3data"
-      id="d3Id"
-      width="550"
-      height="350"
-      x="d3topic()"
-      y="d3count()"
-      color="d3color()"
-      noData="Oops! No interests were found for your zip code."
-      showLabels="true"
-      pieLabelsOutside="false"
-      >
-    <svg></svg>
+      </h2>
+    <nvd3-pie-chart data="d3data" id="d3Id" width="550" height="350" x="d3topic()" y="d3count()" color="d3color()" noData="Oops! No interests were found for your zip code." showLabels="true" pieLabelsOutside="false">
+      <svg></svg>
     </nvd3-pie-chart>
-
     <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
       {{topic.name}} - {{topic.count}}
     </a>
   </div>
-
-  <div class="col-xs-6 col-xs-offset-6">
-    <div id="wrap">
-      <h2>wataru interestsu</h2>
-        <form ng-submit="">
-        <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
-        </form>
-
-      <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
+  <div id="wrap">
+    <h2>wataru interestsu</h2>
+    <form ng-submit="">
+      <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
+    </form>
+    <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
         {{topic.name}}
       </a>
-    </div>
   </div>
 </div>

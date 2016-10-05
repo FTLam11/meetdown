@@ -7,7 +7,11 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     $scope.showFusionLayer = true;
     $scope.map = StyleMap;
     $scope.map.fusionlayer = {};
-    $scope.currentZip = $auth.getPayload()['zip_code'];
+    if ($auth.getPayload()['zipcode']) {
+        $scope.currentZip = $auth.getPayload()['zip_code'];
+    } else {
+        $scope.currentZip = "60089";
+    }
 
     $scope.setCurrentZip = function(zipCode){
     GetZipTopics.get({zip_code: zipCode }).$promise.then(function(data) {
