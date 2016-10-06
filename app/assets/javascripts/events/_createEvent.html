@@ -8,7 +8,7 @@
         <input class="form-control register-form" type="text" placeholder='Location' ng-model="location"> <a ng-click="newMap()">Verify {{location}} in Google Map</a>
         <input class="form-control register-form" type="text-area" placeholder='Description' ng-model="description">
         <div style="display:inline-block; min-height:290px;">
-          <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
+          <div uib-datepicker ng-model="dt" class="well well-sm"></div>
         </div>
         {{dt | date:'dd-M-yyyy H:mm'}}
         <div uib-timepicker ng-model="dt" show-meridian="false"></div>
@@ -24,14 +24,25 @@
           <input type="submit" value="Upload File to S3">
         </form>
         <h2>Topics</h2>
-        <h3>Added:<h3>
+        <h3>Added<h3>
         <ul>
-          <li ng-repeat="topic in userTopics"?><div ng-click="addTopicToEvent(topic.id)">{{topic}}</div></li>
+          <li ng-repeat="topic in eventTopics"><a ng-click="removeTopicFromEvent(topic)">{{topic}}</a></li>
         </ul>
+        <h3>Your Topics</h3>
         <ul>
-          <li ng-repeat="topic in userTopics"?><div ng-click="addTopicToEvent(topic.id)">{{topic}}</div></li>
+          <li ng-repeat="topic in userTopics"><a ng-click="addTopicToEvent(topic)">{{topic}}</a></li>
         </ul>
         <h2>Zip Codes (We'll automatically tag this on all zipcodes in a 15 mile radius)</h2>
+        <ul>
+          <li ng-repeat="zip in zipArray"><a ng-click="removeZip(zip)">{{zip}}</a></li>
+        </ul>
+
+        <p>
+          <form ng-submit="addZip()">
+            <input id="search" ng-model="zip" type="text" placeholder="Enter Zip Here">
+          </form>
+        </p>
+
         <a class="btn register-btn" style="background-color: #ff0000" ng-click="create()"> Create Event!</a>
       </div>
     </div>

@@ -3,6 +3,8 @@ var atlas = angular.module('meetdown')
 atlas.controller('createEventCtrl', ['$scope', '$auth', 'CreateEvent', '$window', '$location', 'SubmitEventPicture', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', 'GetUserTopics', function($scope, $auth, CreateEvent, $window, $location, SubmitEventPicture, RequestSignature, UploadToS3, DataURItoBlob,GetUserTopics) {
   $scope.eventPic = "";
   $scope.croppedEventPic = "";
+  $scope.eventTopics = []
+  $scope.zipArray = []
 
   var fileManager = function(event) {
   var file = event.currentTarget.files[0];
@@ -21,7 +23,25 @@ GetUserTopics.get({ user_id: $auth.getPayload()['id'] }).$promise.then(function(
       if (data.user_topics) {
           $scope.userTopics = data.user_topics;
       }
-  });
+    });
+
+$scope.addTopicToEvent = function (topic) {
+  $scope.eventTopics.push(topic)
+  $scope.userTopics.splice($scope.userTopics.indexOf(topic),1)
+}
+
+$scope.addZip = function(){
+  $scope.zipArray.push($scope.zip)
+}
+
+$scope.removeZip = function(zip){
+  $scope.zipArray.splice($scope.zip.indexOf(zip),1)
+}
+
+$scope.removeTopicFromEvent = function (topic) {
+  $scope.userTopics.push(topic)
+  $scope.eventTopics.splice($scope.eventTopics.indexOf(topic),1)
+}
 
 $scope.updateProfilePic = function() {
   RequestSignature.save({token: $auth.getToken(), key: $scope.file.name, user: $auth.getPayload()}).$promise.then(function(response) {
@@ -35,7 +55,7 @@ $scope.croppedEventPicBlob = DataURItoBlob($scope.croppedEventPic);
 };
 
 $scope.create = function() {
-  CreateEvent.save({ name: $scope.eventName, datetime: $scope.dt, location: $scope.location, address: $scope.address, description: $scope.description, user: $auth.getPayload().id, token: $auth.getToken() })
+  CreateEvent.save({ name: $scope.eventName, datetime: $scope.dt, location: $scope.location, address: $scope.address, description: $scope.description, user: $auth.getPayload().id, token: $auth.getToken(),zips: $scope.zipArray, topics: $scope.eventTopics })
     .$promise.then(function(response) {
       window.localStorage['eventID'] = response.event.id;
       $scope.updateProfilePic();

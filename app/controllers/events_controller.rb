@@ -7,6 +7,8 @@ class EventsController < ApplicationController
     event.location = params[:location]
     event.description = params[:description]
     event.date = params[:datetime]
+    params[:topics].each{|x| event.topics << Topic.find(x["id"])}
+    params[:zips].each{|x| event.zipcodes << Zipcode.find_by(zipcode: x)}
     hmac_secret = 'bluballs'
     event.hosts << User.find(params[:user]) if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
     event.attendees << User.find(params[:user]) if (JWT.decode params[:token], hmac_secret, true, { :algorithm => 'HS256' })
