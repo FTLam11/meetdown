@@ -6,7 +6,7 @@
     </ui-gmap-google-map>
   </div>
   <div class="col-xs-6">
-    <h2>Top interests in   
+    <h2>Top interests in
       <form ng-submit="setCurrentZip(currentZip)">
         <input name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
       </form>
@@ -15,7 +15,7 @@
       <svg></svg>
     </nvd3-pie-chart>
     <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
-      {{topic.name}} - {{topic.count}}
+      <div class="interest-tag">{{topic.name}} - {{topic.count}}</div>
     </a>
     <div id="wrap">
       <h2>wataru interestsu</h2>

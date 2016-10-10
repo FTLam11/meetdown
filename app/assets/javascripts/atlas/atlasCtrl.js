@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'Topic', '$auth', function($scope, uiGmapGoogleMapApi, interests, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, Topic, $auth) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'Topic', '$auth', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, Topic, $auth) {
     $scope.topics = [];
     $scope.userTopics = [];
     // $scope.queryTopic = "";
@@ -76,17 +76,9 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'interests', 'Top
     });
 
     Topics.get().$promise.then(function(data) {
-        for (var i = 0; i < data.topics.length; i++) {
-            interests.addVerbArr(data.topics[i]);
-        }
         $scope.topics = data.topics;
     });
-    $scope.yo = { events: {
-          click: function (event) {
-            alert("hello")
-          }
-      }
-  }
+
     function setLayer(zipString) {
         $scope.map.fusionlayer = {
             options: {
