@@ -5,10 +5,6 @@ require 'digest/sha1'
 class UsersController < ApplicationController
   wrap_parameters format: [:json, :multipart_form]
 
-  def index
-    render json: { hello: "fuck u"}
-  end
-
   def show
     user = User.find(params[:id])
     render json: {user: user, topics: user.topics, hostings: user.hostings, attendings: user.attendings}
