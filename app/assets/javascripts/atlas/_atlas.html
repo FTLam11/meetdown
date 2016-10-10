@@ -17,14 +17,14 @@
     <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
       {{topic.name}} - {{topic.count}}
     </a>
-  </div>
-  <div id="wrap">
-    <h2>wataru interestsu</h2>
-    <form ng-submit="">
-      <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
-    </form>
-    <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
+    <div id="wrap">
+      <h2>wataru interestsu</h2>
+      <form ng-submit="">
+        <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
+      </form>
+      <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
         {{topic.name}}
       </a>
+    </div>
   </div>
 </div>
