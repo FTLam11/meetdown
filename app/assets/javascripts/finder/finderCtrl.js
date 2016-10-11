@@ -39,14 +39,13 @@ $scope.currentVerb = $scope.verbs[0];
 GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
   if (data.user_topics) {
     $scope.userTopics = data.user_topics;
-    
-  }
+  };
 });
 
 Topics.get().$promise.then(function(data) {
   for (var i = 0; i < data.topics.length; i++) {
     interests.addVerbArr(data.topics[i])
-  }
+  };
   $scope.topics = data.topics;
 });
 
@@ -69,19 +68,21 @@ $scope.resetDuplicate = function() {
 
 $scope.nextQuestion = function(direction) {
   var index = $scope.verbs.indexOf($scope.currentVerb);
-  if (direction == 'up') {
+
+  if (direction === 'up') {
     if (index === 0) {
       index = $scope.verbs.length - 1;
     } else {
       index -= 1;
-    }
+    };
   } else {
     if (index === $scope.verbs.length - 1) {
       index = 0;
     } else {
       index += 1;
-    }
-  }
+    };
+  };
+
   $scope.currentVerb = $scope.verbs[index];
 };
 
@@ -96,7 +97,6 @@ $scope.showTopic = function(topic) {
 $scope.suggest = function(suggestion) {
   Suggest.save({"body": suggestion});
   $scope.suggestion = "";
-  alert("thnx")
 };
 
 $scope.createInterest = function(topic) {
