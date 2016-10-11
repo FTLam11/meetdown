@@ -160,6 +160,10 @@ img-crop canvas {
   font-size: -webkit-xxx-large;
 }
 
+.questionnaire-prev:hover {
+  text-decoration: none;
+}
+
 .questionnaire-next {
   position: fixed;
   height: 30px;
@@ -168,6 +172,11 @@ img-crop canvas {
   bottom: 30%;
   left: 24%;
   font-size: -webkit-xxx-large;
+  text-decoration: none;
+}
+
+.questionnaire-next:hover {
+  text-decoration: none;
 }
 
 .questionnaire-indicator {
@@ -197,7 +206,7 @@ em {
 }
 
 .active {
-  color: black;
+  color: grey;
 }
 
 .navbar-right {
