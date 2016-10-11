@@ -103,4 +103,30 @@ $scope.createInterest = function(topic) {
   CreateInterest.save({topic_id: topic.id, user_id: $auth.getPayload()['id']})
   $scope.userTopics.push(topic)
 };
+
+$scope.color = function(verb) {
+  switch (verb) {
+    case "discuss":
+      return "#a7ffeb";
+      break;
+    case "play":
+      return "#64ffda";
+      break;
+    case "listen":
+      return "#1de9b6";
+      break;
+    case "watch":
+      return "#00bfa5";
+      break;
+    case "learn":
+      return "#00e676";
+      break;
+    case "go to":
+      return "#00c853";
+      break;
+    case "I identify as":
+      return "#00b8d4";
+      break;
+  } 
+};
 }]);
