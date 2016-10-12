@@ -27,7 +27,7 @@
       </div>
     <div class="wrap">
       <h2 class="header-center">Interest Search</h2>
-        <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests">
+        <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests" autocomplete="off">
         <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
           <div class="interest-tag">{{topic.name}}</div>
       </a>
