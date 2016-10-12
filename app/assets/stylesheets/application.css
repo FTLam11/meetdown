@@ -135,7 +135,7 @@ img-crop canvas {
   padding: 0px 5px;
   border: 1px solid black;
   border-radius: 20px;
-  background: #6cecc1;
+  background: #41c7da;
   cursor: pointer;
 }
 
@@ -255,4 +255,58 @@ header {
 .row > [class*='col-'] {
   display: flex;
   flex-direction: column;
+}
+
+#wrap a:hover {
+  text-decoration: none;
+}
+
+.atlas-left {
+  padding: 0px;
+}
+
+.atlas-right {
+  text-align: center;
+}
+
+.finder-suggest {
+  margin-top: 40px;
+}
+
+.finder-current {
+  margin-top: 40px;
+}
+
+.zipcode {
+  text-align: center;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  color: black;
+  background: none;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  z-index: 1;
+  border-bottom: 1px solid black;
+  cursor: text;
+}
+
+.zipcode-span {
+  display: inline;
+  margin: 0 auto;
+}
+
+.zipcode:focus:hover {
+  border-bottom: 1px solid black;
+}
+
+.search {
+  font-size: 24px;
+}
+
+.center {
+  margin: 0 auto;
+}
+
+.events-list {
+  font-size: 16px;
 }
