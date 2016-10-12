@@ -30,13 +30,10 @@ class TopicsController < ApplicationController
   end
 
   def zipTopics
-    topics = User.where(zip_code: params[:zip_code]).map { |user| user = user.topics }.flatten.uniq
-    answer = topics.map { |topic| topic = {"name": topic.name, "count": topic.users.where(zip_code: params[:zip_code]).count, "id": topic.id} }
-    answer.sort_by! {| topic_hash | -topic_hash.count }.reverse!
-
+    all_topics_in_a_zipcode = User.where(zip_code: params[:zip_code]).map { |user| user = user.topics }.flatten.uniq
+    topics_by_popularity = all_topics_in_a_zipcode.map { |topic| topic = {"name": topic.name, "count": topic.users.where(zip_code: params[:zip_code]).count, "id": topic.id} }.sort_by! {| topic_hash | -topic_hash[:count] }
     zipcode=Zipcode.find_by(zipcode: params[:zip_code])
-    
-    render json: {mahZip: answer.take(10), events: zipcode.eventsNearby}
+    render json: {topics_in_my_zip: topics_by_popularity.take(10), events: zipcode.eventsNearby}
   end
 
   def suggest
