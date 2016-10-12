@@ -9,23 +9,21 @@
     </nvd3-pie-chart>
   </div>
   <div class="col-xs-6">
-    <h3>Top interests in</h3>
-      <form ng-submit="setCurrentZip(currentZip)">
-        <input name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
+    <div class="center"><span class="search">Search a zipcode <form class="zipcode-span"ng-submit="setCurrentZip(currentZip)">
+        <input class="zipcode" name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
         <input type="submit" class="magnifying-glass">
-      </form>
-    <h3>
-      Events
-    </h3>
+      </form></span></div>
+      
+    <h2 class="header-center">Events</h2>
     <ul>
       <li ng-repeat="event in events">{{event}}</li>
     </ul>
-    <div class="wrap">
+    <div class="wrap atlas-right">
       <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
         <div class="interest-tag-added">{{topic.name}} - {{topic.count}}</div>
       </a>
       </div>
-    <div class="wrap">
+    <div class="wrap atlas-right">
       <h2 class="header-center">Interest Search</h2>
         <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests" autocomplete="off">
         <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">

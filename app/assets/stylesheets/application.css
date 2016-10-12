@@ -276,3 +276,33 @@ header {
 .finder-current {
   margin-top: 40px;
 }
+
+.zipcode {
+  text-align: center;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  color: black;
+  background: none;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  z-index: 1;
+  border-bottom: 1px solid black;
+  cursor: text;
+}
+
+.zipcode-span {
+  display: inline;
+  margin: 0 auto;
+}
+
+.zipcode:focus:hover {
+  border-bottom: 1px solid black;
+}
+
+.search {
+  font-size: 24px;
+}
+
+.center {
+  margin: 0 auto;
+}
