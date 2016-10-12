@@ -12,9 +12,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     $scope.currentZip = $auth.getPayload()['zip_code'];
   };
 
-  setCurrentZip($scope.currentZip);
-  
-  function setCurrentZip(zipcode) {
+  $scope.setCurrentZip = function(zipcode) {
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.d3data = data.topics_in_my_zip;
       $scope.zipTopics = data.topics_in_my_zip;
@@ -22,6 +20,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     });
   };
 
+  $scope.setCurrentZip($scope.currentZip);
   // showLegend="true"
 
   $scope.d3color = function() {

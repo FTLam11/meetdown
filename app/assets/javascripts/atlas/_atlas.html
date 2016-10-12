@@ -16,7 +16,7 @@
     <ul>
       <li ng-repeat="event in events">{{event}}</li>
     </ul>
-    <nvd3-pie-chart data="d3data" id="d3Id" width="350" height="350" x="d3topic()" y="d3count()" color="d3color()" noData="Oops! No interests were found for your zip code." showLabels="true" pieLabelsOutside="true">
+    <nvd3-pie-chart data="d3data" id="d3Id" width="500" height="500" x="d3topic()" y="d3count()" color="d3color()" noData="Oops! No interests were found for your zip code." showLabels="true" pieLabelsOutside="true">
       <svg></svg>
     </nvd3-pie-chart>
     <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
