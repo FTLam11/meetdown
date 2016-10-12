@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-6 atlas-left">
     <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' styles='map.styles'>
       <ui-gmap-layer type="FusionTablesLayer" events="yo.events" options="map.fusionlayer" show="showFusionLayer">
       </ui-gmap-layer>
@@ -12,6 +12,7 @@
     <h3>Top interests in</h3>
       <form ng-submit="setCurrentZip(currentZip)">
         <input name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
+        <input type="submit" class="magnifying-glass">
       </form>
     <h3>
       Events
@@ -19,16 +20,16 @@
     <ul>
       <li ng-repeat="event in events">{{event}}</li>
     </ul>
-    <div id="wrap">
+    <div class="wrap">
       <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
-        <div class="interest-tag">{{topic.name}} - {{topic.count}}</div>
+        <div class="interest-tag-added">{{topic.name}} - {{topic.count}}</div>
       </a>
-      <h2>wataru interestsu</h2>
-      <form ng-submit="">
-        <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
-      </form>
-      <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
-        {{topic.name}}
+      </div>
+    <div class="wrap">
+      <h2 class="header-center">Interest Search</h2>
+        <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests">
+        <a ng-repeat="topic in topics | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
+          <div class="interest-tag">{{topic.name}}</div>
       </a>
     </div>
   </div>
