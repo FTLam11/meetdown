@@ -256,3 +256,7 @@ header {
   display: flex;
   flex-direction: column;
 }
+
+#wrap a:hover {
+  text-decoration: none;
+}
