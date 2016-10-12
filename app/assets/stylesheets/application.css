@@ -260,3 +260,19 @@ header {
 #wrap a:hover {
   text-decoration: none;
 }
+
+.atlas-left {
+  padding: 0px;
+}
+
+.atlas-right {
+  text-align: center;
+}
+
+.finder-suggest {
+  margin-top: 40px;
+}
+
+.finder-current {
+  margin-top: 40px;
+}
