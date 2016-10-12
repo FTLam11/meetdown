@@ -17,10 +17,12 @@
       </form>
     </div>
     <h2 class="header-center">Events</h2>
+    <p class="center events-list" ng-show="events.length == 0">No events were found for {{currentZip}}!</p>
     <ul>
       <li ng-repeat="event in events">{{event}}</li>
     </ul>
     <div class="wrap atlas-right">
+    <h2 class="header-center">Top Interests in {{currentZip}}</h2>
       <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
         <div class="interest-tag-added">{{topic.name}} - {{topic.count}}</div>
       </a>

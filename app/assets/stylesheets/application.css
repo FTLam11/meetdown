@@ -306,3 +306,7 @@ header {
 .center {
   margin: 0 auto;
 }
+
+.events-list {
+  font-size: 16px;
+}
