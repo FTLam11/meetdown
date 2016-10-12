@@ -4,9 +4,12 @@
       <ui-gmap-layer type="FusionTablesLayer" events="yo.events" options="map.fusionlayer" show="showFusionLayer">
       </ui-gmap-layer>
     </ui-gmap-google-map>
+    <nvd3-pie-chart data="d3data" id="d3Id" width="500" height="500" x="d3topic()" y="d3count()" color="d3color()" noData="Oops! No interests were found for your zip code." showLabels="true" pieLabelsOutside="true">
+      <svg></svg>
+    </nvd3-pie-chart>
   </div>
   <div class="col-xs-6">
-    <h2>Top interests in</h2>
+    <h3>Top interests in</h3>
       <form ng-submit="setCurrentZip(currentZip)">
         <input name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
       </form>
@@ -16,13 +19,10 @@
     <ul>
       <li ng-repeat="event in events">{{event}}</li>
     </ul>
-    <nvd3-pie-chart data="d3data" id="d3Id" width="500" height="500" x="d3topic()" y="d3count()" color="d3color()" noData="Oops! No interests were found for your zip code." showLabels="true" pieLabelsOutside="true">
-      <svg></svg>
-    </nvd3-pie-chart>
-    <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
-      <div class="interest-tag">{{topic.name}} - {{topic.count}}</div>
-    </a>
     <div id="wrap">
+      <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
+        <div class="interest-tag">{{topic.name}} - {{topic.count}}</div>
+      </a>
       <h2>wataru interestsu</h2>
       <form ng-submit="">
         <input id="search" name="search" ng-model="keyword" type="text" placeholder="yo put your interests here" ng-change="resetDuplicate()">
