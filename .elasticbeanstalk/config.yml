@@ -2,6 +2,8 @@ branch-defaults:
   aws:
     environment: rails-bean-env
     group_suffix: null
+  deploy_atlas:
+    environment: rails-env
 global:
   application_name: InterestAtlas
   default_ec2_keyname: null
