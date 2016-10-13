@@ -15,24 +15,8 @@ atlas.factory('AtlasFactory', function() {
     "#FFF7F3"
   ];
 
-  obj.plotHeatmap = function(data) {
-    if (Object.keys(data.zip_codes).length > 0) {
-      var zipString = "(";
-      for (var key in data.zip_codes) {
-        zipString += key + ",";
-      }
-
-      zipString = zipString.slice(0, -1) + ")";
-      setLayer(zipString);
-      setZipColorQuery(data.zip_codes);
-      $scope.showFusionLayer = true;
-    } else {
-      $scope.showFusionLayer = false;
-    }
-  };
-
   obj.setLayer = function(zipString) {
-    $scope.map.fusionlayer = {
+    return {
       options: {
         heatmap: {
           enabled: false
@@ -57,17 +41,17 @@ atlas.factory('AtlasFactory', function() {
     if (chunk > 0) {
       for (var colorNum = 0; colorNum < 7; colorNum++) {
         for (var chunkNum = 0; chunkNum < chunk; chunkNum++) {
-          queryArr.push(colorMe(zipKeys[arrNum], COLORS[colorNum]));
+          queryArr.push(this.colorMe(zipKeys[arrNum], this.COLORS[colorNum]));
           arrNum++;
         };
       };
     }
 
     for (; arrNum < zipKeys.length; arrNum++) {
-      queryArr.push(colorMe(zipKeys[arrNum], COLORS[COLORS.length - 1]));
+      queryArr.push(this.colorMe(zipKeys[arrNum], this.COLORS[this.COLORS.length - 1]));
     };
 
-    $scope.map.fusionlayer.options["styles"] = queryArr;
+    return queryArr;
   };
 
   obj.colorMe = function(zipcode, color) {

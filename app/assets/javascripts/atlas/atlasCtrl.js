@@ -49,7 +49,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
 
   $scope.setQueryTopic = function(topic) {
     ZipCount.get({ id: topic.id }).$promise.then(function(data) {
-      AtlasFactory.plotHeatmap(data);
+      plotHeatmap(data);
     });
   };
 
@@ -70,4 +70,20 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     };
   });
   });
+
+  function plotHeatmap(data) {
+    if (Object.keys(data.zip_codes).length > 0) {
+      var zipString = "(";
+      for (var key in data.zip_codes) {
+        zipString += key + ",";
+      }
+
+      zipString = zipString.slice(0, -1) + ")";
+      $scope.map.fusionlayer = AtlasFactory.setLayer(zipString);
+      $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(data.zip_codes);
+      $scope.showFusionLayer = true;
+    } else {
+      $scope.showFusionLayer = false;
+    };
+  };
 }])
