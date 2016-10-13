@@ -4,9 +4,4 @@ class Topic < ApplicationRecord
   has_many :posts
   has_many :themes
   has_many :events, through: :themes
-  validate :five_chars
-
-  def five_chars
-  	errors.add(:verbs, "is not 5 chars") unless verbs.length == 7
-  end
 end
