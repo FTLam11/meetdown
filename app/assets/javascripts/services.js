@@ -1,18 +1,18 @@
-angular.module('meetdown')
+var ang = angular.module('meetdown')
 
-.service('Users', function($resource) {
+ang.service('Users', function($resource) {
   return $resource("http://localhost:3000/users/")
 })
 
-.service('UserEventList', function($resource) {
+ang.service('UserEventList', function($resource) {
   return $resource("/events/userEventList")
 })
 
-.service('RequestSignature', function($resource) {
+ang.service('RequestSignature', function($resource) {
   return $resource("http://localhost:3000/users/s3")
 })
 
-.service('UploadToS3', function($resource) {
+ang.service('UploadToS3', function($resource) {
   return $resource("https://s3.amazonaws.com/media.meetdown.info", {}, {
     upload: {
       method: "POST",
@@ -42,87 +42,87 @@ angular.module('meetdown')
   })
 })
 
-.service('SubmitEventPicture', function($resource) {
+ang.service('SubmitEventPicture', function($resource) {
   return $resource("/events/:id", { id: "@id" }, { update: { method: 'PUT' } })
 })
 
-.service('Suggest', function($resource) {
+ang.service('Suggest', function($resource) {
   return $resource("/topics/suggest", { body: "@body" })
 })
 
-.service('CreateEvent', function($resource) {
+ang.service('CreateEvent', function($resource) {
   return $resource("/events/create")
 })
 
-.service('CreateAttend', function($resource) {
+ang.service('CreateAttend', function($resource) {
   return $resource("/events/createAttend")
 })
 
-.service('CancelAttend', function($resource) {
+ang.service('CancelAttend', function($resource) {
   return $resource("/events/cancelAttend")
 })
 
-.service('GetEvent', function($resource) {
+ang.service('GetEvent', function($resource) {
   return $resource("/events/:id", { id: "@id" })
 })
 
-.service('Comment', function($resource) {
+ang.service('Comment', function($resource) {
   return $resource("/comments/:id", { id: "@id" })
 })
 
-.service('PostComment', function($resource) {
+ang.service('PostComment', function($resource) {
   return $resource("/events/:id/user/:user_id/comments", { id: "@id",user_id:"@user_id" })
 })
 
-.service('User', function($resource) {
+ang.service('User', function($resource) {
   return $resource("/users/:user_id", { user_id: "@user_id" })
 })
 
-.service('CancelAttend', function($resource) {
+ang.service('CancelAttend', function($resource) {
   return $resource("/events/cancelAttend", { update: { method: 'DELETE' } })
 })
 
-.service('ZipCount', function($resource) {
+ang.service('ZipCount', function($resource) {
   return $resource("/zip_code/:id", { id: "@topic_id" })
 })
 
-.service('FindOrCreateFb', function($resource) {
+ang.service('FindOrCreateFb', function($resource) {
   return $resource("http://localhost:3000/users/fb")
 })
 
-.service('Topics', function($resource) {
+ang.service('Topics', function($resource) {
   return $resource("/topics")
 })
 
-.service('Topic', function($resource) {
+ang.service('Topic', function($resource) {
   return $resource("/topics/:topic_id", { topic_id: "@topic_id" })
 })
 
-.service('GetUserTopics', function($resource) {
+ang.service('GetUserTopics', function($resource) {
   return $resource("/users/:user_id/topics", { user_id: "@user_id" })
 })
 
-.service('CreateFBUser', function($resource) {
+ang.service('CreateFBUser', function($resource) {
   return $resource("/users", { fb_id: "@fb_id" })
 })
 
-.service('CreateInterest', function($resource) {
+ang.service('CreateInterest', function($resource) {
   return $resource("/interests")
 })
 
-.service('CreateAction', function($resource) {
+ang.service('CreateAction', function($resource) {
   return $resource("/actions")
 })
 
-.service('SubmitSurvey', function($resource) {
+ang.service('SubmitSurvey', function($resource) {
   return $resource("/users/:id", { id: "@id" }, { update: { method: 'PUT' } })
 })
 
-.service('GetZipTopics', function($resource) {
+ang.service('GetZipTopics', function($resource) {
   return $resource("/zip_code/:zip_code/topics", { zip_code: "@zip_code" })
 })
 
-.service('StyleMap', function() {
+ang.service('StyleMap', function() {
   return {
     center: { latitude: 42, longitude: -88 },
     options: { minZoom: 3, maxZoom: 13 },
@@ -183,7 +183,7 @@ angular.module('meetdown')
   }
 })
 
-.service('DataURItoBlob', function() {
+ang.service('DataURItoBlob', function() {
   return function(dataURI) {
     var binary = atob(dataURI.split(',')[1]);
     var array = [];
@@ -194,7 +194,7 @@ angular.module('meetdown')
   }
 })
 
-.service('FileManager', function() {
+ang.service('FileManager', function() {
   return function(event, $scope, $apply) {
     var file = event.currentTarget.files[0];
     var reader = new FileReader();
@@ -207,7 +207,7 @@ angular.module('meetdown')
   }
 })
 
-.service('Authenticate', function($auth, $location) {
+ang.service('Authenticate', function($auth, $location) {
   return function() {
     if (!$auth.isAuthenticated()) {
       $location.path('/account');
