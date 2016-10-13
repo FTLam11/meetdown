@@ -1,18 +1,18 @@
 var ang = angular.module('meetdown')
 
-ang.service('Users', function($resource) {
+ang.service('Users', ['$resource', function($resource) {
   return $resource("http://localhost:3000/users/")
-})
+}])
 
-ang.service('UserEventList', function($resource) {
+ang.service('UserEventList', ['$resource', function($resource) {
   return $resource("/events/userEventList")
-})
+}])
 
-ang.service('RequestSignature', function($resource) {
+ang.service('RequestSignature', ['$resource', function($resource) {
   return $resource("http://localhost:3000/users/s3")
-})
+}])
 
-ang.service('UploadToS3', function($resource) {
+ang.service('UploadToS3', ['$resource', function($resource) {
   return $resource("https://s3.amazonaws.com/media.meetdown.info", {}, {
     upload: {
       method: "POST",
@@ -40,87 +40,87 @@ ang.service('UploadToS3', function($resource) {
       headers: { 'Content-Type': undefined }
     }
   })
-})
+}])
 
-ang.service('SubmitEventPicture', function($resource) {
+ang.service('SubmitEventPicture', ['$resource', function($resource) {
   return $resource("/events/:id", { id: "@id" }, { update: { method: 'PUT' } })
-})
+}])
 
-ang.service('Suggest', function($resource) {
+ang.service('Suggest', ['$resource', function($resource) {
   return $resource("/topics/suggest", { body: "@body" })
-})
+}])
 
-ang.service('CreateEvent', function($resource) {
+ang.service('CreateEvent', ['$resource', function($resource) {
   return $resource("/events/create")
-})
+}])
 
-ang.service('CreateAttend', function($resource) {
+ang.service('CreateAttend', ['$resource', function($resource) {
   return $resource("/events/createAttend")
-})
+}])
 
-ang.service('CancelAttend', function($resource) {
+ang.service('CancelAttend', ['$resource', function($resource) {
   return $resource("/events/cancelAttend")
-})
+}])
 
-ang.service('GetEvent', function($resource) {
+ang.service('GetEvent', ['$resource', function($resource) {
   return $resource("/events/:id", { id: "@id" })
-})
+}])
 
-ang.service('Comment', function($resource) {
+ang.service('Comment', ['$resource', function($resource) {
   return $resource("/comments/:id", { id: "@id" })
-})
+}])
 
-ang.service('PostComment', function($resource) {
+ang.service('PostComment', ['$resource', function($resource) {
   return $resource("/events/:id/user/:user_id/comments", { id: "@id",user_id:"@user_id" })
-})
+}])
 
-ang.service('User', function($resource) {
+ang.service('User', ['$resource', function($resource) {
   return $resource("/users/:user_id", { user_id: "@user_id" })
-})
+}])
 
-ang.service('CancelAttend', function($resource) {
+ang.service('CancelAttend', ['$resource', function($resource) {
   return $resource("/events/cancelAttend", { update: { method: 'DELETE' } })
-})
+}])
 
-ang.service('ZipCount', function($resource) {
+ang.service('ZipCount', ['$resource', function($resource) {
   return $resource("/zip_code/:id", { id: "@topic_id" })
-})
+}])
 
-ang.service('FindOrCreateFb', function($resource) {
+ang.service('FindOrCreateFb', ['$resource', function($resource) {
   return $resource("http://localhost:3000/users/fb")
-})
+}])
 
-ang.service('Topics', function($resource) {
+ang.service('Topics', ['$resource', function($resource) {
   return $resource("/topics")
-})
+}])
 
-ang.service('Topic', function($resource) {
+ang.service('Topic', ['$resource', function($resource) {
   return $resource("/topics/:topic_id", { topic_id: "@topic_id" })
-})
+}])
 
-ang.service('GetUserTopics', function($resource) {
+ang.service('GetUserTopics', ['$resource', function($resource) {
   return $resource("/users/:user_id/topics", { user_id: "@user_id" })
-})
+}])
 
-ang.service('CreateFBUser', function($resource) {
+ang.service('CreateFBUser', ['$resource', function($resource) {
   return $resource("/users", { fb_id: "@fb_id" })
-})
+}])
 
-ang.service('CreateInterest', function($resource) {
+ang.service('CreateInterest', ['$resource', function($resource) {
   return $resource("/interests")
-})
+}])
 
-ang.service('CreateAction', function($resource) {
+ang.service('CreateAction', ['$resource', function($resource) {
   return $resource("/actions")
-})
+}])
 
-ang.service('SubmitSurvey', function($resource) {
+ang.service('SubmitSurvey', ['$resource', function($resource) {
   return $resource("/users/:id", { id: "@id" }, { update: { method: 'PUT' } })
-})
+}])
 
-ang.service('GetZipTopics', function($resource) {
+ang.service('GetZipTopics', ['$resource', function($resource) {
   return $resource("/zip_code/:zip_code/topics", { zip_code: "@zip_code" })
-})
+}])
 
 ang.service('StyleMap', function() {
   return {
@@ -207,10 +207,10 @@ ang.service('FileManager', function() {
   }
 })
 
-ang.service('Authenticate', function($auth, $location) {
+ang.service('Authenticate', ['$auth', '$location', function($auth, $location) {
   return function() {
     if (!$auth.isAuthenticated()) {
       $location.path('/account');
     };
   }
-})
+}])
