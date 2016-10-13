@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'Topic', '$auth', 'AtlasFactory', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, Topic, $auth, AtlasFactory) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory) {
   $scope.topics = [];
   $scope.showFusionLayer = true;
   $scope.map = StyleMap;
