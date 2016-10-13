@@ -109,6 +109,14 @@ img-crop canvas {
   height: 180%; 
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
+.page-scroll:hover {
+  cursor: pointer;
+}
+
 #home {
   margin-top: -10px;
 }
