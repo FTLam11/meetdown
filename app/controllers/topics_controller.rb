@@ -14,6 +14,8 @@ class TopicsController < ApplicationController
       ruby_topics << ruby_hash
     end
 
+    ruby_topics.sort! {|x,y| y.count<=>x.count}
+
     render json: { topics: ruby_topics }
   end
 

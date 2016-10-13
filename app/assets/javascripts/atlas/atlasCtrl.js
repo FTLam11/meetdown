@@ -7,10 +7,17 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   $scope.map.fusionlayer = {};
   $scope.events = [];
   $scope.currentZip = "60654";
+  $scope.userTopics = [];
 
   if ($auth.getPayload() != undefined && $auth.getPayload().zip_code != undefined) {
     $scope.currentZip = $auth.getPayload().zip_code;
   };
+
+  GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
+  if (data.user_topics) {
+    $scope.userTopics = data.user_topics;
+    };
+  });
 
   $scope.setCurrentZip = function(zipcode) {
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
@@ -48,5 +55,19 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
 
   Topics.get().$promise.then(function(data) {
     $scope.topics = data.topics;
+    GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
+      if (data.user_topics) {
+        $scope.userTopics = data.user_topics
+
+        for (i=0;i<$scope.userTopics.length;i++) {
+          $scope.topics = $scope.topics.filter(function(obj){ 
+            console.log(obj.id===$scope.userTopics[i].id)
+            if (obj.id != $scope.userTopics[i].id){
+              return true}})
+          $scope.topics.unshift($scope.userTopics[i])
+        }
+
+    };
+  });
   });
 }])
