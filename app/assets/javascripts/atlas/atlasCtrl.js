@@ -51,18 +51,16 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     $scope.topics = data.topics;
     GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
       if (data.user_topics) {
-        $scope.userTopics = data.user_topics
+        $scope.userTopics = data.user_topics;
 
-        for (i=0;i<$scope.userTopics.length;i++) {
-          $scope.topics = $scope.topics.filter(function(obj){ 
-            console.log(obj.id===$scope.userTopics[i].id)
-            if (obj.id != $scope.userTopics[i].id){
-              return true}})
+        for (var i = 0; i < $scope.userTopics.length; i++) {
+          $scope.topics = $scope.topics.filter(function(topicObj){ 
+            return topicObj.id != $scope.userTopics[i].id;
+          });
           $scope.topics.unshift($scope.userTopics[i])
-        }
-
-    };
-  });
+        };
+      };
+    });
   });
 
   function plotHeatmap(data) {
