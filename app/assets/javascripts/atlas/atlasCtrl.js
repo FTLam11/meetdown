@@ -68,8 +68,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
       var zipString = "(";
       for (var key in data.zip_codes) {
         zipString += key + ",";
-      }
-
+      };
       zipString = zipString.slice(0, -1) + ")";
       $scope.map.fusionlayer = AtlasFactory.setLayer(zipString);
       $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(data.zip_codes);
