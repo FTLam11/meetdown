@@ -6,16 +6,17 @@ account.factory('interests', ['Topics', function(Topics) {
     topics: [],
     verbArr:[],
     verbs:["Identity","Profession","Physical Activity","Games","Learning","Discussions","Performances or Viewings","Food or Drink","Social Events and Outings","Join"],
-    sentences: {"Identity": "I would like to meet other",
-    				"Profession":"Fields and interests I'd like to network with",
-            "Physical Activity": "Physical Activities that I'd like to partake in",
-				"Games": "Games I'd like to play",
-				"Learning": "Classes or Workshops (Non-Professional) I'd attend",
-        "Discussions": "Things I'd discuss with others",
-        "Performances or Viewings": "Things I'd go see or listen to with others",
-        "Food or Drink": "Things I like putting in my mouth with others",
-				"Social Events and Outings": "Things I'd go to to meet new people",
-				"Join": "Partnerships, teams, and groups, I'd like to be a part of"},
+    sentences: {
+      "Identity": "I want to meet other",
+      "Profession":"Fields and interests I want to network within",
+      "Physical Activity": "Physical activities I'd like to partake in",
+      "Games": "Games I want to play",
+	"Learning": "Classes or workshops (non-professional) I'd attend",
+      "Discussions": "Things I'd discuss with others",
+      "Performances or Viewings": "Things I'd go see or listen to",
+      "Food or Drink": "Foors or drinks I enjoy",
+      "Social Events and Outings": "Things I'd go to to meet new people",
+	"Join": "Partnerships, teams, and groups, I'd like to be a part of"},
     addVerbArr: function(topic){
       topic.verbArr = []
       if (topic.verbs[0] === "1"){topic.verbArr.push("Identity")}
