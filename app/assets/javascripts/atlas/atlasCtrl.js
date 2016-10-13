@@ -13,12 +13,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     $scope.currentZip = $auth.getPayload().zip_code;
   };
 
-  GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
-  if (data.user_topics) {
-    $scope.userTopics = data.user_topics;
-    };
-  });
-
   $scope.setCurrentZip = function(zipcode) {
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
