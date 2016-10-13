@@ -14,6 +14,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   };
 
   $scope.setCurrentZip = function(zipcode) {
+    $scope.interestZip = zipcode;
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
       $scope.events = data.events;

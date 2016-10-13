@@ -22,7 +22,7 @@
       <li ng-repeat="event in events">{{event}}</li>
     </ul>
     <div class="wrap atlas-right">
-    <h2 class="header-center">Top Interests in {{currentZip}}</h2>
+    <h2 class="header-center">Top Interests in {{interestZip}}</h2>
       <a ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
         <div class="interest-tag-added">{{topic.name}} - {{topic.count}}</div>
       </a>
