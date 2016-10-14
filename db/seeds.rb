@@ -1,67 +1,68 @@
-# Topic.create(name: "Pokemon", verbs:"1100110")
-# Topic.create(name: "Magic: The Gathering", verbs:"1000110")
-# Topic.create(name: "Dota 2", verbs:"1101000")
-# Topic.create(name: "Dominion Online", verbs:"0100110")
-# Topic.create(name: "Chicago Cubs", verbs:"0000110")
-# Topic.create(name: "Jasmine Tea", verbs:"1110000")
-# Topic.create(name: "Eevee", verbs:"0000111")
-# Topic.create(name: "BBQ Bacon Cheeseburger", verbs:"1010110")
-# Topic.create(name: "Grapefruit", verbs:"0100110")
-# Topic.create(name: "Sky Diving", verbs:"1111111")
+# # Topic.create(name: "Pokemon", verbs:"1100110")
+# # Topic.create(name: "Magic: The Gathering", verbs:"1000110")
+# # Topic.create(name: "Dota 2", verbs:"1101000")
+# # Topic.create(name: "Dominion Online", verbs:"0100110")
+# # Topic.create(name: "Chicago Cubs", verbs:"0000110")
+# # Topic.create(name: "Jasmine Tea", verbs:"1110000")
+# # Topic.create(name: "Eevee", verbs:"0000111")
+# # Topic.create(name: "BBQ Bacon Cheeseburger", verbs:"1010110")
+# # Topic.create(name: "Grapefruit", verbs:"0100110")
+# # Topic.create(name: "Sky Diving", verbs:"1111111")
 
-# User.create(email: "",fb_id: "2")
+# # User.create(email: "",fb_id: "2")
 
-# require 'rubygems'
-# require 'json'
+# # require 'rubygems'
+# # require 'json'
 
-# file = open("#{Rails.root}/db/zipcodes.json")
-# json = file.read
+# # file = open("#{Rails.root}/db/zipcodes.json")
+# # json = file.read
 
-# parsed = JSON.parse(json)
+# # parsed = JSON.parse(json)
 
-# def removeCenter(json)
-# 	if json["geometry"]["coordinates"][0][0][0]
-# 		json["geometry"]["coordinates"][0].shift
-# 	end
-# 	return json
-# end
+# # def removeCenter(json)
+# #   if json["geometry"]["coordinates"][0][0][0]
+# #     json["geometry"]["coordinates"][0].shift
+# #   end
+# #   return json
+# # end
 
-# parsed["features"].each do |json|
-#   Zipcode.create(zipcode: json["id"], center:json["geometry"]["coordinates"][0][0],  geojson: removeCenter(json))
-# end
+# # parsed["features"].each do |json|
+# #   Zipcode.create(zipcode: json["id"], center:json["geometry"]["coordinates"][0][0],  geojson: removeCenter(json))
+# # end
 
-# zipcodes = Zipcode.all
-# RAD = Math::PI/180
-# RKM = 6371                  # Earth radius in kilometers
+# # zipcodes = Zipcode.all
+# # RAD = Math::PI/180
+# # RKM = 6371                  # Earth radius in kilometers
 
-# def distance(loc1, loc2)
-#   loc1 = loc1[1..-2].split(",").map(&:to_f) #turn string into array
-#   loc2 = loc2[1..-2].split(",").map(&:to_f)
+# # def distance(loc1, loc2)
+# #   loc1 = loc1[1..-2].split(",").map(&:to_f) #turn string into array
+# #   loc2 = loc2[1..-2].split(",").map(&:to_f)
 
-#   dlat_rad = (loc2[0]-loc1[0]) * RAD  # Delta, converted to rad
-#   dlon_rad = (loc2[1]-loc1[1]) * RAD
+# #   dlat_rad = (loc2[0]-loc1[0]) * RAD  # Delta, converted to rad
+# #   dlon_rad = (loc2[1]-loc1[1]) * RAD
 
-#   lat1_rad, lon1_rad = loc1.map {|i| i * RAD }
-#   lat2_rad, lon2_rad = loc2.map {|i| i * RAD }
+# #   lat1_rad, lon1_rad = loc1.map {|i| i * RAD }
+# #   lat2_rad, lon2_rad = loc2.map {|i| i * RAD }
 
-#   a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
-#   c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
+# #   a = Math.sin(dlat_rad/2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon_rad/2)**2
+# #   c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
 
-#   RKM * c # Delta in km
-# end
+# #   RKM * c # Delta in km
+# # end
 
-# zipcodes.each_with_index do |zipcode, index|
-#   1200.times do
-#     displacement = distance(zipcode.center, zipcodes[index + 1].center)
-#     Neighbor.create(zipcode_1: zipcode.zipcode, zipcode_2: zipcodes[index + 1].zipcode, distance: displacement) if displacement <= 24
-#     index += 1
-#   end
-# end
+# # zipcodes.each_with_index do |zipcode, index|
+# #   1200.times do
+# #     displacement = distance(zipcode.center, zipcodes[index + 1].center)
+# #     Neighbor.create(zipcode_1: zipcode.zipcode, zipcode_2: zipcodes[index + 1].zipcode, distance: displacement) if displacement <= 24
+# #     index += 1
+# #   end
+# # end
 
 # Topic.create(name:"Group Workouts", verbs:'0010100001')
 # Topic.create(name:"Runners", verbs:'1010000001')
 # Topic.create(name:"Dog Play Dates", verbs:'0000000001')
 # Topic.create(name:"Social Work", verbs:'0100000000')
+# Topic.create(name:"General Networking Events", verbs:'0100000000')
 # Topic.create(name:"Accountability Partners", verbs:'0000000001')
 # Topic.create(name:"Social Coding", verbs:'0100100001')
 # Topic.create(name:"Study Halls", verbs:'0000000001')
@@ -83,7 +84,9 @@
 # Topic.create(name:"NHL", verbs:'0000001000')
 # Topic.create(name:"Writers", verbs:'1100000001')
 # Topic.create(name:"Hack Nights", verbs:'0100000001')
-# Topic.create(name:"Kinky - Fetishes & BDSM", verbs:'1000000001')
+# Topic.create(name:"Asexual", verbs:'1000000000')
+# Topic.create(name:"Coping with Loss", verbs:'1000000000')
+# Topic.create(name:"People that are Kinky - Fetishes & BDSM", verbs:'1000000001')
 # Topic.create(name:"Travel Group", verbs:'0000000001')
 # Topic.create(name:"Weight Loss Partners", verbs:'0000000001')
 # Topic.create(name:"Recreational Sports Leagues", verbs:'0000000001')
@@ -94,12 +97,14 @@
 # Topic.create(name:"Massage Exchange", verbs:'0000000001')
 # Topic.create(name:"Medical Marijuana", verbs:'0100000100')
 # Topic.create(name:"Recreational Marijuana", verbs:'0100000100')
-# Topic.create(name:"Vegan", verbs:'1000000100')
+# Topic.create(name:"Almost Vegetarians", verbs:'1000000100')
+# Topic.create(name:"Vegans", verbs:'1000000100')
 # Topic.create(name:"Vegetarians", verbs:'1000000100')
-# Topic.create(name:"New Restaurants", verbs:'0000000100')
+# Topic.create(name:"Trying Rare Cuisines", verbs:'0000000100')
 # Topic.create(name:"Beer", verbs:'0000000100')
 # Topic.create(name:"Wine Tasting", verbs:'0000000100')
 # Topic.create(name:"Raw Food", verbs:'0000000100')
+# Topic.create(name:"Group Dinner Deals", verbs:'0000000100')
 # Topic.create(name:"Cooking Dinner Parties", verbs:'0000000100')
 # Topic.create(name:"BBQ", verbs:'0000000100')
 # Topic.create(name:"Indian Food", verbs:'0000000100')
@@ -112,6 +117,9 @@
 # Topic.create(name:"Mexican Cuisine", verbs:'0000000100')
 # Topic.create(name:"Asian Cuisine", verbs:'0000000100')
 # Topic.create(name:"Dim Sum", verbs:'0000000100')
+# Topic.create(name:"Mediterranean Cuisine", verbs:'0000000100')
+# Topic.create(name:"Molecular Gastronomy", verbs:'0000000100')
+# Topic.create(name:"Trying New Restaurants", verbs:'0000000100')
 # Topic.create(name:"Hot Pot", verbs:'0000000100')
 # Topic.create(name:"Soul Food", verbs:'0000000100')
 # Topic.create(name:"Fine Dining", verbs:'0000000100')
@@ -242,6 +250,7 @@
 # Topic.create(name:"Short Story Writing", verbs:'0000100000')
 # Topic.create(name:"Debating", verbs:'0000100000')
 # Topic.create(name:"Breakfast", verbs:'0000100000')
+# Topic.create(name:"Brunch Deals", verbs:'0000100000')
 # Topic.create(name:"Cantonese Language", verbs:'0000100000')
 # Topic.create(name:"Jewelry Making", verbs:'0000100000')
 # Topic.create(name:"Dog Training", verbs:'0000100000')
@@ -477,6 +486,7 @@
 # Topic.create(name:"Mormons", verbs:'1000000000')
 # Topic.create(name:"Ex-Mormons", verbs:'1000000000')
 # Topic.create(name:"Feminists", verbs:'1000000000')
+# Topic.create(name:"Scavenger Hunts", verbs:'0000000010')
 # Topic.create(name:"Nightlife", verbs:'0000000010')
 # Topic.create(name:"Travel Discussion", verbs:'0000010000')
 # Topic.create(name:"Self-Empowerment", verbs:'0000100000')
@@ -543,3 +553,69 @@
 # Topic.create(name:"Hardware Hacks & Gadgeteering", verbs:'0000100000')
 # Topic.create(name:"Arabic Culture", verbs:'0000010000')
 # Topic.create(name:"LAN Party", verbs:'0000000010')
+
+user1 = User.create(username: "Michael", email: "Michael@atlas.com", zip_code: 60089)
+user2 = User.create(username: "Frank", email: "Frank@atlas.com", zip_code: 60076)
+user3 = User.create(username: "Fronk", email: "Fronk@atlas.com", zip_code: 60659)
+user4 = User.create(username: "Mike", email: "Mike@atlas.com", zip_code: 60090)
+user5 = User.create(username: "Novice", email: "Novice@atlas.com", zip_code: 60629)
+user6 = User.create(username: "Joson", email: "Joson@atlas.com", zip_code: 60618)
+user7 = User.create(username: "WoundedTuna", email: "WoundedTuna@atlas.com", zip_code: 60647)
+user8 = User.create(username: "Parrot", email: "Parrot@atlas.com", zip_code: 60614)
+user9 = User.create(username: "Trump", email: "Trump@atlas.com", zip_code: 60601)
+user10 = User.create(username: "Hilaroo", email: "Hilaroo@atlas.com", zip_code: 60643)
+user11 = User.create(username: "Jillenstein", email: "Jillenstein@atlas.com", zip_code: 60630)
+user12 = User.create(username: "GaryJohns", email: "GaryJohns@atlas.com", zip_code: 60649)
+user13 = User.create(username: "Amandapls", email: "Amandapls@atlas.com", zip_code: 60079)
+user14 = User.create(username: "Barathrum", email: "Soultrain@atlas.com", zip_code: 60062)
+user15 = User.create(username: "Shaggy", email: "Shaggy@atlas.com", zip_code: 60093)
+
+event1 = Event.create(name: "BBQ",description: "We will be having a bbq" ,date: "2016-10-14 04:05:06",location: "Green Street Smoked Meats")
+event2 = Event.create(name: "Trade Pokemon Cards",description: "We will be trading pokemon cards" ,date: "2016-10-14 04:05:06",location: "Dice Dojo")
+event3 = Event.create(name: "Vote for Trump",description: "We will be making america terrible" ,date: "2016-11-28 04:05:06",location: "McDonald's")
+event4 = Event.create(name: "Who is the sexiest anime character and why is it Vegeta?",description: "We will be making america terrible" ,date: "2016-11-28 04:05:06",location: "McDonald's")
+event5 = Event.create(name: "LAN Party",description: "LAN Party wooo" ,date: "2016-11-28 04:05:06",location: "Ignite Gaming Lounge")
+
+event1.topics << Topic.find_by(name:"BBQ")
+event1.topics << Topic.find_by(name:"Gluten-Free")
+event1.topics << Topic.find_by(name:"Diners")
+event2.topics << Topic.find_by(name:"Pokemon")
+# event3.topics << Topic.find_by(name:"Republican")
+# event3.topics << Topic.find_by(name:"Politics")
+event4.topics << Topic.find_by(name:"Anime")
+event5.topics << Topic.find_by(name:"LAN Party")
+event5.topics << Topic.find_by(name:"Dota 2")
+event5.topics << Topic.find_by(name:"CS:GO")
+
+
+
+event1.hosts << user1
+event2.hosts << user2
+event3.hosts << user3
+event4.hosts << user4
+event5.hosts << user5
+
+
+Topic.all.each do |y|
+  user1.topics << y if rand(30) == 1
+end
+
+User.all.each do |x|
+  event1.attendees << x if rand(2) == 1
+  event2.attendees << x if rand(2) == 1
+  event3.attendees << x if rand(2) == 1
+  event4.attendees << x if rand(2) == 1
+  event5.attendees << x if rand(2) == 1
+  
+  Topic.all.each do |y|
+    x.topics << y if rand(40) == 1
+  end
+end
+
+Zipcode.where("zipcode LIKE '60%'").each do |x|
+  event1.zipcodes << x if rand(10) == 1
+  event2.zipcodes << x if rand(10) == 1
+  event3.zipcodes << x if rand(10) == 1
+  event4.zipcodes << x if rand(10) == 1
+  event5.zipcodes << x if rand(10) == 1
+end
