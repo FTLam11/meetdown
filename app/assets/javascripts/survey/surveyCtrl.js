@@ -2,7 +2,7 @@ var survey = angular.module('meetdown');
 
 survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', '$location','$window', '$auth', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', 'Authenticate', function($scope, SubmitSurvey, $state, $location, $window, $auth, RequestSignature, UploadToS3, DataURItoBlob, Authenticate,MeetupInterests,MeetupInterests1,MeetupInterests2,MeetupInterests3) {
 
-  $scope.interests = []
+$scope.interests = []
 Authenticate();
 
 $scope.submitInfo = function() {

@@ -18,6 +18,10 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
       $scope.events = data.events;
+      var obj = {};
+      obj[zipcode] = 1;
+      $scope.map.fusionlayer = AtlasFactory.setLayer(zipcode);
+      $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(obj);
     });
   };
 
