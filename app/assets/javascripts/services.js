@@ -1,18 +1,18 @@
-angular.module('meetdown')
+var ang = angular.module('meetdown')
 
-.service('Users', function($resource) {
+ang.service('Users', ['$resource', function($resource) {
   return $resource("http://localhost:3000/users/")
-})
+}])
 
-.service('UserEventList', function($resource) {
+ang.service('UserEventList', ['$resource', function($resource) {
   return $resource("/events/userEventList")
-})
+}])
 
-.service('RequestSignature', function($resource) {
+ang.service('RequestSignature', ['$resource', function($resource) {
   return $resource("http://localhost:3000/users/s3")
-})
+}])
 
-.service('UploadToS3', function($resource) {
+ang.service('UploadToS3', ['$resource', function($resource) {
   return $resource("https://s3.amazonaws.com/media.meetdown.info", {}, {
     upload: {
       method: "POST",
@@ -40,89 +40,89 @@ angular.module('meetdown')
       headers: { 'Content-Type': undefined }
     }
   })
-})
+}])
 
-.service('SubmitEventPicture', function($resource) {
+ang.service('SubmitEventPicture', ['$resource', function($resource) {
   return $resource("/events/:id", { id: "@id" }, { update: { method: 'PUT' } })
-})
+}])
 
-.service('Suggest', function($resource) {
+ang.service('Suggest', ['$resource', function($resource) {
   return $resource("/topics/suggest", { body: "@body" })
-})
+}])
 
-.service('CreateEvent', function($resource) {
+ang.service('CreateEvent', ['$resource', function($resource) {
   return $resource("/events/create")
-})
+}])
 
-.service('CreateAttend', function($resource) {
+ang.service('CreateAttend', ['$resource', function($resource) {
   return $resource("/events/createAttend")
-})
+}])
 
-.service('CancelAttend', function($resource) {
+ang.service('CancelAttend', ['$resource', function($resource) {
   return $resource("/events/cancelAttend")
-})
+}])
 
-.service('GetEvent', function($resource) {
+ang.service('GetEvent', ['$resource', function($resource) {
   return $resource("/events/:id", { id: "@id" })
-})
+}])
 
-.service('Comment', function($resource) {
+ang.service('Comment', ['$resource', function($resource) {
   return $resource("/comments/:id", { id: "@id" })
-})
+}])
 
-.service('PostComment', function($resource) {
+ang.service('PostComment', ['$resource', function($resource) {
   return $resource("/events/:id/user/:user_id/comments", { id: "@id",user_id:"@user_id" })
-})
+}])
 
-.service('User', function($resource) {
+ang.service('User', ['$resource', function($resource) {
   return $resource("/users/:user_id", { user_id: "@user_id" })
-})
+}])
 
-.service('CancelAttend', function($resource) {
+ang.service('CancelAttend', ['$resource', function($resource) {
   return $resource("/events/cancelAttend", { update: { method: 'DELETE' } })
-})
+}])
 
-.service('ZipCount', function($resource) {
+ang.service('ZipCount', ['$resource', function($resource) {
   return $resource("/zip_code/:id", { id: "@topic_id" })
-})
+}])
 
-.service('FindOrCreateFb', function($resource) {
+ang.service('FindOrCreateFb', ['$resource', function($resource) {
   return $resource("http://localhost:3000/users/fb")
-})
+}])
 
-.service('Topics', function($resource) {
+ang.service('Topics', ['$resource', function($resource) {
   return $resource("/topics")
-})
+}])
 
-.service('Topic', function($resource) {
+ang.service('Topic', ['$resource', function($resource) {
   return $resource("/topics/:topic_id", { topic_id: "@topic_id" })
-})
+}])
 
-.service('GetUserTopics', function($resource) {
+ang.service('GetUserTopics', ['$resource', function($resource) {
   return $resource("/users/:user_id/topics", { user_id: "@user_id" })
-})
+}])
 
-.service('CreateFBUser', function($resource) {
+ang.service('CreateFBUser', ['$resource', function($resource) {
   return $resource("/users", { fb_id: "@fb_id" })
-})
+}])
 
-.service('CreateInterest', function($resource) {
+ang.service('CreateInterest', ['$resource', function($resource) {
   return $resource("/interests")
-})
+}])
 
-.service('CreateAction', function($resource) {
+ang.service('CreateAction', ['$resource', function($resource) {
   return $resource("/actions")
-})
+}])
 
-.service('SubmitSurvey', function($resource) {
+ang.service('SubmitSurvey', ['$resource', function($resource) {
   return $resource("/users/:id", { id: "@id" }, { update: { method: 'PUT' } })
-})
+}])
 
-.service('GetZipTopics', function($resource) {
+ang.service('GetZipTopics', ['$resource', function($resource) {
   return $resource("/zip_code/:zip_code/topics", { zip_code: "@zip_code" })
-})
+}])
 
-.service('StyleMap', function() {
+ang.service('StyleMap', function() {
   return {
     center: { latitude: 42, longitude: -88 },
     options: { minZoom: 3, maxZoom: 13 },
@@ -183,7 +183,7 @@ angular.module('meetdown')
   }
 })
 
-.service('DataURItoBlob', function() {
+ang.service('DataURItoBlob', function() {
   return function(dataURI) {
     var binary = atob(dataURI.split(',')[1]);
     var array = [];
@@ -194,7 +194,7 @@ angular.module('meetdown')
   }
 })
 
-.service('FileManager', function() {
+ang.service('FileManager', function() {
   return function(event, $scope, $apply) {
     var file = event.currentTarget.files[0];
     var reader = new FileReader();
@@ -207,10 +207,10 @@ angular.module('meetdown')
   }
 })
 
-.service('Authenticate', function($auth, $location) {
+ang.service('Authenticate', ['$auth', '$location', function($auth, $location) {
   return function() {
     if (!$auth.isAuthenticated()) {
       $location.path('/account');
     };
   }
-})
+}])

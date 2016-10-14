@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', 'Topic', '$auth', 'AtlasFactory', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, Topic, $auth, AtlasFactory) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory) {
   $scope.topics = [];
   $scope.showFusionLayer = true;
   $scope.map = StyleMap;
@@ -13,13 +13,8 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     $scope.currentZip = $auth.getPayload().zip_code;
   };
 
-  GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
-  if (data.user_topics) {
-    $scope.userTopics = data.user_topics;
-    };
-  });
-
   $scope.setCurrentZip = function(zipcode) {
+    $scope.interestZip = zipcode;
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
       $scope.events = data.events;
@@ -49,7 +44,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
 
   $scope.setQueryTopic = function(topic) {
     ZipCount.get({ id: topic.id }).$promise.then(function(data) {
-      AtlasFactory.plotHeatmap(data);
+      plotHeatmap(data);
     });
   };
 
@@ -57,17 +52,30 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     $scope.topics = data.topics;
     GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
       if (data.user_topics) {
-        $scope.userTopics = data.user_topics
+        $scope.userTopics = data.user_topics;
 
-        for (i=0;i<$scope.userTopics.length;i++) {
-          $scope.topics = $scope.topics.filter(function(obj){ 
-            console.log(obj.id===$scope.userTopics[i].id)
-            if (obj.id != $scope.userTopics[i].id){
-              return true}})
+        for (var i = 0; i < $scope.userTopics.length; i++) {
+          $scope.topics = $scope.topics.filter(function(topicObj){ 
+            return topicObj.id != $scope.userTopics[i].id;
+          });
           $scope.topics.unshift($scope.userTopics[i])
-        }
+        };
+      };
+    });
+  });
 
+  function plotHeatmap(data) {
+    if (Object.keys(data.zip_codes).length > 0) {
+      var zipString = "(";
+      for (var key in data.zip_codes) {
+        zipString += key + ",";
+      };
+      zipString = zipString.slice(0, -1) + ")";
+      $scope.map.fusionlayer = AtlasFactory.setLayer(zipString);
+      $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(data.zip_codes);
+      $scope.showFusionLayer = true;
+    } else {
+      $scope.showFusionLayer = false;
     };
-  });
-  });
+  };
 }])

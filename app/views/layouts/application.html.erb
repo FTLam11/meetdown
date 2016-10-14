@@ -7,12 +7,12 @@
     <%= javascript_include_tag 'application' %>
   </head>
 
-  <body ng-app="meetdown">
+  <body ng-app="meetdown" class="sticky">
     <header>
         <div ui-view="header"></div>
     </header>
 
-    <div ui-view="container">
+    <div ui-view="container" class="sticky-content">
     </div>
 
     <footer id="mainFooter" ui-view="footer">

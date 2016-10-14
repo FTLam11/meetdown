@@ -23,6 +23,16 @@ body {
   background: #fff;
 }
 
+.sticky {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.sticky-content {
+  flex: 1;
+}
+
 .register-form {
   width: 60%;
   margin: auto;
@@ -99,13 +109,19 @@ img-crop canvas {
   height: 180%; 
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
+.page-scroll:hover {
+  cursor: pointer;
+}
+
 #home {
   margin-top: -10px;
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
