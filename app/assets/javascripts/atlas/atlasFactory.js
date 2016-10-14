@@ -31,12 +31,15 @@ atlas.factory('AtlasFactory', function() {
   };
 
   obj.setZipColorQuery = function(zipObj) {
+    console.log(zipObj)
     var zipKeys = Object.keys(zipObj);
     var queryArr = [];
     var chunk = Math.floor(zipKeys.length / 8);
     var zipsThatGetLastColor = zipKeys.length % 8;
     var currentColor = 0;
     var arrNum = 0;
+
+    console.log(zipKeys)
 
     if (chunk > 0) {
       for (var colorNum = 0; colorNum < 7; colorNum++) {
