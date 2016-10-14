@@ -590,12 +590,21 @@ event3.hosts << user3
 event4.hosts << user4
 event5.hosts << user5
 
+
+Topic.all.each do |y|
+  user1.topics << y if rand(30) == 1
+end
+
 User.all.each do |x|
   event1.attendees << x if rand(2) == 1
   event2.attendees << x if rand(2) == 1
   event3.attendees << x if rand(2) == 1
   event4.attendees << x if rand(2) == 1
   event5.attendees << x if rand(2) == 1
+  
+  Topic.all.each do |y|
+    x.topics << y if rand(40) == 1
+  end
 end
 
 Zipcode.where("zipcode LIKE '60%'").each do |x|
