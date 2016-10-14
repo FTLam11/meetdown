@@ -58,8 +58,6 @@
 #   end
 # end
 
-Topic.create(name:"DING DONG", verbs:'1111111111')
-
 # Topic.create(name:"Group Workouts", verbs:'0010100001')
 # Topic.create(name:"Runners", verbs:'1010000001')
 # Topic.create(name:"Dog Play Dates", verbs:'0000000001')
