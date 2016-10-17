@@ -15,6 +15,14 @@ atlas.factory('AtlasFactory', function() {
     "#FFF7F3"
   ];
 
+  obj.COLORS_FUSION = [
+    "#49006A",
+    "#DD3497",
+    "#F768A1",
+    "#FA9FB5",
+    "#FDE0DD",
+  ]
+
   obj.setLayer = function(zipString) {
     return {
       options: {
@@ -33,30 +41,27 @@ atlas.factory('AtlasFactory', function() {
   obj.setZipColorQuery = function(zipObj) {
     var zipKeys = Object.keys(zipObj);
     var queryArr = [];
-    var chunk = Math.floor(zipKeys.length / 8);
-    var zipsThatGetLastColor = zipKeys.length % 8;
-    var currentColor = 0;
+    var chunk = Math.floor(zipKeys.length / 5);
     var arrNum = 0;
 
     if (chunk > 0) {
-      for (var colorNum = 0; colorNum < 7; colorNum++) {
+      for (var colorNum = 0; colorNum < 5; colorNum++) {
+        var combinedZipString = "";
         for (var chunkNum = 0; chunkNum < chunk; chunkNum++) {
-          queryArr.push(this.colorMe(zipKeys[arrNum], this.COLORS[colorNum]));
+          combinedZipString += zipKeys[arrNum] + ",";
           arrNum++;
         };
+        combinedZipString = combinedZipString.slice(0, -1);
+          queryArr.push(this.colorMe(combinedZipString, this.COLORS_FUSION[colorNum]));
       };
     }
-
-    for (; arrNum < zipKeys.length; arrNum++) {
-      queryArr.push(this.colorMe(zipKeys[arrNum], this.COLORS[this.COLORS.length - 1]));
-    };
 
     return queryArr;
   };
 
   obj.colorMe = function(zipcode, color) {
       var obj = {
-        where: 'Zipcode = ' + zipcode,
+        where: 'Zipcode IN (' + zipcode + ')',
         polygonOptions: {
           fillColor: color
         }
