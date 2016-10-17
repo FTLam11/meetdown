@@ -554,68 +554,174 @@
 # Topic.create(name:"Arabic Culture", verbs:'0000010000')
 # Topic.create(name:"LAN Party", verbs:'0000000010')
 
-user1 = User.create(username: "Michael", email: "Michael@atlas.com")
-user2 = User.create(username: "Frank", email: "Frank@atlas.com")
-user3 = User.create(username: "Fronk", email: "Fronk@atlas.com")
-user4 = User.create(username: "Mike", email: "Mike@atlas.com")
-user5 = User.create(username: "Novice", email: "Novice@atlas.com")
-user6 = User.create(username: "Joson", email: "Joson@atlas.com")
-user7 = User.create(username: "WoundedTuna", email: "WoundedTuna@atlas.com")
-user8 = User.create(username: "Parrot", email: "Parrot@atlas.com")
-user9 = User.create(username: "Trump", email: "Trump@atlas.com")
-user10 = User.create(username: "Hilaroo", email: "Hilaroo@atlas.com")
-user11 = User.create(username: "Jillenstein", email: "Jillenstein@atlas.com")
-user12 = User.create(username: "GaryJohns", email: "GaryJohns@atlas.com")
-user13 = User.create(username: "Amandapls", email: "Amandapls@atlas.com")
-user14 = User.create(username: "Barathrum", email: "Soultrain@atlas.com")
-user15 = User.create(username: "Shaggy", email: "Shaggy@atlas.com")
+# user1 = User.create(username: "Michael", email: "Michael@atlas.com")
+# user2 = User.create(username: "Frank", email: "Frank@atlas.com")
+# user3 = User.create(username: "Fronk", email: "Fronk@atlas.com")
+# user4 = User.create(username: "Mike", email: "Mike@atlas.com")
+# user5 = User.create(username: "Novice", email: "Novice@atlas.com")
+# user6 = User.create(username: "Joson", email: "Joson@atlas.com")
+# user7 = User.create(username: "WoundedTuna", email: "WoundedTuna@atlas.com")
+# user8 = User.create(username: "Parrot", email: "Parrot@atlas.com")
+# user9 = User.create(username: "Trump", email: "Trump@atlas.com")
+# user10 = User.create(username: "Hilaroo", email: "Hilaroo@atlas.com")
+# user11 = User.create(username: "Jillenstein", email: "Jillenstein@atlas.com")
+# user12 = User.create(username: "GaryJohns", email: "GaryJohns@atlas.com")
+# user13 = User.create(username: "Amandapls", email: "Amandapls@atlas.com")
+# user14 = User.create(username: "Barathrum", email: "Soultrain@atlas.com")
+# user15 = User.create(username: "Shaggy", email: "Shaggy@atlas.com")
+# user16 = User.create(username: 'Moo', email: 'Moo@atlas.com')
+# user17 = User.create(username: 'Hao', email: 'Hao@atlas.com')
+# user18 = User.create(username: 'Dendi', email: 'Dendi@atlas.com')
+# user19 = User.create(username: 'Envy', email: 'Envy@atlas.com')
+# user20 = User.create(username: 'Xboct', email: 'Xboct@atlas.com')
+# user21 = User.create(username: 'Moonmeander', email: 'Moonmeander@atlas.com')
+# user22 = User.create(username: 'FATA', email: 'FATA@atlas.com')
+# user23 = User.create(username: 'Stella', email: 'Stella@atlas.com')
+# user24 = User.create(username: 'Kate', email: 'Kate@atlas.com')
+# user25 = User.create(username: 'Batman', email: 'Batman@atlas.com')
+# user26 = User.create(username: 'Superman', email: 'Superman@atlas.com')
+# user27 = User.create(username: 'Flash', email: 'Flash@atlas.com')
+# user28 = User.create(username: 'WonderWoman', email: 'WonderWoman@atlas.com')
+# user29 = User.create(username: 'Ash', email: 'Ash@atlas.com')
+# user30 = User.create(username: 'Misty', email: 'Misty@atlas.com')
+# user31 = User.create(username: 'Brock', email: 'Brock@atlas.com')
+# user32 = User.create(username: 'Pikachu', email: 'Pikachu@atlas.com')
+# user33 = User.create(username: 'Ryu', email: 'Ryu@atlas.com')
+# user34 = User.create(username: 'Chun_Li', email: 'Chun_Li@atlas.com')
+# user35 = User.create(username: 'Dhalsim', email: 'Dhalsim@atlas.com')
+# user36 = User.create(username: 'Zangief', email: 'Zangief@atlas.com')
+# user37 = User.create(username: 'SarahKerrigan', email: 'SarahKerrigan@atlas.com')
+# user38 = User.create(username: 'JimRaynor', email: 'JimRaynor@atlas.com')
+# user39 = User.create(username: 'Atlas', email: 'Atlas@atlas.com')
+# user40 = User.create(username: 'Zoose', email: 'Zoose@atlas.com')
+# user41 = User.create(username: 'Hera', email: 'Hera@atlas.com')
+# user42 = User.create(username: 'Aphrodite', email: 'Aphrodite@atlas.com')
+# user43 = User.create(username: 'Thor', email: 'Thor@atlas.com')
+# user44 = User.create(username: 'Valkyrie', email: 'Valkyrie@atlas.com')
+# user45 = User.create(username: 'Vegeta', email: 'Vegeta@atlas.com')
+# user46 = User.create(username: 'Barnes', email: 'Barnes@atlas.com')
+# user47 = User.create(username: 'Sylvanas', email: 'Sylvanas@atlas.com')
+# user48 = User.create(username: 'Rogue', email: 'Rogue@atlas.com')
+# user49 = User.create(username: 'Phoenix', email: 'Phoenix@atlas.com')
+# user50 = User.create(username: 'Jubilee', email: 'Jubilee@atlas.com')
+# user51 = User.create(username: 'Wolverine', email: 'Wolverine@atlas.com')
+# user52 = User.create(username: 'Cyclops', email: 'Cyclops@atlas.com')
+# user53 = User.create(username: 'Gambit', email: 'Gambit@atlas.com')
+# user54 = User.create(username: 'Goldie', email: 'Goldie@atlas.com')
+# user55 = User.create(username: 'Wai', email: 'Wai@atlas.com')
+# user56 = User.create(username: 'Candyce', email: 'Candyce@atlas.com')
+# user57 = User.create(username: 'Romona', email: 'Romona@atlas.com')
+# user58 = User.create(username: 'Ying', email: 'Ying@atlas.com')
+# user59 = User.create(username: 'Sherrie', email: 'Sherrie@atlas.com')
+# user60 = User.create(username: 'Tilda', email: 'Tilda@atlas.com')
+# user61 = User.create(username: 'Lola', email: 'Lola@atlas.com')
+# user62 = User.create(username: 'Sau', email: 'Sau@atlas.com')
+# user63 = User.create(username: 'Deirdre', email: 'Deirdre@atlas.com')
+# user64 = User.create(username: 'Meghann', email: 'Meghann@atlas.com')
+# user65 = User.create(username: 'Tonie', email: 'Tonie@atlas.com')
+# user66 = User.create(username: 'Willow', email: 'Willow@atlas.com')
+# user67 = User.create(username: 'Justine', email: 'Justine@atlas.com')
+# user68 = User.create(username: 'Mina', email: 'Mina@atlas.com')
+# user69 = User.create(username: 'Kira', email: 'Kira@atlas.com')
+# user70 = User.create(username: 'Apryl', email: 'Apryl@atlas.com')
+# user71 = User.create(username: 'Maureen', email: 'Maureen@atlas.com')
+# user72 = User.create(username: 'Golden', email: 'Golden@atlas.com')
+# user73 = User.create(username: 'Racquel', email: 'Racquel@atlas.com')
+# user74 = User.create(username: 'Rosette', email: 'Rosette@atlas.com')
+# user75 = User.create(username: 'Stefanie', email: 'Stefanie@atlas.com')
+# user76 = User.create(username: 'Kaye', email: 'Kaye@atlas.com')
+# user77 = User.create(username: 'Ruthe', email: 'Ruthe@atlas.com')
+# user78 = User.create(username: 'Erica', email: 'Erica@atlas.com')
+# user79 = User.create(username: 'Lashell', email: 'Lashell@atlas.com')
+# user80 = User.create(username: 'Mao', email: 'Mao@atlas.com')
+# user81 = User.create(username: 'Bobette', email: 'Bobette@atlas.com')
+# user82 = User.create(username: 'Shelly', email: 'Shelly@atlas.com')
+# user83 = User.create(username: 'Jaye', email: 'Jaye@atlas.com')
+# user84 = User.create(username: 'Tiffanie', email: 'Tiffanie@atlas.com')
+# user85 = User.create(username: 'Monserrate', email: 'Monserrate@atlas.com')
+# user86 = User.create(username: 'Harriett', email: 'Harriett@atlas.com')
+# user87 = User.create(username: 'Stella', email: 'Stella@atlas.com')
+# user88 = User.create(username: 'Laci', email: 'Laci@atlas.com')
+# user89 = User.create(username: 'Lenita', email: 'Lenita@atlas.com')
+# user90 = User.create(username: 'Arnita', email: 'Arnita@atlas.com')
+# user91 = User.create(username: 'Luise', email: 'Luise@atlas.com')
+# user92 = User.create(username: 'Lynell', email: 'Lynell@atlas.com')
+# user93 = User.create(username: 'Bulah', email: 'Bulah@atlas.com')
+# user94 = User.create(username: 'Gayla', email: 'Gayla@atlas.com')
+# user95 = User.create(username: 'Lanell', email: 'Lanell@atlas.com')
+# user96 = User.create(username: 'Tina', email: 'Tina@atlas.com')
+# user97 = User.create(username: 'Celinda', email: 'Celinda@atlas.com')
+# user98 = User.create(username: 'Adelle', email: 'Adelle@atlas.com')
+# user99 = User.create(username: 'Mariann', email: 'Mariann@atlas.com')
+# user100 = User.create(username: 'Marjorie', email: 'Marjorie@atlas.com')
+# user101 = User.create(username: 'Leatrice', email: 'Leatrice@atlas.com')
+# user102 = User.create(username: 'Emilie', email: 'Emilie@atlas.com')
+# user103 = User.create(username: 'Belia', email: 'Belia@atlas.com')
 
-event1 = Event.create(name: "BBQ",description: "We will be having a bbq" ,date: "2016-10-14 04:05:06",location: "Green Street Smoked Meats")
-event2 = Event.create(name: "Trade Pokemon Cards",description: "We will be trading pokemon cards" ,date: "2016-10-14 04:05:06",location: "Dice Dojo")
-event3 = Event.create(name: "Vote for Trump",description: "We will be making america terrible" ,date: "2016-11-28 04:05:06",location: "McDonald's")
-event4 = Event.create(name: "Who is the sexiest anime character and why is it Vegeta?",description: "We will be making america terrible" ,date: "2016-11-28 04:05:06",location: "McDonald's")
-event5 = Event.create(name: "LAN Party",description: "LAN Party wooo" ,date: "2016-11-28 04:05:06",location: "Ignite Gaming Lounge")
+# event1 = Event.create(name: "BBQ",description: "We will be having a bbq" ,date: "2016-10-14 04:05:06",location: "Green Street Smoked Meats")
+# event2 = Event.create(name: "Trade Pokemon Cards",description: "We will be trading pokemon cards" ,date: "2016-10-14 04:05:06",location: "Dice Dojo")
+# event3 = Event.create(name: "Vote for Trump",description: "We will be making america terrible" ,date: "2016-11-28 04:05:06",location: "McDonald's")
+# event4 = Event.create(name: "Who is the sexiest anime character and why is it Vegeta?",description: "We will be making america terrible" ,date: "2016-11-28 04:05:06",location: "McDonald's")
+# event5 = Event.create(name: "LAN Party",description: "LAN Party wooo" ,date: "2016-11-28 04:05:06",location: "Ignite Gaming Lounge")
 
-event1.topics << Topic.find_by(name:"BBQ")
-event1.topics << Topic.find_by(name:"Gluten-Free")
-event1.topics << Topic.find_by(name:"Diners")
-event2.topics << Topic.find_by(name:"Pokemon")
-# event3.topics << Topic.find_by(name:"Republican")
-# event3.topics << Topic.find_by(name:"Politics")
-event4.topics << Topic.find_by(name:"Anime")
-event5.topics << Topic.find_by(name:"LAN Party")
-event5.topics << Topic.find_by(name:"Dota 2")
-event5.topics << Topic.find_by(name:"CS:GO")
-
-
-
-event1.hosts << user1
-event2.hosts << user2
-event3.hosts << user3
-event4.hosts << user4
-event5.hosts << user5
+# event1.topics << Topic.find_by(name:"BBQ")
+# event1.topics << Topic.find_by(name:"Gluten-Free")
+# event1.topics << Topic.find_by(name:"Diners")
+# event2.topics << Topic.find_by(name:"Pokemon")
+# event3.topics << Topic.find_by(name:"Libertarian")
+# # event3.topics << Topic.find_by(name:"Politics")
+# event4.topics << Topic.find_by(name:"Anime")
+# event5.topics << Topic.find_by(name:"LAN Party")
+# event5.topics << Topic.find_by(name:"Dota 2")
+# event5.topics << Topic.find_by(name:"CS:GO")
 
 
-Topic.all.each do |y|
-  user1.topics << y if rand(30) == 1
-end
 
-User.all.each do |x|
-  event1.attendees << x if rand(2) == 1
-  event2.attendees << x if rand(2) == 1
-  event3.attendees << x if rand(2) == 1
-  event4.attendees << x if rand(2) == 1
-  event5.attendees << x if rand(2) == 1
-  
-  Topic.all.each do |y|
-    x.topics << y if rand(40) == 1
-  end
-end
+# event1.hosts << User.all.sample
+# event2.hosts << User.all.sample
+# event3.hosts << User.all.sample
+# event4.hosts << User.all.sample
+# event5.hosts << User.all.sample
 
-Zipcode.where("zipcode LIKE '60%'").each do |x|
-  event1.zipcodes << x if rand(10) == 1
-  event2.zipcodes << x if rand(10) == 1
-  event3.zipcodes << x if rand(10) == 1
-  event4.zipcodes << x if rand(10) == 1
-  event5.zipcodes << x if rand(10) == 1
+# User.all.each do |x|
+#   event1.attendees << x if rand(2) == 1
+#   event2.attendees << x if rand(2) == 1
+#   event3.attendees << x if rand(2) == 1
+#   event4.attendees << x if rand(2) == 1
+#   event5.attendees << x if rand(2) == 1
+#   p "1"
+#   x.topics << Topic.find_by(name: "Runners") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Group Workouts") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Social Work") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Accountability Partners") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Social Coding") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Study Halls") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Writing Workshops") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Drinking Games") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Workout Partners") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "League Sports") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Bowling") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Marathon Training") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Ultimate Frisbee") if rand(2) == 1
+#   x.topics << Topic.find_by(name: "Softball") if rand(2) == 1
+#   p "2"
+#   Topic.all.sample(11).each do |y|
+#     x.topics << y if !x.topics.include?(y)
+#   end
+#   p"3"
+# end
+
+# Zipcode.where("zipcode LIKE '606%' OR zipcode LIKE '600%'").each do |x|
+#   p"x.zipcode"
+#   event1.zipcodes << x if rand(8) == 1
+#   event2.zipcodes << x if rand(8) == 1
+#   event3.zipcodes << x if rand(8) == 1
+#   event4.zipcodes << x if rand(8) == 1
+#   event5.zipcodes << x if rand(8) == 1
+# end
+
+
+User.all.each do |y|
+  y.zip_code = Zipcode.where("zipcode LIKE '606%' OR zipcode LIKE '600%'").sample.zipcode
+  y.save
 end

@@ -8,12 +8,14 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   $scope.events = [];
   $scope.currentZip = "60654";
   $scope.userTopics = [];
+  $scope.currentTopic = ""
 
   if ($auth.getPayload() != undefined && $auth.getPayload().zip_code != undefined) {
     $scope.currentZip = $auth.getPayload().zip_code;
   };
 
   $scope.setCurrentZip = function(zipcode) {
+    $scope.currentTopic = ""
     $scope.interestZip = zipcode;
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
@@ -47,6 +49,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   };
 
   $scope.setQueryTopic = function(topic) {
+    $scope.currentTopic=topic.name
     ZipCount.get({ id: topic.id }).$promise.then(function(data) {
       plotHeatmap(data);
     });

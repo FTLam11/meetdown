@@ -4,6 +4,7 @@
       <ui-gmap-layer type="FusionTablesLayer" events="yo.events" options="map.fusionlayer" show="showFusionLayer">
       </ui-gmap-layer>
     </ui-gmap-google-map>
+    <div ng-show="currentTopic">{{currentTopic}}</div>
     <nvd3-pie-chart data="zipTopics" id="d3Id" width="500" height="500" x="d3topic()" y="d3count()" color="d3color()" noData="Oops! No interests were found for your zip code." showLabels="true" pieLabelsOutside="true">
       <svg></svg>
     </nvd3-pie-chart>
