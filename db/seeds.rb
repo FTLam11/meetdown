@@ -554,6 +554,7 @@
 # Topic.create(name:"Arabic Culture", verbs:'0000010000')
 # Topic.create(name:"LAN Party", verbs:'0000000010')
 
+<<<<<<< HEAD
 # user1 = User.create(username: "Michael", email: "Michael@atlas.com")
 # user2 = User.create(username: "Frank", email: "Frank@atlas.com")
 # user3 = User.create(username: "Fronk", email: "Fronk@atlas.com")
