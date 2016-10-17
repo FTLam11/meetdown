@@ -694,11 +694,11 @@
 # end
 
 Zipcode.where("zipcode LIKE '606%' OR zipcode LIKE '600%'").each do |x|
-  event.find(1).zipcodes << x if rand(8) == 1
-  event.find(2).zipcodes << x if rand(8) == 1
-  event.find(3).zipcodes << x if rand(8) == 1
-  event.find(4).zipcodes << x if rand(8) == 1
-  event.find(5).zipcodes << x if rand(8) == 1
+  Event.find(1).zipcodes << x if rand(8) == 1
+  Event.find(2).zipcodes << x if rand(8) == 1
+  Event.find(3).zipcodes << x if rand(8) == 1
+  Event.find(4).zipcodes << x if rand(8) == 1
+  Event.find(5).zipcodes << x if rand(8) == 1
 end
 
 
