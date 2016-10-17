@@ -1,4 +1,4 @@
-# README
+# InterestAtlas
 
 * Dependencies
 
