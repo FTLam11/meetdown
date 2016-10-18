@@ -55,7 +55,7 @@ class UsersController < ApplicationController
         key: unique_name.to_s + params[:key].gsub(/\s+/, ""),
         policy: s3_upload_policy,
         signature: s3_upload_signature,
-        AWSAccessKeyId: ENV["AWS_SECRET_KEY_ID"]
+        AWSAccessKeyId: Rails.application.secrets.aws_secret_key_id
       }
     else
       render json: {error: "You are not authorized to perform this action"}
