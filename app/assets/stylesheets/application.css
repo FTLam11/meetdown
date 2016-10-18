@@ -155,7 +155,7 @@ img-crop canvas {
   cursor: pointer;
 }
 
-.interest {
+.interest:hover {
   text-decoration: none;
 }
 
