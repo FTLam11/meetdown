@@ -155,6 +155,10 @@ img-crop canvas {
   cursor: pointer;
 }
 
+.interest {
+  text-decoration: none;
+}
+
 .header-center {
   text-align: center;
 }
