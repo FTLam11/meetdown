@@ -157,6 +157,7 @@ img-crop canvas {
 
 .interest:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .header-center {
