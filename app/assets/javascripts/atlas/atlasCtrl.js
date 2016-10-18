@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory','$location', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory,$location) {
   $scope.topics = [];
   $scope.showFusionLayer = true;
   $scope.map = StyleMap;
@@ -47,6 +47,10 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
       return d.count;
     };
   };
+
+  $scope.eventLink = function(id){
+    $location.path('/events/' + id)
+  }
 
   $scope.setQueryTopic = function(topic) {
     $scope.currentTopic=topic.name
