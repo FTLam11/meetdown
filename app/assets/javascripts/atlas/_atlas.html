@@ -19,9 +19,7 @@
     </div>
     <h2 class="header-center">Events</h2>
     <p class="center events-list" ng-show="events.length == 0">No events were found for {{currentZip}}!</p>
-    <ul>
-      <li ng-repeat="event in events">{{event}}</li>
-    </ul>
+      <div ng-repeat="event in events">{{event.date  | date:'MM/dd/yyyy @ h:mma'}} <a ng-click="eventLink(event.id)">{{event.name}}</a></div>
     <div class="wrap atlas-right">
     <h2 class="header-center">Top Interests in {{interestZip}}</h2>
       <a class="interest" ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
