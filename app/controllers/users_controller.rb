@@ -27,7 +27,9 @@ class UsersController < ApplicationController
     p params
     puts "=========================="
     @oauth = Koala::Facebook::OAuth.new(Rails.application.secrets.fb_client_id, Rails.application.secrets.fb_secret_key, params[:redirectUri])
-    oauthtoken = @oauth.get_access_token(params[:code])
+    # oauthtoken = @oauth.get_access_token(params[:code])
+    @oauth.url_for_oauth_code
+    @oauth.get_access_token(code)
     @graph = Koala::Facebook::API.new(oauthtoken)
     profile = @graph.get_object("me")
     payload = User.find_or_create_by(fb_id: profile["id"]).as_json
