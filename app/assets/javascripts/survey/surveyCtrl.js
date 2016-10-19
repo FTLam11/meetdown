@@ -1,14 +1,13 @@
 var survey = angular.module('meetdown');
 
-survey.controller('SurveyCtrl', ['$scope', 'SubmitSurvey', '$state', '$location','$window', '$auth', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', 'Authenticate', function($scope, SubmitSurvey, $state, $location, $window, $auth, RequestSignature, UploadToS3, DataURItoBlob, Authenticate,MeetupInterests,MeetupInterests1,MeetupInterests2,MeetupInterests3) {
+survey.controller('surveyCtrl', ['$scope', 'SubmitSurvey', '$state', '$location','$window', '$auth', 'RequestSignature', 'UploadToS3', 'DataURItoBlob', 'Authenticate','$uibModalInstance', function($scope, SubmitSurvey, $state, $location, $window, $auth, RequestSignature, UploadToS3, DataURItoBlob, Authenticate, $uibModalInstance) {
 
 $scope.interests = []
 Authenticate();
-
 $scope.submitInfo = function() {
     SubmitSurvey.update({age: $scope.age, zip_code: $scope.zipcode, id: $auth.getPayload().id, token: $auth.getToken()}).$promise.then(function(response){
       $auth.setToken(response.token);
-      $scope.showProfile($auth.getPayload()['id']);
+      $uibModalInstance.close()
     })
 };
 
