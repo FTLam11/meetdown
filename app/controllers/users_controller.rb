@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     puts "=========================="
     p params
     puts "=========================="
-    @oauth = Koala::Facebook::OAuth.new(Rails.application.secrets.fb_client_id, Rails.application.secrets.fb_secret_key, params[:redirectUri])
+    @oauth = Koala::Facebook::OAuth.new(Rails.application.secrets.fb_client_id, Rails.application.secrets.fb_secret_key, "http://ruby-pg-env.vnmyh7yq7h.us-east-1.elasticbeanstalk.com/#/account")
     # oauthtoken = @oauth.get_access_token(params[:code])
     @oauth.url_for_oauth_code
     oauthtoken = @oauth.get_access_token(code)
