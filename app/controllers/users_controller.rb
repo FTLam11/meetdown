@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     puts "==================="
     p profile
     puts "==================="
-    payload = User.find_or_create_by(fb_id: profile["id"]).as_json
+    payload = User.find_or_create_by(username: profile["name"], fb_id: profile["id"]).as_json
     jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
     render json: {token: jwt}
   end
