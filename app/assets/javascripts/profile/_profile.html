@@ -7,17 +7,20 @@
         <div class="profile-details">
           <h3 ng-show="!editing">Email: {{user.email}}</h3>
           <div class="profile-edit">
-            <label for="email" ng-show="editing" ng-show="homeProfile"><h3>Email:</h3></label>
+            <label for="email" ng-show="editing" ng-show="homeProfile">
+              <h3>Email:</h3></label>
             <input ng-show="editing" ng-show="homeProfile" ng-value="user.email" ng-model="tempEmail"></input>
           </div>
           <h3 ng-show="!editing" ng-model="tempZip">Zip: {{user.zip_code}}</h3>
           <div class="profile-edit">
-            <label for="zipcode" ng-show="editing" ng-show="homeProfile"><h3>Zipcode:</h3></label>
+            <label for="zipcode" ng-show="editing" ng-show="homeProfile">
+              <h3>Zipcode:</h3></label>
             <input ng-show="editing" ng-value="user.zip_code" ng-model="tempZip"></input>
           </div>
           <h3 ng-show="!editing" ng-model="tempAge">Age: {{user.age}} years old</h3>
           <div class="profile-edit">
-            <label for="age" ng-show="editing" ng-show="homeProfile"><h3>Age:</h3></label>
+            <label for="age" ng-show="editing" ng-show="homeProfile">
+              <h3>Age:</h3></label>
             <input ng-show="editing" ng-value="user.age" ng-model="tempAge"></input>
           </div>
         </div>
@@ -38,6 +41,24 @@
         <li ng-repeat="user in hostings">{{user}}</li>
       </ul>
       <a class="btn register-btn" ng-show="!editing && homeProfile" ng-click="edit()">Edit Profile</a>
+      <a class="btn register-btn" ng-show="!editing && homeProfile" ng-click="editPic()">Update Profile Picture</a>
+      <div class="edit-profile-pic" ng-show="editingPic && homeProfile">
+        <form ng-submit="updateProfilePic()">
+          <label for="picture">Update your profile picture:</label>
+          <input ngf-select ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" name="file" ng-model="file" type="file" id="fileInput">
+          <br>
+          <div class="cropArea">
+            <img-crop image="profilePic" result-image="croppedProfilePic" [result-image-format="image/jpeg" ]></img-crop>
+          </div>
+          <div ng-show="profilePic.length > 0">
+            <label for="croppedImage">
+              Cropped Image:
+            </label>
+            <div><img ng-src="{{croppedProfilePic}}"></div>
+          </div>
+          <input class="btn register-btn" type="submit" value="Upload File to S3">
+        </form>
+      </div>
       <a class="btn register-btn" ng-show="editing" ng-click="saveChanges()">Save Changes</a>
       <a class="btn register-btn" ng-show="editing" ng-click="cancel()">Cancel</a>
     </div>
