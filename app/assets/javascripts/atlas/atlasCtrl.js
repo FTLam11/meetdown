@@ -32,8 +32,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   }
   else{openModal()};
 
-  console.log($auth.getPayload())
-
   $scope.setCurrentZip = function(zipcode) {
     $scope.currentTopic = ""
     $scope.interestZip = zipcode;
