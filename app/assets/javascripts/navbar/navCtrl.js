@@ -10,7 +10,8 @@ nav.controller('NavCtrl', ['$scope', '$auth', '$state', function($scope, $auth, 
   };
 
   $scope.logout = function() {
-    return $auth.logout();
+    $auth.logout();
+    $state.go('root.account');
   };
 
   $scope.goProfile = function() {
