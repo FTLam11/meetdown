@@ -5,7 +5,12 @@ account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope,
 
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider).then(function(response) {
-      $auth.setToken(response.data.token);
+      if (response.data.token) {
+        $auth.setToken(response.data.token);
+        $state.go('root.profile');
+      } else {
+        $scope.loginFail = "Something went wrong. Please try again later.";
+      };
     });
   };
 
