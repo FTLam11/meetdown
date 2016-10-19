@@ -3,24 +3,8 @@
     <div class="form-group">
       <h1>Let me download you!</h1>
       <form ng-submit="submitInfo()">
-        <input type="text" name="age" ng-model="age" placeholder="Enter yo age">
         <input type="text" name="zipcode" ng-model="zipcode" placeholder="Enter yo zipcode">
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-
-      <form ng-submit="updateProfilePic()">
-        Update your profile picture:
-        <input ngf-select ngf-pattern="'image/*'"
-    ngf-accept="'image/*'" ngf-max-size="10MB" name="file" ng-model="file" type="file" id="fileInput">
-        <br>
-        <div class="cropArea">
-          <img-crop image="profilePic" result-image="croppedProfilePic" [result-image-format="image/jpeg"]></img-crop>
-        </div>
-        <div>Cropped Image:</div>
-        <div><img ng-src="{{croppedProfilePic}}"></div>
-        <input type="submit" value="Upload File to S3">
-      </form>
-    </div>
-    <div ng-repeat="interest in interests">{{interest}}</div>
   </div>
 </div>
