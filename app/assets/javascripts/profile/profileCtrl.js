@@ -44,6 +44,10 @@ $scope.updateProfilePic = function() {
 $scope.croppedProfilePicBlob = DataURItoBlob($scope.croppedProfilePic);
 };
 
+$scope.showProfile = function(profileID) {
+  $location.path("/profile/" + profileID)
+};
+
 $scope.cancel= function(){
   $scope.editing=false
 }
