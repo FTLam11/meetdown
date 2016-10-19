@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory','$location','$uibModal', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory,$location,$uibModal) {
   $scope.topics = [];
   $scope.showFusionLayer = true;
   $scope.map = StyleMap;
@@ -9,6 +9,22 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   $scope.currentZip = "60654";
   $scope.userTopics = [];
   $scope.currentTopic = ""
+
+  var modalInstance = $uibModal.open({
+            backdrop  : 'static',
+            controller: 'surveyCtrl',
+            templateUrl: 'survey/_survey.html',
+            keyboard  : false
+          })
+  modalInstance.result.then(function () {
+            //on ok button press
+            var zip = $auth.getPayload().zip_code
+            $scope.currentZip = zip
+            $scope.setCurrentZip(zip);
+        }, function () {
+            //on cancel button press
+        });
+
 
   if ($auth.getPayload() != undefined && $auth.getPayload().zip_code != undefined) {
     $scope.currentZip = $auth.getPayload().zip_code;
