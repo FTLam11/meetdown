@@ -50,6 +50,7 @@ $scope.showProfile = function(profileID) {
 
 $scope.cancel= function(){
   $scope.editing=false
+  $scope.editingPic = false;
 }
 
 $scope.saveChanges= function(){
