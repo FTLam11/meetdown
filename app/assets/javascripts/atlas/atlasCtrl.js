@@ -10,26 +10,30 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   $scope.userTopics = [];
   $scope.currentTopic = ""
 
-  var modalInstance = $uibModal.open({
-            backdrop  : 'static',
-            controller: 'surveyCtrl',
-            templateUrl: 'survey/_survey.html',
-            keyboard  : false
-          })
-  modalInstance.result.then(function () {
-            //on ok button press
-            var zip = $auth.getPayload().zip_code
-            $scope.currentZip = zip
-            $scope.setCurrentZip(zip);
-        }, function () {
-            //on cancel button press
-            console.log("Modal Closed");
-        });
+  var openModal = function(){
+    var modalInstance = $uibModal.open({
+              backdrop  : 'static',
+              controller: 'surveyCtrl',
+              templateUrl: 'survey/_survey.html',
+              keyboard  : false
+            })
+    modalInstance.result.then(function () {
+              //on ok button press
+              var zip = $auth.getPayload().zip_code
+              $scope.currentZip = zip
+              $scope.setCurrentZip(zip);
+          }, function () {
+              //on cancel button press
+              console.log("Modal Closed");
+          });
+  }
+    
 
 
   if ($auth.getPayload() != undefined && $auth.getPayload().zip_code != undefined) {
     $scope.currentZip = $auth.getPayload().zip_code;
-  };
+  }
+  else{openModal()};
 
   $scope.setCurrentZip = function(zipcode) {
     $scope.currentTopic = ""
