@@ -24,14 +24,14 @@
     </ul>
     <div class="wrap atlas-right">
     <h2 class="header-center">Top Interests in {{interestZip}}</h2>
-      <a class="interest" ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
+      <a class="interest" ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)" ng-class="{'active-topic': currentTopic == topic.name}">
         <div class="interest-tag-added">{{topic.name}} - {{topic.count}}</div>
       </a>
     </div>
     <div class="wrap atlas-right">
       <h2 class="header-center">Interest Search</h2>
       <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests" autocomplete="off">
-      <a class="interest" ng-repeat="topic in topics | limitTo: 100 | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
+      <a class="interest" ng-repeat="topic in topics | limitTo: 100 | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)" ng-class="{'active-topic': currentTopic == topic.name}">
         <div class="interest-tag">{{topic.name}}</div>
       </a>
     </div>

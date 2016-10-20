@@ -327,3 +327,7 @@ header {
 .events-list {
   font-size: 16px;
 }
+
+.active-topic {
+  outline-style: dashed;
+}
