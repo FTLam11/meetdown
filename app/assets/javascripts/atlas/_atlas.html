@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-6 atlas-left">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' styles='map.styles'>
-      <ui-gmap-layer type="FusionTablesLayer" events="yo.events" options="map.fusionlayer" show="showFusionLayer">
+    <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' styles='map.styles' events='map.events'>
+      <ui-gmap-layer type="FusionTablesLayer" options="map.fusionlayer" show="showFusionLayer" onCreated="fusionTable2CallBack" >
       </ui-gmap-layer>
     </ui-gmap-google-map>
     <div ng-show="currentTopic">{{currentTopic}}</div>
