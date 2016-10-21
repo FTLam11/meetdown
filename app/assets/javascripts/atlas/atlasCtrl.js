@@ -10,6 +10,13 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   $scope.userTopics = [];
   $scope.currentTopic = ""
 
+  $scope.fusionTable2CallBack = function (layer) {
+        layer.addListener('mouseover', function(e) {
+          this.setOptions({fillOpacity: 1})
+            console.log(e);
+        });
+        }
+
   var openModal = function(){
     var modalInstance = $uibModal.open({
               backdrop  : 'static',
