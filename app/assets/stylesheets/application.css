@@ -329,5 +329,5 @@ header {
 }
 
 .active-topic {
-  outline-style: dashed;
+  background-color: #FA9FB5;
 }
