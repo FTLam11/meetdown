@@ -27,11 +27,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
           });
   }
 
-  if ($auth.getPayload() != undefined && $auth.getPayload().zip_code != undefined) {
-    $scope.currentZip = $auth.getPayload().zip_code;
-  }
-  else{openModal()};
-
   $scope.setCurrentZip = function(zipcode) {
     $scope.currentTopic = ""
     $scope.interestZip = zipcode;
@@ -45,7 +40,14 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     });
   };
 
-  $scope.setCurrentZip($scope.currentZip);
+  if ($auth.getPayload() == undefined) {
+    $scope.setCurrentZip($scope.currentZip);
+  } else if ($auth.getPayload().zip_code != undefined) {
+    $scope.currentZip = $auth.getPayload().zip_code;
+  } else {
+    openModal();
+  };
+  
   // showLegend="true"
 
   $scope.d3color = function() {
