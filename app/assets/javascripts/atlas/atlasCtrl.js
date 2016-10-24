@@ -9,13 +9,22 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   $scope.currentZip = "60654";
   $scope.userTopics = [];
   $scope.currentTopic = ""
+  $scope.zipCount = []
 
   $scope.fusionTable2CallBack = function (layer) {
-        layer.addListener('mouseover', function(e) {
-          this.setOptions({fillOpacity: 1})
-            console.log(e);
+        layer.addListener('click', function(e) {
+          e.infoWindowHtml = "<h5>" + e.row.Zipcode.value + "</h5>"
+          if ($scope.currentTopic != "") {
+            e.infoWindowHtml += "Users subscribed to " + $scope.currentTopic +": "+ $scope.zipCount[e.row.Zipcode.value]
+            $scope.setCurrentZip(e.row.Zipcode.value,true)
+          }
+        });
+        layer.addListener('rightclick', function(e) {
+          e.infoWindowHtml = "<h5>" + e.row.Zipcode.value + "</h5>"
+
         });
         }
+
 
   var openModal = function(){
     var modalInstance = $uibModal.open({
@@ -34,16 +43,25 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
           });
   }
 
-  $scope.setCurrentZip = function(zipcode) {
-    $scope.currentTopic = ""
+  $scope.setCurrentZip = function(zipcode,focus) {
+    focus = focus || false;
     $scope.interestZip = zipcode;
+    $scope.currentZip = zipcode;
+    $scope.events = []
+
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
       $scope.events = data.events;
-      var obj = {};
-      obj[zipcode] = 1;
-      $scope.map.fusionlayer = AtlasFactory.setLayer(zipcode);
-      $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(obj);
+      if (focus === false){
+        $scope.currentTopic = ""
+        var obj = {};
+        obj[zipcode] = 1;
+        console.log(data.center[1])
+        $scope.map.center = { latitude: data.center[1], longitude: data.center[0] }
+        
+        $scope.map.fusionlayer = AtlasFactory.setLayer(zipcode);
+        $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(obj);
+      }
     });
   };
 
@@ -79,6 +97,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     $scope.currentTopic=topic.name
     ZipCount.get({ id: topic.id }).$promise.then(function(data) {
       plotHeatmap(data);
+      $scope.zipCount = data.zip_codes
     });
   };
 
