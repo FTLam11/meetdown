@@ -20,6 +20,7 @@ class Zipcode < ApplicationRecord
     self.neighbors.each do |neighbor|
       neighbor.events.each do |event|
         events << event
+        p event
       end
     end
     events.uniq

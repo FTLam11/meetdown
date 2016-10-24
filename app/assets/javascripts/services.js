@@ -126,7 +126,7 @@ ang.service('StyleMap', function() {
   return {
     center: { latitude: 42, longitude: -88 },
     options: { minZoom: 3, maxZoom: 13 },
-    zoom: 9,
+    zoom: 11,
     styles: [{
       "featureType": "administrative",
       "elementType": "labels.text.fill",
