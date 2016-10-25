@@ -23,6 +23,15 @@ body {
   background: #fff;
 }
 
+div {
+  transition: all linear 0.5s;
+}
+
+.ng-hide {
+  height: 0;
+}
+
+
 .sticky {
   display: flex;
   min-height: 100vh;
