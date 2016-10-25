@@ -1,7 +1,6 @@
 class Zipcode < ApplicationRecord
   has_many :venues
   has_many :events, through: :venues
-  has_many :neighbors
   has_many :proximities, through: :neighbors, source: :zipcode
 
   def neighbors
