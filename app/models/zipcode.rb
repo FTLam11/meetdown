@@ -5,23 +5,15 @@ class Zipcode < ApplicationRecord
 
   def neighbors
     neighbors = Neighbor.where(["zipcode_1 = ? or zipcode_2 = ?", self.zipcode, self.zipcode])
-    zipcodes = []
-    zipcodes << self
-    neighbors.each do |neighbor|
-      zipcodes << Zipcode.find_by(zipcode: neighbor.zipcode_1) if neighbor.zipcode_2 == self.zipcode
-      zipcodes << Zipcode.find_by(zipcode: neighbor.zipcode_2) if neighbor.zipcode_1 == self.zipcode
+    neighboring_zipcodes = neighbors.map do |neighbor|
+      neighbor = Zipcode.find_by(zipcode: neighbor.zipcode_1) if neighbor.zipcode_2 == self.zipcode
+      neighbor = Zipcode.find_by(zipcode: neighbor.zipcode_2) if neighbor.zipcode_1 == self.zipcode
     end
-    zipcodes.uniq
+    neighboring_zipcodes << self
   end
 
   def eventsNearby
-    events = []
-    self.neighbors.each do |neighbor|
-      neighbor.events.each do |event|
-        events << event
-        p event
-      end
-    end
+    events = self.neighbors.map { |neighbor| neighbor = neighbor.events }
     events.uniq
   end
 end
