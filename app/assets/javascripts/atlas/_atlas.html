@@ -18,7 +18,7 @@
       </form>
     </div>
     <h2 class="header-center">Events</h2>
-    <p class="center events-list" ng-show="events.length == 0">No events were found for {{currentZip}}!</p>
+    <p class="center events-list" ng-show="nullEvents">No events were found for {{currentZip}}!</p>
     <ul>
       <li ng-repeat="event in events">{{event}}</li>
     </ul>

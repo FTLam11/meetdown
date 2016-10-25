@@ -6,14 +6,22 @@ class Zipcode < ApplicationRecord
   def neighbors
     neighbors = Neighbor.where(["zipcode_1 = ? or zipcode_2 = ?", self.zipcode, self.zipcode])
     neighboring_zipcodes = neighbors.map do |neighbor|
-      neighbor = Zipcode.find_by(zipcode: neighbor.zipcode_1) if neighbor.zipcode_2 == self.zipcode
-      neighbor = Zipcode.find_by(zipcode: neighbor.zipcode_2) if neighbor.zipcode_1 == self.zipcode
+      if neighbor.zipcode_2 == self.zipcode
+        neighbor = Zipcode.find_by(zipcode: neighbor.zipcode_1) 
+      else
+        neighbor = Zipcode.find_by(zipcode: neighbor.zipcode_2)
+      end
     end
     neighboring_zipcodes << self
   end
 
   def eventsNearby
-    events = self.neighbors.map { |neighbor| neighbor = neighbor.events }
+    events = []
+    self.neighbors.each do |neighbor|
+      neighbor.events.each do |event|
+        events << event
+      end
+    end
     events.uniq
   end
 end

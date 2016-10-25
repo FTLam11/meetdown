@@ -51,6 +51,11 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
       $scope.events = data.events;
+      if ($scope.events.length == 0) {
+        $scope.nullEvents = true;
+      } else {
+        $scope.nullEvents = false;
+      };
       if (focus === false){
         $scope.currentTopic = ""
         var obj = {};
