@@ -21,7 +21,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
         });
         layer.addListener('rightclick', function(e) {
           e.infoWindowHtml = "<h5>" + e.row.Zipcode.value + "</h5>"
-
         });
         }
 
@@ -56,7 +55,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
         $scope.currentTopic = ""
         var obj = {};
         obj[zipcode] = 1;
-        console.log(data.center[1])
         $scope.map.center = { latitude: data.center[1], longitude: data.center[0] }
         
         $scope.map.fusionlayer = AtlasFactory.setLayer(zipcode);
