@@ -1,35 +1,26 @@
 <div class="row">
+  <div class="col-xs-12">
+    <div class="center">
+      <span class="search">Top Interests in</span>
+      <form class="zipcode-span" ng-submit="setCurrentZip(currentZip)">
+        <input class="zipcode" name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
+        <input type="submit" class="magnifying-glass">
+      </form>
+    </div>
+  </div>
   <div class="col-xs-6 atlas-left">
     <ui-gmap-google-map center='map.center' zoom='map.zoom' options='map.options' styles='map.styles' events='map.events'>
       <ui-gmap-layer type="FusionTablesLayer" options="map.fusionlayer" show="showFusionLayer" onCreated="fusionTable2CallBack" >
       </ui-gmap-layer>
     </ui-gmap-google-map>
-    <div ng-show="currentTopic">{{currentTopic}}</div>
+  </div>
+  <div class="col-xs-6">
+    <div class="wrap atlas-right">
     <nvd3-pie-chart data="zipTopics" id="d3Id" width="500" height="500" x="d3topic()" y="d3count()" color="d3color()" noData="Oops! No interests were found for your zip code." showLabels="true" pieLabelsOutside="true">
       <svg></svg>
     </nvd3-pie-chart>
-  </div>
-  <div class="col-xs-6">
-    <div class="center">
-      <span class="search">Search a zipcode</span>
-      <form class="zipcode-span"ng-submit="setCurrentZip(currentZip)">
-        <input class="zipcode" name="search" type="text" ng-model ="currentZip" value="{{currentZip}}">
-        <input type="submit" class="magnifying-glass">
-      </form>
-    </div>
-    <h2 class="header-center">Events</h2>
-    <p class="center events-list" ng-show="nullEvents">No events were found for {{currentZip}}!</p>
-    <ul>
-      <li ng-repeat="event in events">{{event}}</li>
-    </ul>
-    <div class="wrap atlas-right">
-    <h2 class="header-center">Top Interests in {{interestZip}}</h2>
-      <a class="interest" ng-repeat="topic in zipTopics" ng-click="setQueryTopic(topic)">
-        <div ng-class="{'active-topic': currentTopic == topic.name}" class="interest-tag-added">{{topic.name}} - {{topic.count}}</div>
-      </a>
     </div>
     <div class="wrap atlas-right">
-      <h2 class="header-center">Interest Search</h2>
       <input id="search" name="search" ng-model="keyword" type="text" placeholder="Filter interests" autocomplete="off">
       <a class="interest" ng-repeat="topic in topics | limitTo: 100 | filter: keyword track by topic.id" ng-click="setQueryTopic(topic)">
         <div ng-class="{'active-topic': currentTopic == topic.name}" class="interest-tag">{{topic.name}}</div>
