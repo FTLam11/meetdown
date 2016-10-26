@@ -4,11 +4,9 @@
     <h4 class="modal-title">Please enter your zipcode</h4>
   </div>
   <div class="modal-body">
-    <form ng-submit="submitInfo()">
-      <input class="modal-input" type="text" name="zipcode" ng-model="zipcode">
-    </form>
+    <input class="modal-input" type="text" name="zipcode" ng-model="zipcode">
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-primary" ng-click="submitInfo()">Submit</button>
   </div>
 </div>

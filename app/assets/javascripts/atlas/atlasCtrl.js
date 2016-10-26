@@ -65,7 +65,6 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
         var obj = {};
         obj[zipcode] = 1;
         $scope.map.center = { latitude: data.center[1], longitude: data.center[0] }
-        
         $scope.map.fusionlayer = AtlasFactory.setLayer(zipcode);
         $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(obj);
       }

@@ -12,5 +12,5 @@ $scope.submitInfo = function() {
 
 $scope.cancel = function() {
   $uibModalInstance.close();
-}
+};
 }]);
