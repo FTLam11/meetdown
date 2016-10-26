@@ -337,3 +337,11 @@ header {
 .active-topic {
   background-color: #FA9FB5;
 }
+
+.modal-head {
+  text-align: center;
+}
+
+.modal-header {
+  background: #6cecc1;
+}
