@@ -345,3 +345,7 @@ header {
 .modal-header {
   background: #6cecc1;
 }
+
+.modal-input {
+  width: 40%;
+}
