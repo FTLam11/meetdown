@@ -1,10 +1,12 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div class="form-group">
-      <h1>Please enter your zipcode</h1>
-      <form ng-submit="submitInfo()">
-        <input type="text" name="zipcode" ng-model="zipcode">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+<div class="modal-head">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h4 class="modal-title">Please enter your zipcode</h4>
+  </div>
+  <div class="modal-body">
+    <form ng-submit="submitInfo()">
+      <input type="text" name="zipcode" ng-model="zipcode">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
   </div>
 </div>
