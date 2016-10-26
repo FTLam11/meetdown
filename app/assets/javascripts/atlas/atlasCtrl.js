@@ -34,9 +34,13 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
             })
     modalInstance.result.then(function () {
               //on ok button press
-              var zip = $auth.getPayload().zip_code
-              $scope.currentZip = zip
-              $scope.setCurrentZip(zip);
+              if ($auth.getPayload().zip_code) {
+                var zip = $auth.getPayload().zip_code
+                $scope.currentZip = zip
+                $scope.setCurrentZip(zip);
+              } else {
+                $scope.setCurrentZip($scope.currentZip);
+              }
           }, function () {
               //on cancel button press
           });
@@ -72,6 +76,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     $scope.setCurrentZip($scope.currentZip);
   } else if ($auth.getPayload().zip_code != undefined) {
     $scope.currentZip = $auth.getPayload().zip_code;
+    $scope.setCurrentZip($scope.currentZip);
   } else {
     openModal();
   };
