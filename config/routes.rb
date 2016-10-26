@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   resources :interests, only: [:create]
   resources :actions, only: [:create]
   root 'application#angular'
-  resources :topics, only: [:index, :show]
+  resources :topics, only: [:index]
 end
