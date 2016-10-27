@@ -6,17 +6,17 @@
         <input class="form-control register-form" type="text" placeholder='Event Name' ng-model="eventName">
         <input class="form-control register-form" type="text" placeholder='Location' ng-model="location"> <a ng-click="newMap()">Verify {{location}} in Google Map</a>
         <input class="form-control register-form" type="text-area" placeholder='Description' ng-model="description">
-        <input class="register-form" type="text" class="form-control" 
-         ng-model="dt"
-         ng-click="datepickerOpen()"
-         uib-datepicker-popup="{{ datepicker.format }}"
-         datepicker-options="datepicker.options"
-         datepicker-append-to-body="true" 
-         is-open="datepicker.opened"               
-         show-button-bar="false"
-         close-text="Close"
-         />
-        <div class="register-form" uib-timepicker ng-model="dt" show-meridian="true" show-spinners="false" max="1260"></div>
+        <div class = "col-xs-1">
+        </div>
+        <div class="col-md-6" ng-controller = "DatepickerPopupCtrl">
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+        <div class="register-form" uib-timepicker ng-model="dt" show-meridian="true" show-spinners="false"></div>
         {{dt}}
         <form ng-submit="updateEventPic()">
           Add a banner to your event:
