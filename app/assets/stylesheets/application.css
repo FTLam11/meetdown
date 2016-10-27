@@ -168,6 +168,10 @@ img-crop canvas {
   text-align: center;
 }
 
+.questions {
+  padding: 1em;
+}
+
 .questionnaire {
   display: flex;
   height: 90vh;
@@ -184,6 +188,10 @@ img-crop canvas {
   left: 47%;
   font-size: -webkit-xxx-large;
 }
+
+.fa-arrow-cicle-down, .fa-arrow-circle-up {
+  font-size: 48px;
+} 
 
 .questionnaire-prev:hover {
   text-decoration: none;
