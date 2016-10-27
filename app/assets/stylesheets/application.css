@@ -12,8 +12,7 @@
  *
  *= require bootstrap/dist/css/bootstrap
  *= require bootstrap-social/bootstrap-social
- *= require font-awesome/css/font-awesome
- *= require components-font-awesome/css/font-awesome
+ *= require font-awesome
  *= require_tree
  *= require_self
  */
