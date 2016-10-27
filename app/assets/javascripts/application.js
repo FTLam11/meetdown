@@ -16,3 +16,4 @@
 //= require moment
 //= require bootstrap
 //= require angular-bootstrap
+//= require angular-animate

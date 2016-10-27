@@ -12,6 +12,16 @@ atlas.controller('createEventCtrl', ['$scope', '$auth', 'CreateEvent', '$window'
     startingDay: 1,
     showWeeks:false
   };
+  var d = new Date();
+  d.setHours( 1 );
+  d.setMinutes( 0 );
+  $scope.min = d;
+
+  var d = new Date();
+  d.setHours( 12 );
+  d.setMinutes( 59 );
+  $scope.max = d;
+
   $scope.datepickerOpen = function(){$scope.datepicker.opened=true}
 
   var fileManager = function(event) {
