@@ -16,13 +16,15 @@
             </div>
           </div>
           <div class="text-center">
-            <label for="email"></label>
-            <input class="form-control register-form" id="username" type="text" placeholder='Username' ng-model="username">
-            <label class="text-center" for="email"></label>
-            <input class="form-control register-form" id="username-email" type="text" placeholder='Email Address' ng-model="email">
-            <label for="password"></label>
-            <input class="form-control register-form" id="password" type="password" placeholder="Password" ng-model="password">
-            <a class="btn register-btn" style="background-color: #ff0000" ng-click="register()"> Register!</a>
+            <form>
+              <label for="email"></label>
+              <input class="form-control register-form" id="username" type="text" placeholder='Username' ng-model="username" required="Test">
+              <label class="text-center" for="email"></label>
+              <input class="form-control register-form" id="username-email" type="text" placeholder='Email Address' ng-model="email" required="">
+              <label for="password"></label>
+              <input class="form-control register-form" id="password" type="password" placeholder="Password" ng-model="password" required="">
+              <input type="submit" class="btn register-btn" style="background-color: #ff0000" ng-click="register()" value="Register!"></input>
+            </form>
           </div>
           <br>
           <br>
@@ -32,12 +34,14 @@
             </div>
           </div>
           <div class="text-center">
-            <label for="email"></label>
-            <label class="text-center" for="email"></label>
-            <input class="form-control register-form" type="text" placeholder='Email Address' ng-model="emailLogin">
-            <label for="password"></label>
-            <input class="form-control register-form" type="password" placeholder="Password" ng-model="passwordLogin">
-            <a class="btn register-btn" style="background-color: #ff0000" ng-click="login()">Login</a>
+            <form>
+              <label for="email"></label>
+              <label class="text-center" for="email"></label>
+              <input class="form-control register-form" type="text" placeholder='Email Address' ng-model="emailLogin" required="">
+              <label for="password"></label>
+              <input class="form-control register-form" type="password" placeholder="Password" ng-model="passwordLogin" required="">
+              <input type="submit" class="btn register-btn" style="background-color: #ff0000" ng-click="login()" value="Login"></input>
+            </form>
             <br>
             <p>{{loginFail}}</p>
           </div>
