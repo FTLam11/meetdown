@@ -1,4 +1,4 @@
-var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ngResource', 'uiGmapgoogle-maps', 'nvd3ChartDirectives', 'satellizer', 'ngFileUpload', 'ngImgCrop', 'ui.bootstrap']);
+var meetdown = angular.module('meetdown', ['ui.router', 'templates', 'ngResource', 'uiGmapgoogle-maps', 'nvd3ChartDirectives', 'satellizer', 'ngFileUpload', 'ngImgCrop', 'ui.bootstrap','ngAnimate']);
 
 meetdown.config(['$stateProvider',
   '$urlRouterProvider', 'uiGmapGoogleMapApiProvider', '$authProvider', function($stateProvider, $urlRouterProvider, uiGmapGoogleMapApiProvider, $authProvider) {
@@ -14,6 +14,9 @@ meetdown.config(['$stateProvider',
       display: 'popup',
       oauthType: '2.0',
       popupOptions: { width: 580, height: 400 }
+    })
+meetdown.config(function (datepickerConfig) {
+      datepickerConfig.showWeeks = false;
     });
 
     $authProvider.oauth2({
