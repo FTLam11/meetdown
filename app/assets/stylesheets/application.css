@@ -198,6 +198,10 @@ img-crop canvas {
   font-size: -webkit-xxx-large;
 }
 
+.go-atlas {
+  margin-bottom: 1em;
+}
+
 .fa-arrow-cicle-down, .fa-arrow-circle-up {
   font-size: 48px;
 } 

@@ -104,6 +104,10 @@ $scope.createInterest = function(topic) {
   $scope.userTopics.push(topic)
 };
 
+$scope.goAtlas = function() {
+  $state.go('root.interestAtlas');
+};
+
 $scope.color = function(verb) {
   switch (verb) {
     case "Identity":

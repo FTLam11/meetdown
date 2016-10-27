@@ -23,7 +23,7 @@
     </div>
     <div class="finder-current">
       <h2 class="header-center">Your Interests</h1>
-      <a class="interest" ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">
+      <a class="interest" ng-repeat="topic in userTopics track by topic.id">
         <div class="interest-tag-added">{{topic.name}}</div>
       </a>
       <div class="finder-suggest">
@@ -43,6 +43,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="go-atlas">
+          <input type="submit" class="btn register-btn" ng-click="goAtlas()" value="Finish"></input>
         </div>
       </div>
     </div>
