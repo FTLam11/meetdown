@@ -176,12 +176,12 @@ img-crop canvas {
 }
 
 .questionnaire-prev {
-  position: fixed;
+  position: absolute;
   height: 30px;
   width: 30px;
   cursor: pointer;
   top: 20%;
-  left: 24%;
+  left: 47%;
   font-size: -webkit-xxx-large;
 }
 
@@ -190,14 +190,13 @@ img-crop canvas {
 }
 
 .questionnaire-next {
-  position: fixed;
+  position: absolute;
   height: 30px;
   width: 30px;
   cursor: pointer;
   bottom: 30%;
-  left: 24%;
+  left: 47%;
   font-size: -webkit-xxx-large;
-  text-decoration: none;
 }
 
 .questionnaire-next:hover {
