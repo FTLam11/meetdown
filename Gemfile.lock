@@ -65,8 +65,6 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
     ffi (1.9.14-x64-mingw32)
-    font-awesome-rails (4.7.0.0)
-      railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -102,7 +100,6 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     pg (0.19.0)
-    pg (0.19.0-x64-mingw32)
     pkg-config (1.1.7)
     puma (3.6.0)
     rack (2.0.1)
@@ -209,7 +206,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   capybara
-  font-awesome-rails
   jbuilder (~> 2.5)
   jwt
   koala (~> 2.2)
