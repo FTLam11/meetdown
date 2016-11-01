@@ -1,7 +1,7 @@
 var account = angular.module('meetdown')
 
-account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope, $state, $auth) {
-  $scope.loginFail = "";
+account.controller('AccountCtrl', ['$scope', '$state', '$auth', 'ValidateRegistration', function($scope, $state, $auth, ValidateRegistration) {
+  $scope.errors = "";
 
   $scope.authenticate = function(provider) {
     $auth.authenticate(provider).then(function(response) {
@@ -9,7 +9,7 @@ account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope,
         $auth.setToken(response.data.token);
         $state.go('root.profile');
       } else {
-        $scope.loginFail = "Something went wrong. Please try again later.";
+        $scope.errors = "Something went wrong. Please try again later.";
       };
     });
   };
@@ -20,7 +20,7 @@ account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope,
       password: $scope.passwordLogin
     };
 
-    $scope.loginFail = "";
+    $scope.errors = "";
 
     $auth.login(user)
       .then(function(response) {
@@ -28,7 +28,7 @@ account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope,
           $auth.setToken(response.data.token);
           $state.go('root.finder');
         } else {
-          $scope.loginFail = response.data.error;
+          $scope.errors = response.data.error;
           $scope.emailLogin = "";
           $scope.passwordLogin = "";
         };
@@ -47,17 +47,21 @@ account.controller('AccountCtrl', ['$scope', '$state', '$auth', function($scope,
       password: $scope.password
     };
 
-    $auth.signup(user)
-      .then(function(response) {
-        if (response.data.token) {
-          $auth.setToken(response.data.token);
-          $state.go('root.finder');
-        } else {
-          $scope.loginFail = response.data.error;
-          $scope.username = "";
-          $scope.email = "";
-          $scope.password = "";
-        };
-      });
+    if (ValidateRegistration(user.email)) {
+      $auth.signup(user)
+        .then(function(response) {
+          if (response.data.token) {
+            $auth.setToken(response.data.token);
+            $state.go('root.finder');
+          } else {
+            $scope.errors = response.data.error[0];
+            $scope.username = "";
+            $scope.email = "";
+            $scope.password = "";
+          };
+        });
+    } else {
+      $scope.errors = "Please input a valid email.";
+    };
   };
 }]);

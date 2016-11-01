@@ -4,6 +4,12 @@ ang.service('Users', ['$resource', function($resource) {
   return $resource("/users/")
 }])
 
+ang.service('ValidateRegistration', function() {
+  return function(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); 
+  }
+})
+
 ang.service('UserEventList', ['$resource', function($resource) {
   return $resource("/events/userEventList")
 }])
