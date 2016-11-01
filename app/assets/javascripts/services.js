@@ -4,7 +4,7 @@ ang.service('Users', ['$resource', function($resource) {
   return $resource("/users/")
 }])
 
-ang.service('ValidateRegistration', function() {
+ang.service('ValidEmail', function() {
   return function(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); 
   }
