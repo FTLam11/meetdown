@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
       render json: {token: jwt}
     else
-      render json: {error: "You're not authorized to perform this action"}
+      render json: {error: "You are not authorized to perform this action"}
     end
   end
 
