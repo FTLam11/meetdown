@@ -10,6 +10,43 @@ ang.service('ValidEmail', function() {
   }
 })
 
+ang.service('SurveyColors', function() {
+  return function(verb) {
+    switch (verb) {
+      case "Identity":
+        return "#a7ffeb";
+        break;
+      case "Profession":
+        return "#64ffda";
+        break;
+      case "Physical Activity":
+        return "#1de9b6";
+        break;
+      case "Games":
+        return "#00bfa5";
+        break;
+      case "Learning":
+        return "#00e676";
+        break;
+      case "Discussions":
+        return "#00c853";
+        break;
+      case "Performances or Viewings":
+        return "#00b8d4";
+        break;
+      case "Food or Drink":
+        return "#40c4ff";
+        break;
+      case "Social Events and Outings":
+        return "#00b0ff";
+        break;
+      case "Join":
+        return "#0091ea";
+        break;
+    } 
+  }
+})
+
 ang.service('UserEventList', ['$resource', function($resource) {
   return $resource("/events/userEventList")
 }])
