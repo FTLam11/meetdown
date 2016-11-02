@@ -26,7 +26,7 @@ finder.filter('filterVerbs', function () {
   };
 });
 
-finder.controller('FinderCtrl', ['$scope', '$state', 'interests', 'Topics', '$location','CreateInterest', 'GetUserTopics', 'CreateAction', 'Suggest', '$auth', 'Authenticate', 'SurveyColors', function($scope, $state, interests, Topics, $location, CreateInterest, GetUserTopics, CreateAction, Suggest, $auth, Authenticate, SurveyColors) {
+finder.controller('FinderCtrl', ['$scope', '$state', 'interests', 'Topics', '$location','CreateInterest', 'GetUserTopics', 'CreateAction', 'Suggest', '$auth', 'Authenticate', 'SurveyColors', 'DeleteInterest', function($scope, $state, interests, Topics, $location, CreateInterest, GetUserTopics, CreateAction, Suggest, $auth, Authenticate, SurveyColors, DeleteInterest) {
 
 Authenticate();
 
@@ -92,8 +92,13 @@ $scope.suggest = function(suggestion) {
 };
 
 $scope.createInterest = function(topic) {
-  CreateInterest.save({topic_id: topic.id, user_id: $auth.getPayload()['id']});
-  $scope.userTopics.push(topic);
+  CreateInterest.save({topic_id: topic.id, user_id: $auth.getPayload()['id'], token: $auth.getToken()}).$promise.then(function(response) {
+    if (response.error) {
+      $scope.error = response.error;
+    } else {
+      $scope.userTopics.push(topic);
+    };
+  });
 };
 
 $scope.goAtlas = function() {
@@ -101,4 +106,15 @@ $scope.goAtlas = function() {
 };
 
 $scope.color = SurveyColors;
+
+$scope.deleteInterest = function(topic) {
+  DeleteInterest.save({topic_id: topic.id, user_id: $auth.getPayload()['id'], token: $auth.getToken()}).$promise.then(function(response) {
+    if (response.error) {
+      $scope.error = response.error;
+    } else {
+      var index = $scope.userTopics.indexOf(topic);
+      $scope.userTopics.splice(index, 1);
+    };
+  });
+};
 }]);

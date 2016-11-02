@@ -23,7 +23,7 @@
     </div>
     <div class="finder-current">
       <h2 class="header-center">Your Interests</h1>
-      <a class="interest" ng-repeat="topic in userTopics track by topic.id">
+      <a class="interest" ng-repeat="topic in userTopics track by topic.id" ng-click="deleteInterest(topic)">
         <div class="interest-tag-added">{{topic.name}}</div>
       </a>
       <div class="finder-suggest">

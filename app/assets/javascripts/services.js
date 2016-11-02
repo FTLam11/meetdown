@@ -153,6 +153,10 @@ ang.service('CreateInterest', ['$resource', function($resource) {
   return $resource("/interests")
 }])
 
+ang.service('DeleteInterest', ['$resource', function($resource) {
+  return $resource("/interesteezy")
+}])
+
 ang.service('CreateAction', ['$resource', function($resource) {
   return $resource("/actions")
 }])
