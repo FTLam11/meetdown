@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post '/events/create', to: "events#create"
   post '/users/fb', to: "users#fbcreate"
   delete '/events/cancelAttend', to: "events#cancelAttend"
-  # post '/users/:user_id/topics/:topic_id', to: "users#addInterest"
+  post '/interesteezy', to: "interests#destroy"
   resources :interests, only: [:create]
   resources :actions, only: [:create]
   root 'application#angular'
