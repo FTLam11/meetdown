@@ -16,17 +16,6 @@ class Zipcode < ApplicationRecord
   end
 
   def eventsNearby
-<<<<<<< HEAD
-    events = []
-    self.neighbors.each do |neighbor|
-      neighbor.events.each do |event|
-        events << event
-        p event
-      end
-    end
-    events.uniq
-=======
     self.neighbors.map { |neighbor| neighbor = neighbor.events }.flatten.uniq
->>>>>>> pg
   end
 end
