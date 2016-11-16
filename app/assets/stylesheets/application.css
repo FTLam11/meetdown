@@ -86,7 +86,11 @@ div {
 }
 
 .angular-google-map-container {
-  height: 400px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 img-crop {
@@ -166,10 +170,15 @@ img-crop canvas {
 
 .interest:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .header-center {
   text-align: center;
+}
+
+.questions {
+  padding: 1em;
 }
 
 .questionnaire {
@@ -180,28 +189,35 @@ img-crop canvas {
 }
 
 .questionnaire-prev {
-  position: fixed;
+  position: absolute;
   height: 30px;
   width: 30px;
   cursor: pointer;
   top: 20%;
-  left: 24%;
+  left: 47%;
   font-size: -webkit-xxx-large;
 }
+
+.go-atlas {
+  margin-bottom: 1em;
+}
+
+.fa-arrow-cicle-down, .fa-arrow-circle-up {
+  font-size: 48px;
+} 
 
 .questionnaire-prev:hover {
   text-decoration: none;
 }
 
 .questionnaire-next {
-  position: fixed;
+  position: absolute;
   height: 30px;
   width: 30px;
   cursor: pointer;
   bottom: 30%;
-  left: 24%;
+  left: 47%;
   font-size: -webkit-xxx-large;
-  text-decoration: none;
 }
 
 .questionnaire-next:hover {
@@ -240,10 +256,6 @@ em {
 
 .navbar-right {
   margin-right: 0px;
-}
-
-.profile {
-  margin-top: 70px;
 }
 
 .profile-block {
@@ -292,6 +304,8 @@ header {
 
 .atlas-left {
   padding: 0px;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .atlas-right {
@@ -338,4 +352,20 @@ header {
 
 .events-list {
   font-size: 16px;
+}
+
+.active-topic {
+  background-color: #FA9FB5;
+}
+
+.modal-head {
+  text-align: center;
+}
+
+.modal-header {
+  background: #6cecc1;
+}
+
+.modal-input {
+  width: 40%;
 }

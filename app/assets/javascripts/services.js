@@ -1,15 +1,58 @@
 var ang = angular.module('meetdown')
 
 ang.service('Users', ['$resource', function($resource) {
-  return $resource("http://localhost:3000/users/")
+  return $resource("/users/")
 }])
+
+ang.service('ValidEmail', function() {
+  return function(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); 
+  }
+})
+
+ang.service('SurveyColors', function() {
+  return function(verb) {
+    switch (verb) {
+      case "Identity":
+        return "#a7ffeb";
+        break;
+      case "Profession":
+        return "#64ffda";
+        break;
+      case "Physical Activity":
+        return "#1de9b6";
+        break;
+      case "Games":
+        return "#00bfa5";
+        break;
+      case "Learning":
+        return "#00e676";
+        break;
+      case "Discussions":
+        return "#00c853";
+        break;
+      case "Performances or Viewings":
+        return "#00b8d4";
+        break;
+      case "Food or Drink":
+        return "#40c4ff";
+        break;
+      case "Social Events and Outings":
+        return "#00b0ff";
+        break;
+      case "Join":
+        return "#0091ea";
+        break;
+    } 
+  }
+})
 
 ang.service('UserEventList', ['$resource', function($resource) {
   return $resource("/events/userEventList")
 }])
 
 ang.service('RequestSignature', ['$resource', function($resource) {
-  return $resource("http://localhost:3000/users/s3")
+  return $resource("/users/s3")
 }])
 
 ang.service('UploadToS3', ['$resource', function($resource) {
@@ -87,7 +130,7 @@ ang.service('ZipCount', ['$resource', function($resource) {
 }])
 
 ang.service('FindOrCreateFb', ['$resource', function($resource) {
-  return $resource("http://localhost:3000/users/fb")
+  return $resource("/users/fb")
 }])
 
 ang.service('Topics', ['$resource', function($resource) {
@@ -108,6 +151,10 @@ ang.service('CreateFBUser', ['$resource', function($resource) {
 
 ang.service('CreateInterest', ['$resource', function($resource) {
   return $resource("/interests")
+}])
+
+ang.service('DeleteInterest', ['$resource', function($resource) {
+  return $resource("/interesteezy")
 }])
 
 ang.service('CreateAction', ['$resource', function($resource) {

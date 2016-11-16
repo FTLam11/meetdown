@@ -1,3 +1,3 @@
 development:
-  app_id: 239604083106199
-  secret: 1eecc231349d28d509386646978591a2
+  app_id: <%= ENV["FB_CLIENT_ID"] %>
+  secret: <%= ENV["FB_SECRET_KEY"] %>

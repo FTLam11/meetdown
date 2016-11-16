@@ -23,11 +23,11 @@ class UsersController < ApplicationController
   end
 
   def fbcreate
-    @oauth = Koala::Facebook::OAuth.new("239604083106199", "1eecc231349d28d509386646978591a2", "http://localhost:3000/")
+    @oauth = Koala::Facebook::OAuth.new(Rails.application.secrets.fb_client_id, Rails.application.secrets.fb_secret_key, "http://ruby-pg-env.vnmyh7yq7h.us-east-1.elasticbeanstalk.com/")
     oauthtoken = @oauth.get_access_token(params[:code])
     @graph = Koala::Facebook::API.new(oauthtoken)
     profile = @graph.get_object("me")
-    payload = User.find_or_create_by(fb_id: profile["id"]).as_json
+    payload = User.find_or_create_by(username: profile["name"], fb_id: profile["id"]).as_json
     jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
     render json: {token: jwt}
   end
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
       render json: {token: jwt}
     else
-      render json: {error: "You're not authorized to perform this action"}
+      render json: {error: "You are not authorized to perform this action"}
     end
   end
 
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
         key: unique_name.to_s + params[:key].gsub(/\s+/, ""),
         policy: s3_upload_policy,
         signature: s3_upload_signature,
-        AWSAccessKeyId: ENV["AWS_SECRET_KEY_ID"]
+        AWSAccessKeyId: Rails.application.secrets.aws_secret_key_id
       }
     else
       render json: {error: "You are not authorized to perform this action"}

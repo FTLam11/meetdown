@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-xs-6" ng-style="{background: color(currentVerb)}">
     <div class="questionnaire">
-      <h3 class="header-center">{{sentences[currentVerb]}}</h1>
-      <a class="questionnaire-prev" ng-click="nextQuestion('up')">∧</a>
-      <a class="questionnaire-next" ng-click="nextQuestion('down')">∨</a>
+      <h3 class="header-center questions">{{sentences[currentVerb]}}</h1>
+      <a class="questionnaire-prev" ng-click="nextQuestion('up')"><i class="fa fa-arrow-circle-up"></i></a>
+      <a class="questionnaire-next" ng-click="nextQuestion('down')"><i class="fa fa-arrow-circle-down"></i></a>
     </div>
     <div class="questionnaire-indicator">
       <ul class="no-dots">
@@ -23,7 +23,7 @@
     </div>
     <div class="finder-current">
       <h2 class="header-center">Your Interests</h1>
-      <a class="interest" ng-repeat="topic in userTopics track by topic.id" ng-click="showTopic(topic)">
+      <a class="interest" ng-repeat="topic in userTopics track by topic.id" ng-click="deleteInterest(topic)">
         <div class="interest-tag-added">{{topic.name}}</div>
       </a>
       <div class="finder-suggest">
@@ -36,13 +36,16 @@
                 <h4 class="modal-title">Suggest an interest!</h4>
               </div>
               <div class="modal-body">
-                <input type="text" ng-model="suggestion">
+                <input class="modal-input" type="text" ng-model="suggestion">
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="suggest(suggestion)">Submit</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="suggest(suggestion)">Submit</button>
               </div>
             </div>
           </div>
+        </div>
+        <div class="go-atlas">
+          <input type="submit" class="btn register-btn" ng-click="goAtlas()" value="Finish"></input>
         </div>
       </div>
     </div>

@@ -98,16 +98,6 @@ meetdown.config(function (datepickerConfig) {
         }
       })
 
-      .state('root.topic', {
-        url: '/topics/:topic_id',
-        views: {
-          'container@': {
-            templateUrl: 'topics/_topic.html',
-            controller: 'TopicCtrl'
-          }
-        }
-      })
-
       .state('root.profile', {
         url: '/profile',
         views: {

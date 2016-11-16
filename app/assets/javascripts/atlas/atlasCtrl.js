@@ -1,6 +1,6 @@
 var atlas = angular.module('meetdown')
 
-atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory','$location','$uibModal', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory,$location,$uibModal) {
+atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUserTopics', 'ZipCount', 'StyleMap', 'GetZipTopics', '$auth', 'AtlasFactory', '$location', '$uibModal', function($scope, uiGmapGoogleMapApi, Topics, GetUserTopics, ZipCount, StyleMap, GetZipTopics, $auth, AtlasFactory, $location, $uibModal) {
   $scope.topics = [];
   $scope.showFusionLayer = true;
   $scope.map = StyleMap;
@@ -11,47 +11,41 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   $scope.currentTopic = ""
   $scope.zipCount = []
 
-  $scope.fusionTable2CallBack = function (layer) {
-        layer.addListener('click', function(e) {
-          e.infoWindowHtml = "<h5>" + e.row.Zipcode.value + "</h5>"
-          if ($scope.currentTopic != "") {
-            e.infoWindowHtml += "Users subscribed to " + $scope.currentTopic +": "+ $scope.zipCount[e.row.Zipcode.value]
-            $scope.setCurrentZip(e.row.Zipcode.value,true)
-          }
-        });
-        layer.addListener('rightclick', function(e) {
-          e.infoWindowHtml = "<h5>" + e.row.Zipcode.value + "</h5>"
+  $scope.fusionTable2CallBack = function(layer) {
+    layer.addListener('click', function(e) {
+      e.infoWindowHtml = "<h5>" + e.row.Zipcode.value + "</h5>"
+      if ($scope.currentTopic != "") {
+        e.infoWindowHtml += "Users subscribed to " + $scope.currentTopic + ": " + $scope.zipCount[e.row.Zipcode.value]
+        $scope.setCurrentZip(e.row.Zipcode.value, true)
+      }
+    });
+    layer.addListener('rightclick', function(e) {
+      e.infoWindowHtml = "<h5>" + e.row.Zipcode.value + "</h5>"
+    });
+  }
 
-        });
-        }
-
-
-  var openModal = function(){
+  function openModal() {
     var modalInstance = $uibModal.open({
-              backdrop  : 'static',
-              controller: 'surveyCtrl',
-              templateUrl: 'survey/_survey.html',
-              keyboard  : false
-            })
-    modalInstance.result.then(function () {
-              //on ok button press
-              var zip = $auth.getPayload().zip_code
-              $scope.currentZip = zip
-              $scope.setCurrentZip(zip);
-          }, function () {
-              //on cancel button press
-              console.log("Modal Closed");
-          });
+      backdrop: 'static',
+      controller: 'surveyCtrl',
+      templateUrl: 'survey/_survey.html',
+      keyboard: false
+    })
+    modalInstance.result.then(function() {
+      //on ok button press
+      if ($auth.getPayload().zip_code) {
+        var zip = $auth.getPayload().zip_code
+        $scope.currentZip = zip
+        $scope.setCurrentZip(zip);
+      } else {
+        $scope.setCurrentZip($scope.currentZip);
+      }
+    }, function() {
+      //on cancel button press
+    });
   }
-    
 
-
-  if ($auth.getPayload() != undefined && $auth.getPayload().zip_code != undefined) {
-    $scope.currentZip = $auth.getPayload().zip_code;
-  }
-  else{openModal()};
-
-  $scope.setCurrentZip = function(zipcode,focus) {
+  $scope.setCurrentZip = function(zipcode, focus) {
     focus = focus || false;
     $scope.interestZip = zipcode;
     $scope.currentZip = zipcode;
@@ -60,21 +54,25 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
     GetZipTopics.get({ zip_code: zipcode }).$promise.then(function(data) {
       $scope.zipTopics = data.topics_in_my_zip;
       $scope.events = data.events;
-      if (focus === false){
+      if (focus === false) {
         $scope.currentTopic = ""
         var obj = {};
         obj[zipcode] = 1;
-        console.log(data.center[1])
         $scope.map.center = { latitude: data.center[1], longitude: data.center[0] }
-        
         $scope.map.fusionlayer = AtlasFactory.setLayer(zipcode);
         $scope.map.fusionlayer.options.styles = AtlasFactory.setZipColorQuery(obj);
       }
     });
   };
 
-  $scope.setCurrentZip($scope.currentZip);
-  // showLegend="true"
+  if ($auth.getPayload() == undefined) {
+    $scope.setCurrentZip($scope.currentZip);
+  } else if ($auth.getPayload().zip_code != undefined) {
+    $scope.currentZip = $auth.getPayload().zip_code;
+    $scope.setCurrentZip($scope.currentZip);
+  } else {
+    openModal();
+  };
 
   $scope.d3color = function() {
     return function(d, i) {
@@ -99,7 +97,7 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
   }
 
   $scope.setQueryTopic = function(topic) {
-    $scope.currentTopic=topic.name
+    $scope.currentTopic = topic.name
     ZipCount.get({ id: topic.id }).$promise.then(function(data) {
       plotHeatmap(data);
       $scope.zipCount = data.zip_codes
@@ -108,12 +106,12 @@ atlas.controller('AtlasCtrl', ['$scope', 'uiGmapGoogleMapApi', 'Topics', 'GetUse
 
   Topics.get().$promise.then(function(data) {
     $scope.topics = data.topics;
-    GetUserTopics.get({user_id: $auth.getPayload()['id']}).$promise.then(function(data) {
+    GetUserTopics.get({ user_id: $auth.getPayload()['id'] }).$promise.then(function(data) {
       if (data.user_topics) {
         $scope.userTopics = data.user_topics;
 
         for (var i = 0; i < $scope.userTopics.length; i++) {
-          $scope.topics = $scope.topics.filter(function(topicObj){ 
+          $scope.topics = $scope.topics.filter(function(topicObj) {
             return topicObj.id != $scope.userTopics[i].id;
           });
           $scope.topics.unshift($scope.userTopics[i])
