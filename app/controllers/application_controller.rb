@@ -44,4 +44,19 @@ class ApplicationController < ActionController::Base
       Rails.application.secrets.aws_secret_access_key,
       s3_upload_policy)).gsub(/\n/, "")
   end
+
+  def interest_manager(block)
+    if authorized?
+      yield if block_given?
+      render json: {status: 201}, status: 201
+    else
+      render json: {error: "You are not authorized to perform this action"}, status: 401
+    end
+  end
+
+  def authorized?
+    JWT.decode params[:token], 
+      Rails.application.secrets.hmac_secret, 
+      true, { :algorithm => 'HS256' }
+  end
 end

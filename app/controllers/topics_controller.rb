@@ -17,6 +17,11 @@ class TopicsController < ApplicationController
     ruby_topics.sort! {|x,y| y.count<=>x.count}
 
     render json: { topics: ruby_topics }
+
+    # Topic.find(:all, :select => 'topics.*, count(interests.id) as interest_count',
+    #     :joins => 'left outer join interests on interests.topic_id = topics.id',
+    #     :group => 'topics.id'
+    #   )
   end
 
   def show
