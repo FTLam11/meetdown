@@ -23,10 +23,7 @@ class UsersController < ApplicationController
   end
 
   def fbcreate
-    @oauth = Koala::Facebook::OAuth.new(Rails.application.secrets.fb_client_id, Rails.application.secrets.fb_secret_key, "http://ruby-pg-env.vnmyh7yq7h.us-east-1.elasticbeanstalk.com/")
-    oauthtoken = @oauth.get_access_token(params[:code])
-    @graph = Koala::Facebook::API.new(oauthtoken)
-    profile = @graph.get_object("me")
+    profile = User.get_FB_profile(params[:code])
     payload = User.find_or_create_by(username: profile["name"], fb_id: profile["id"]).as_json
     jwt = JWT.encode payload, Rails.application.secrets.hmac_secret, 'HS256'
     render json: {token: jwt}

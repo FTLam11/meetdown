@@ -15,4 +15,11 @@ class User < ApplicationRecord
   def is_password?(password)
     BCrypt::Password.new(self.password_digest) == password
   end
+
+  def self.get_FB_profile(code)
+    @oauth = Koala::Facebook::OAuth.new(Rails.application.secrets.fb_client_id, Rails.application.secrets.fb_secret_key, "http://ruby-pg-env.vnmyh7yq7h.us-east-1.elasticbeanstalk.com/")
+    oauthtoken = @oauth.get_access_token(code)
+    @graph = Koala::Facebook::API.new(oauthtoken)
+    @graph.get_object("me")
+  end
 end

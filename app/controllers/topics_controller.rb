@@ -3,13 +3,11 @@ class TopicsController < ApplicationController
 
   def index
     topics = Topic.getAll
-
     render json: { topics: topics }
   end
 
   def show
     topic = Topic.find(params[:id])
-
     render json: { topic: topic }
   end
 
@@ -32,7 +30,6 @@ class TopicsController < ApplicationController
 
   def suggest
     Suggestion.create(body: params[:body])
-
     render json: {status: 201}, status: 201
   end
 
