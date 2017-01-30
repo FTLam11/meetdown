@@ -20,7 +20,6 @@ class Zipcode < ApplicationRecord
   end
 
   def self.getSelfTopics(zipcode)
-    User.where(zip_code: zipcode)
-      .map { |user| user.topics }.flatten.uniq
+    User.where(zip_code: zipcode).map { |user| user.topics }.flatten.uniq
   end
 end
