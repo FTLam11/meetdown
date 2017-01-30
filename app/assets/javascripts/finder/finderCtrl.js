@@ -26,7 +26,7 @@ finder.filter('filterVerbs', function () {
   };
 });
 
-finder.controller('FinderCtrl', ['$scope', '$state', 'interests', 'Topics', '$location','CreateInterest', 'GetUserTopics', 'CreateAction', 'Suggest', '$auth', 'Authenticate', 'SurveyColors', 'DeleteInterest', function($scope, $state, interests, Topics, $location, CreateInterest, GetUserTopics, CreateAction, Suggest, $auth, Authenticate, SurveyColors, DeleteInterest) {
+finder.controller('FinderCtrl', ['$scope', '$state', 'interests', 'Topics', '$location','CreateInterest', 'GetUserTopics', 'Suggest', '$auth', 'Authenticate', 'SurveyColors', 'DeleteInterest', function($scope, $state, interests, Topics, $location, CreateInterest, GetUserTopics, Suggest, $auth, Authenticate, SurveyColors, DeleteInterest) {
 
 Authenticate();
 

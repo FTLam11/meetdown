@@ -2,25 +2,14 @@ class TopicsController < ApplicationController
   wrap_parameters format: [:json]
 
   def index
-    topics = Topic.all
-    ruby_topics = Array.new
+    topics = Topic.getAll
 
-    topics.each do | topic |
-      ruby_hash = Hash.new
-      ruby_hash[:id] = topic[:id]
-      ruby_hash[:name] = topic[:name]
-      ruby_hash[:count] = topic.users.count
-      ruby_hash[:verbs] = topic[:verbs]
-      ruby_topics << ruby_hash
-    end
-
-    ruby_topics.sort! {|x,y| y.count<=>x.count}
-
-    render json: { topics: ruby_topics }
+    render json: { topics: topics }
   end
 
   def show
     topic = Topic.find(params[:id])
+
     render json: { topic: topic }
   end
 
@@ -32,15 +21,19 @@ class TopicsController < ApplicationController
   end
 
   def zipTopics
-    all_topics_in_a_zipcode = User.where(zip_code: params[:zip_code]).map { |user| user = user.topics }.flatten.uniq
-    topics_by_popularity = all_topics_in_a_zipcode.map { |topic| topic = {"name": topic.name, "count": topic.users.where(zip_code: params[:zip_code]).count, "id": topic.id} }.sort_by! {| topic_hash | -topic_hash[:count] }
-    zipcode=Zipcode.find_by(zipcode: params[:zip_code])
+    topics_by_popularity = Zipcode.getSelfTopics(params[:zip_code])
+      .map { |topic| {"name": topic.name, "count": topic.users.where(zip_code: params[:zip_code]).count, "id": topic.id} }
+      .sort_by! {| topic_hash | -topic_hash[:count] }
+    zipcode = Zipcode.find_by(zipcode: params[:zip_code])
     center = JSON.parse(zipcode.center)
+
     render json: {topics_in_my_zip: topics_by_popularity.take(10), events: zipcode.eventsNearby, center: center}
   end
 
   def suggest
     Suggestion.create(body: params[:body])
+
+    render json: {status: 201}, status: 201
   end
 
   def topic_params

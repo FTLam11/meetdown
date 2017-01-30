@@ -157,10 +157,6 @@ ang.service('DeleteInterest', ['$resource', function($resource) {
   return $resource("/interesteezy")
 }])
 
-ang.service('CreateAction', ['$resource', function($resource) {
-  return $resource("/actions")
-}])
-
 ang.service('SubmitSurvey', ['$resource', function($resource) {
   return $resource("/users/:id", { id: "@id" }, { update: { method: 'PUT' } })
 }])
