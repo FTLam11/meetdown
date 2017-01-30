@@ -16,6 +16,11 @@ class Zipcode < ApplicationRecord
   end
 
   def eventsNearby
-    self.neighbors.map { |neighbor| neighbor = neighbor.events }.flatten.uniq
+    self.neighbors.map { |neighbor| neighbor.events }.flatten.uniq
+  end
+
+  def self.getSelfTopics(zipcode)
+    User.where(zip_code: zipcode)
+      .map { |user| user.topics }.flatten.uniq
   end
 end
