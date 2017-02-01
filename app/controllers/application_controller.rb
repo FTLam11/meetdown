@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
 
   def interest_manager(&block)
     if authorized?
-      yield if block_given?
+      block.call
       render json: {status: 201}, status: 201
     else
       render json: {error: "You are not authorized to perform this action"}, status: 401
