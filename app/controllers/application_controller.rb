@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
       s3_upload_policy)).gsub(/\n/, "")
   end
 
-  def interest_manager(block)
+  def interest_manager(&block)
     if authorized?
       yield if block_given?
       render json: {status: 201}, status: 201
